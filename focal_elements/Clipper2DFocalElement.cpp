@@ -30,7 +30,7 @@ bool Clipper2DFocalElement::equal_to(FocalElement const &rhs) const {
 }
 
 bool Clipper2DFocalElement::is_inside(FocalElement const &rhs) const {
-    return cardinality()<rhs.cardinality() && *intersect(rhs)==*this;
+    return cardinality() <= rhs.cardinality() && *intersect(rhs) == *this;
 }
 
 std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElement const &rhs) const {
