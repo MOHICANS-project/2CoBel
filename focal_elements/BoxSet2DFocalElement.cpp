@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "BoxSet2DFocalElement.h"
+#include "ConflictFocalElement.h"
 
 
 BoxSet2DFocalElement::BoxSet2DFocalElement(const std::vector<Geometry::Rectangle> &boxes) : boxes(boxes) {
@@ -66,7 +67,7 @@ bool BoxSet2DFocalElement::equal_to(FocalElement const &rhs) const {
 
 bool BoxSet2DFocalElement::is_inside(FocalElement const &rhs) const {
     auto rhsr = static_cast<const BoxSet2DFocalElement &>(rhs);
-    return bounding_box.intersect(rhsr.getBounding_box())==bounding_box && *intersect(rhsr) == *this;
+    return bounding_box.intersect(rhsr.getBounding_box()) == bounding_box && *intersect(rhsr) == *this;
 }
 
 std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_intersection(FocalElement const &rhs) const {
@@ -79,6 +80,7 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_intersection(FocalElement
             if (rect.computeArea() > 0)new_boxes.push_back(rect);
         }
     }
+    if (new_boxes.empty())return std::unique_ptr<FocalElement>(new ConflictFocalElement());
     return std::unique_ptr<FocalElement>(new BoxSet2DFocalElement(new_boxes));
 
 }
@@ -225,6 +227,25 @@ size_t BoxSet2DFocalElement::getNumBoxes() {
 
 std::unique_ptr<FocalElement> BoxSet2DFocalElement::clone() const {
     return std::unique_ptr<FocalElement>(new BoxSet2DFocalElement(boxes));
+}
+
+std::vector<std::unique_ptr<FocalElement>> BoxSet2DFocalElement::getInnerSingletons(int step_size) const {
+    std::vector<std::unique_ptr<FocalElement>> singletons;
+    for (int x = bounding_box.getXmin(); x <= bounding_box.getXmax(); x += step_size) {
+        for (int y = bounding_box.getYmin(); y <= bounding_box.getYmax(); y += step_size) {
+            std::vector<Geometry::Rectangle> boxes;
+            boxes.emplace_back(x, x + 1, y, y - 1);
+            std::unique_ptr<FocalElement> fe(new BoxSet2DFocalElement(boxes));
+            if (fe->inside(*this))singletons.push_back(std::move(fe));
+        }
+    }
+    return singletons;
+}
+
+void BoxSet2DFocalElement::print(std::ostream &os) const {
+    for (auto &box : boxes) {
+        os << box << std::endl;
+    }
 }
 
 

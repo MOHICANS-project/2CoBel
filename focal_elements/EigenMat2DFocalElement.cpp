@@ -4,6 +4,7 @@
 
 #include <src/evidential/errors/ConstructorArgumentsError.h>
 #include "EigenMat2DFocalElement.h"
+#include "ConflictFocalElement.h"
 
 namespace EigenFE {
 
@@ -70,12 +71,14 @@ namespace EigenFE {
         int numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
         int numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
         MatrixXb new_image(numrows, numcols);
+        bool isempty = true;
         for (int i = 0; i < numrows; ++i) {
             for (int j = 0; j < numcols; ++j) {
                 new_image(i, j) = image(i - y_off1, j - x_off1) & rhsr.getImage()(i - y_off2, j - x_off2);
+                if (isempty && new_image(i, j)) isempty = false;
             }
         }
-
+        if (isempty)return std::unique_ptr<FocalElement>(new ConflictFocalElement());
         return std::unique_ptr<FocalElement>(new EigenMat2DFocalElement(new_bounding_box, new_image));
     }
 
@@ -98,15 +101,15 @@ namespace EigenFE {
 
         for (int i = 0; i < numrows; ++i) {
             for (int j = 0; j < numcols; ++j) {
-                bool val1=false;
+                bool val1 = false;
                 if ((i - y_off1) >= 0 && (i - y_off1) < image.rows() && (j - x_off1) >= 0 &&
                     (j - x_off1) < image.cols())
                     val1 = image(i - y_off1, j - x_off1);
-                bool val2=false;
+                bool val2 = false;
                 if ((i - y_off2) >= 0 && (i - y_off2) < rhsr.getImage().rows() && (j - x_off2) >= 0 &&
                     (j - x_off2) < rhsr.getImage().cols())
                     val2 = rhsr.getImage()(i - y_off2, j - x_off2);
-                new_image(i, j) = val1 | val2 ;
+                new_image(i, j) = val1 | val2;
             }
         }
 
@@ -115,6 +118,32 @@ namespace EigenFE {
 
     std::unique_ptr<FocalElement> EigenMat2DFocalElement::clone() const {
         return std::unique_ptr<FocalElement>(new EigenMat2DFocalElement(bounding_box, image));
+    }
+
+    std::vector<std::unique_ptr<FocalElement>> EigenMat2DFocalElement::getInnerSingletons(int step_size) const {
+        std::vector<std::unique_ptr<FocalElement>> singletons;
+        for (int i = 0; i < image.rows(); i += step_size)
+            for (int j = 0; j < image.cols(); j += step_size)
+                if (image(i, j)) {
+                    int xmin = bounding_box.getXmin() + i;
+                    int ymax = bounding_box.getYmax() - j;
+                    MatrixXb new_image(1, 1);
+                    new_image(0, 0) = true;
+                    singletons.push_back(std::unique_ptr<FocalElement>(
+                            new EigenMat2DFocalElement(Geometry::Rectangle(xmin, xmin + 1, ymax - 1, ymax),
+                                                       new_image)));
+                }
+        return singletons;
+    }
+
+    void EigenMat2DFocalElement::print(std::ostream &os) const {
+        for (int i = 0; i < image.rows(); ++i) {
+            for (int j = 0; j < image.cols(); ++j) {
+
+                os << image(i, j) << " ";
+            }
+            os << std::endl;
+        }
     }
 
 }

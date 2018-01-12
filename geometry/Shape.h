@@ -11,32 +11,33 @@
 #include <typeinfo>
 #include "Point2D.h"
 
-namespace Geometry{
+namespace Geometry {
 
 
     class Shape {
 
     public:
-        virtual ~Shape()=default;
+        virtual ~Shape() = default;
 
         virtual double computeArea() const =0;
-        virtual bool has_inside(Point2D p) const=0;
+
+        virtual bool has_inside(Point2D p) const =0;
 
 
-        bool operator==(const Shape& rhs) const {
+        bool operator==(const Shape &rhs) const {
             return (typeid(*this) == typeid(rhs)) && this->equal_to(rhs);
         }
-        bool operator!=(const Shape& rhs) const {
+
+        bool operator!=(const Shape &rhs) const {
             return !(*this == rhs);
         }
 
 
     private:
-        virtual bool equal_to(const Shape& rhs) const =0;
+        virtual bool equal_to(const Shape &rhs) const =0;
 
     };
 }
-
 
 
 #endif //FUSION_POLYGON_H

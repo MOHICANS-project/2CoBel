@@ -8,7 +8,7 @@
 
 #include <ostream>
 
-namespace Geometry{
+namespace Geometry {
 
 
     class Point2D {
@@ -17,9 +17,9 @@ namespace Geometry{
         int y;
 
     public:
-        explicit Point2D(int x=0, int y=0) : x(x), y(y) {}
+        explicit Point2D(int x = 0, int y = 0) : x(x), y(y) {}
 
-        virtual ~Point2D()= default;
+        virtual ~Point2D() = default;
 
         int X() const {
             return x;
