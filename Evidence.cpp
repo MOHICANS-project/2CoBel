@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <cfloat>
+#include <src/evidential/focal_elements/CompositeFocalElement.h>
 #include "Evidence.h"
 #include "errors/IllegalArgumentError.h"
 
@@ -311,8 +312,6 @@ Evidence Evidence::disjunctive_rule(const Evidence &other) {
 
     double ignorance_new = 0.0;
 
-    febuilder->clear();
-
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe1 = *focal_elements[i];
         for (int j = 0; j < other.getFocal_elements().size(); ++j) {
@@ -358,6 +357,99 @@ void Evidence::discount(double alpha) {
     ignorance *= (1 - alpha);
     ignorance += alpha;
 }
+
+Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true) {
+
+    std::unique_ptr<FocalElement> disc_fr_copy = discernment_frame_2->clone();
+    std::unique_ptr<FocalElement> new_discernment_frame(
+            new CompositeFocalElement(extend_right ? discernment_frame->clone() : std::move(disc_fr_copy),
+                                      extend_right ? std::move(disc_fr_copy) : discernment_frame->clone()));
+    Evidence outev(dispatcher->clone(), std::move(new_discernment_frame), ignorance);
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        outev.addFocalElement(std::unique_ptr<FocalElement>(
+                new CompositeFocalElement(extend_right ? focal_elements[i]->clone() : discernment_frame_2->clone,
+                                          extend_right ? discernment_frame_2->clone() : focal_elements[i]->clone())),
+                              mass_array[i]);
+    }
+
+    return outev;
+}
+
+Evidence Evidence::marginalization(bool marginalize_right = true) {
+    auto *df = dynamic_cast<const CompositeFocalElement *>(&discernment_frame);
+    if (df == nullptr)return *this;
+
+    double ignorance_new = 0;
+
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        auto *fe = dynamic_cast<const CompositeFocalElement *>(&focal_elements[i]);
+        if ((marginalize_right && *fe->getLeft() == *df->getLeft()) ||
+            (!marginalize_right && *fe->getRight() == *df->getRight()))
+            ignorance_new += mass_array[i];
+        febuilder->push(marginalize_right ? fe->getLeft()->clone() : fe->getRight()->clone(), mass_array[i]);
+    }
+
+
+    std::vector<std::unique_ptr<FocalElement>> outfes = febuilder->getFocalElementsArray();
+    std::vector<double> outmasses = febuilder->getMassArray();
+
+
+    Evidence outev(dispatcher->clone(), marginalize_right ? df->getLeft()->clone() : df->getRight()->clone(),
+                   ignorance_new);
+    for (int k = 0; k < outfes.size(); ++k) {
+        outev.addFocalElement(std::move(outfes[k]), outmasses[k]);
+    }
+
+    febuilder->clear();
+    return outev;
+}
+
+
+Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) {
+    Evidence outev(dispatcher->clone(), std::unique_ptr<FocalElement>(
+            new CompositeFocalElement(discernment_frame->clone(), other.getDiscernment_frame()->clone())),
+                   ignorance * other.getIgnorance());
+
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        for (int j = 0; j < other.getFocal_elements().size(); ++j) {
+            outev.addFocalElement(std::unique_ptr<FocalElement>(
+                    new CompositeFocalElement(focal_elements[i]->clone(), other.getFocal_elements()[j]->clone())),
+                                  mass_array[i] * other.getMassArray()[j]);
+        }
+    }
+    return outev;
+}
+
+
+Evidence::Evidence(const Evidence &other) {
+    discernment_frame = other.getDiscernment_frame()->clone();
+    ignorance = other.getIgnorance();
+    const std::vector<std::unique_ptr<FocalElement>> &fe_other = other.getFocal_elements();
+    const std::vector<double> &ms_other = other.getMassArray();
+    for (int i = 0; i < ms_other.size(); ++i) {
+        focal_elements.push_back(fe_other[i]->clone());
+        mass_array.push_back(ms_other[i]);
+    }
+    dispatcher = other.dispatcher->clone();
+    febuilder = dispatcher->getBuilder(*discernment_frame);
+}
+
+Evidence &Evidence::operator=(const Evidence &other) {
+
+    discernment_frame = other.getDiscernment_frame()->clone();
+    ignorance = other.getIgnorance();
+    const std::vector<std::unique_ptr<FocalElement>> &fe_other = other.getFocal_elements();
+    const std::vector<double> &ms_other = other.getMassArray();
+    for (int i = 0; i < ms_other.size(); ++i) {
+        focal_elements.push_back(fe_other[i]->clone());
+        mass_array.push_back(ms_other[i]);
+    }
+    dispatcher = other.dispatcher->clone();
+    febuilder = dispatcher->getBuilder(*discernment_frame);
+    return *this;
+}
+
+
 
 
 

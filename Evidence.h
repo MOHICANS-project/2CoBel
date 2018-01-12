@@ -47,9 +47,9 @@ public:
     explicit Evidence(std::unique_ptr<FocalElementArrayBuilderDispatcher> dispatcher,
                       std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
 
-    Evidence(const Evidence &other) = delete;
+    Evidence(const Evidence &other);
 
-    Evidence &operator=(const Evidence &)= delete;
+    Evidence &operator=(const Evidence &other);
 
     Evidence(Evidence &&other) = default;
 
@@ -81,6 +81,12 @@ public:
 
     Evidence disjunctive_rule(const Evidence &other);
 
+    Evidence vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true);
+
+    Evidence marginalization(bool marginalize_right = true);
+
+    Evidence vacuous_extension_and_conjuction(const Evidence &other);
+
     void discount(double alpha);
 
 
@@ -89,6 +95,7 @@ public:
     void setIgnorance(double ignorance);
 
     const std::unique_ptr<FocalElement> &getDiscernment_frame() const;
+
 
 };
 

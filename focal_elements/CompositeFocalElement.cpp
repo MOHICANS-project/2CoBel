@@ -71,8 +71,6 @@ CompositeFocalElement::CompositeFocalElement(const CompositeFocalElement &other)
 
 CompositeFocalElement &CompositeFocalElement::operator=(const CompositeFocalElement &other) {
     if (*this != other) {
-        right.release();
-        left.release();
         right = other.getRight()->clone();
         left = other.getLeft()->clone();
     }
