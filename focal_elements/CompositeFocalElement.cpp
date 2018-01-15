@@ -37,22 +37,32 @@ const std::unique_ptr<FocalElement> &CompositeFocalElement::getRight() const {
 
 bool CompositeFocalElement::is_inside(FocalElement const &rhs) const {
     auto rhsr = static_cast<const CompositeFocalElement &>(rhs);
-    return (left->inside(*rhsr.getLeft())) && (right->inside(*rhsr.getRight()));
+    ConflictFocalElement conf;
+    return (left->inside(*rhsr.getLeft()) || *left == conf) && (right->inside(*rhsr.getRight()) || *right == conf);
 }
 
 std::unique_ptr<FocalElement> CompositeFocalElement::do_intersection(FocalElement const &rhs) const {
     auto rhsr = static_cast<const CompositeFocalElement &>(rhs);
-    std::unique_ptr<FocalElement> leftinter = left->intersect(*rhsr.getLeft());
-    std::unique_ptr<FocalElement> rightinter = right->intersect(*rhsr.getRight());
     std::unique_ptr<FocalElement> empty(new ConflictFocalElement());
+    std::unique_ptr<FocalElement> leftinter = (*left == *empty || *rhsr.getLeft() == *empty) ? empty->clone()
+                                                                                             : left->intersect(
+                    *rhsr.getLeft());
+    std::unique_ptr<FocalElement> rightinter = (*right == *empty || *rhsr.getRight() == *empty) ? empty->clone()
+                                                                                                : right->intersect(
+                    *rhsr.getRight());
     if (*leftinter == *empty && *rightinter == *empty)return std::move(empty);
     return std::unique_ptr<FocalElement>(new CompositeFocalElement(std::move(leftinter), std::move(rightinter)));
 }
 
 std::unique_ptr<FocalElement> CompositeFocalElement::do_union(FocalElement const &rhs) const {
     auto rhsr = static_cast<const CompositeFocalElement &>(rhs);
-    std::unique_ptr<FocalElement> leftun = left->unite(*rhsr.getLeft());
-    std::unique_ptr<FocalElement> rightun = right->unite(*rhsr.getRight());
+    std::unique_ptr<FocalElement> empty(new ConflictFocalElement());
+    std::unique_ptr<FocalElement> leftun =
+            *left == *empty ? rhsr.getLeft()->clone() : (*rhsr.getLeft() == *empty ? left->clone() : left->unite(
+                    *rhsr.getLeft()));
+    std::unique_ptr<FocalElement> rightun =
+            *right == *empty ? rhsr.getRight()->clone() : (*rhsr.getRight() == *empty ? right->clone() : right->unite(
+                    *rhsr.getRight()));
     return std::unique_ptr<FocalElement>(new CompositeFocalElement(std::move(leftun), std::move(rightun)));
 }
 

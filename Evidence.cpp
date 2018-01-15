@@ -72,8 +72,10 @@ void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) 
         throw IncompatibleTypeError("Mass value has to be > 0.");
     if (elem->cardinality() < 0)
         throw IncompatibleTypeError("Focal element cardinality has to be >= 0.");
-    if (!elem->inside(*discernment_frame))
+    if (!elem->inside(*discernment_frame)) {
+        std::cout << *elem << std::endl;
         throw IncompatibleTypeError("The focal element has to lie inside the discernment frame.");
+    }
     focal_elements.push_back(std::move(elem));
     mass_array.push_back(mass);
 }
@@ -125,17 +127,20 @@ double Evidence::q_(const FocalElement &elem) {
 double Evidence::BetP(const FocalElement &w) {
     if (w.cardinality() == 0)return 0;
     double bp = 0;
+    double conftot = conflict();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
-        bp += (w.intersect(fe)->cardinality()) * (mass_array[i] / fe.cardinality());
+        if (fe.cardinality() == 0)conftot += mass_array[i];
+        else bp += (w.intersect(fe)->cardinality()) * (mass_array[i] / fe.cardinality());
     }
     bp += w.cardinality() * (ignorance / discernment_frame->cardinality());
-    bp /= (1 - conflict());
+    bp /= (1 - conftot);
     return bp;
 }
 
 
 void Evidence::setIgnorance(double ignorance) {
+    if (ignorance < 0)throw IncompatibleTypeError("Ignorance value has to be >= 0.");
     Evidence::ignorance = ignorance;
 }
 
@@ -367,7 +372,7 @@ Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_f
     Evidence outev(dispatcher->clone(), std::move(new_discernment_frame), ignorance);
     for (int i = 0; i < focal_elements.size(); ++i) {
         outev.addFocalElement(std::unique_ptr<FocalElement>(
-                new CompositeFocalElement(extend_right ? focal_elements[i]->clone() : discernment_frame_2->clone,
+                new CompositeFocalElement(extend_right ? focal_elements[i]->clone() : discernment_frame_2->clone(),
                                           extend_right ? discernment_frame_2->clone() : focal_elements[i]->clone())),
                               mass_array[i]);
     }
@@ -376,16 +381,20 @@ Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_f
 }
 
 Evidence Evidence::marginalization(bool marginalize_right = true) {
-    auto *df = dynamic_cast<const CompositeFocalElement *>(&discernment_frame);
+
+    auto *df = dynamic_cast<const CompositeFocalElement *>(discernment_frame.get());
     if (df == nullptr)return *this;
 
     double ignorance_new = 0;
 
     for (int i = 0; i < focal_elements.size(); ++i) {
-        auto *fe = dynamic_cast<const CompositeFocalElement *>(&focal_elements[i]);
+        auto *fe = dynamic_cast<const CompositeFocalElement *>(focal_elements[i].get());
         if ((marginalize_right && *fe->getLeft() == *df->getLeft()) ||
             (!marginalize_right && *fe->getRight() == *df->getRight()))
             ignorance_new += mass_array[i];
+        if ((marginalize_right && *fe->getLeft() == empty_set) ||
+            (!marginalize_right && *fe->getRight() == empty_set))
+            continue;
         febuilder->push(marginalize_right ? fe->getLeft()->clone() : fe->getRight()->clone(), mass_array[i]);
     }
 
@@ -416,8 +425,66 @@ Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) {
                     new CompositeFocalElement(focal_elements[i]->clone(), other.getFocal_elements()[j]->clone())),
                                   mass_array[i] * other.getMassArray()[j]);
         }
+        outev.addFocalElement(std::unique_ptr<FocalElement>(
+                new CompositeFocalElement(focal_elements[i]->clone(), other.getDiscernment_frame()->clone())),
+                              mass_array[i] * other.getIgnorance());
     }
+
+    for (int k = 0; k < other.getFocal_elements().size(); ++k) {
+        outev.addFocalElement(std::unique_ptr<FocalElement>(
+                new CompositeFocalElement(discernment_frame->clone(), other.getFocal_elements()[k]->clone())),
+                              ignorance * other.getMassArray()[k]);
+    }
+
     return outev;
+}
+
+void Evidence::setMass(double mass, int index) {
+    if (mass == 0)
+        throw IncompatibleTypeError(
+                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
+    if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
+    if (index < 0 || index >= mass_array.size()) throw IllegalArgumentError("Index out of bounds.");
+
+    mass_array[index] = mass;
+}
+
+void Evidence::setMass(double mass, const FocalElement &fe) {
+    if (mass == 0)
+        throw IncompatibleTypeError(
+                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
+    if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
+
+    bool found = false;
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        if (fe == *focal_elements[i]) {
+            mass_array[i] = mass;
+            found = true;
+            break;
+        }
+    }
+    if (!found)throw IllegalArgumentError("The focal element does not exist.");
+}
+
+void Evidence::deleteFocalElement(int index) {
+    if (index < 0 || index >= mass_array.size()) throw IllegalArgumentError("Index out of bounds.");
+    focal_elements[index].reset();
+    focal_elements.erase(focal_elements.begin() + index);
+    mass_array.erase(mass_array.begin() + index);
+}
+
+void Evidence::deleteFocalElement(const FocalElement &fe) {
+    int index = -1;
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        if (fe == *focal_elements[i]) {
+            index = i;
+            break;
+        }
+    }
+    if (index < 0)throw IllegalArgumentError("The focal element does not exist.");
+    focal_elements[index].reset();
+    focal_elements.erase(focal_elements.begin() + index);
+    mass_array.erase(mass_array.begin() + index);
 }
 
 
@@ -448,6 +515,18 @@ Evidence &Evidence::operator=(const Evidence &other) {
     febuilder = dispatcher->getBuilder(*discernment_frame);
     return *this;
 }
+
+double Evidence::getMass(const FocalElement &fe) {
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        if (*focal_elements[i] == fe) {
+            return mass_array[i];
+        }
+    }
+}
+
+
+
+
 
 
 

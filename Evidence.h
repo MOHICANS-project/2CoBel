@@ -59,6 +59,17 @@ public:
 
     const std::vector<double> &getMassArray() const;
 
+    void setMass(double mass, int index);
+
+    void setMass(double mass, const FocalElement &fe);
+
+    double getMass(const FocalElement &fe);
+
+
+    void deleteFocalElement(int index);
+
+    void deleteFocalElement(const FocalElement &fe);
+
     void addFocalElement(std::unique_ptr<FocalElement> elem, double mass);
 
     double conflict();
