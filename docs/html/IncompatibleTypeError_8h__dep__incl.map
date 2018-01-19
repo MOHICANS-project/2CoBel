@@ -1,0 +1,24 @@
+<map id="errors/IncompatibleTypeError.h" name="errors/IncompatibleTypeError.h">
+<area shape="rect" id="node2" href="$FocalElement_8h.html" title="focal_elements/FocalElement.h" alt="" coords="1145,80,1351,107"/>
+<area shape="rect" id="node3" href="$FocalElementContainer_8h.html" title="builders/FocalElementContainer.h" alt="" coords="719,162,937,189"/>
+<area shape="rect" id="node7" href="$Evidence_8h.html" title="Evidence.h" alt="" coords="1034,430,1121,457"/>
+<area shape="rect" id="node13" href="$BoxSet2DFocalElement_8h.html" title="focal_elements/BoxSet2DFocal\lElement.h" alt="" coords="1367,155,1574,196"/>
+<area shape="rect" id="node15" href="$Clipper2DFocalElement_8h.html" title="focal_elements/Clipper2DFocal\lElement.h" alt="" coords="1610,155,1814,196"/>
+<area shape="rect" id="node17" href="$CompositeFocalElement_8h.html" title="focal_elements/Composite\lFocalElement.h" alt="" coords="1159,155,1337,196"/>
+<area shape="rect" id="node19" href="$EigenMat2DFocalElement_8h.html" title="focal_elements/EigenMat2\lDFocalElement.h" alt="" coords="1864,155,2040,196"/>
+<area shape="rect" id="node21" href="$HashableFocalElement_8h.html" title="focal_elements/HashableFocal\lElement.h" alt="" coords="153,244,354,285"/>
+<area shape="rect" id="node4" href="$FocalElementContainerDispatcher_8h.html" title="builders/FocalElementContainer\lDispatcher.h" alt="" coords="837,244,1043,285"/>
+<area shape="rect" id="node9" href="$GenericFocalElementContainer_8h.html" title="builders/GenericFocalElement\lContainer.h" alt="" coords="617,244,813,285"/>
+<area shape="rect" id="node11" href="$HashableFocalElementContainer_8h.html" title="builders/HashableFocalElement\lContainer.h" alt="" coords="386,244,593,285"/>
+<area shape="rect" id="node5" href="$DefaultFocalElementContainerDispatcher_8h.html" title="builders/DefaultFocalElement\lContainerDispatcher.h" alt="" coords="837,333,1030,375"/>
+<area shape="rect" id="node6" href="$DefaultFocalElementContainerDispatcher_8cpp.html" title="builders/DefaultFocalElement\lContainerDispatcher.cpp" alt="" coords="457,423,650,464"/>
+<area shape="rect" id="node8" href="$Evidence_8cpp.html" title="Evidence.cpp" alt="" coords="1077,512,1179,539"/>
+<area shape="rect" id="node10" href="$GenericFocalElementContainer_8cpp.html" title="builders/GenericFocalElement\lContainer.cpp" alt="" coords="617,333,813,375"/>
+<area shape="rect" id="node12" href="$HashableFocalElementContainer_8cpp.html" title="builders/HashableFocalElement\lContainer.cpp" alt="" coords="283,333,490,375"/>
+<area shape="rect" id="node14" href="$BoxSet2DFocalElement_8cpp.html" title="focal_elements/BoxSet2DFocal\lElement.cpp" alt="" coords="1409,244,1615,285"/>
+<area shape="rect" id="node16" href="$Clipper2DFocalElement_8cpp.html" title="focal_elements/Clipper2DFocal\lElement.cpp" alt="" coords="1639,244,1843,285"/>
+<area shape="rect" id="node18" href="$CompositeFocalElement_8cpp.html" title="focal_elements/Composite\lFocalElement.cpp" alt="" coords="1207,244,1385,285"/>
+<area shape="rect" id="node20" href="$EigenMat2DFocalElement_8cpp.html" title="focal_elements/EigenMat2\lDFocalElement.cpp" alt="" coords="1868,244,2044,285"/>
+<area shape="rect" id="node22" href="$UnidimensionalFocalElement_8h.html" title="focal_elements/Unidimensional\lFocalElement.h" alt="" coords="5,333,208,375"/>
+<area shape="rect" id="node23" href="$UnidimensionalFocalElement_8cpp.html" title="focal_elements/Unidimensional\lFocalElement.cpp" alt="" coords="5,423,208,464"/>
+</map>

@@ -1,0 +1,91 @@
+\hypertarget{classGeometry_1_1Shape}{}\section{Geometry\+:\+:Shape Class Reference}
+\label{classGeometry_1_1Shape}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+
+
+{\ttfamily \#include $<$Shape.\+h$>$}
+
+
+
+Inheritance diagram for Geometry\+:\+:Shape\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{classGeometry_1_1Shape__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Geometry\+:\+:Shape\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classGeometry_1_1Shape__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classGeometry_1_1Shape_a2f668d80c0a457a81a96de0253cfc67d}{$\sim$\+Shape} ()=default
+\item 
+virtual double \hyperlink{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}{compute\+Area} () const =0
+\item 
+virtual bool \hyperlink{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p) const =0
+\item 
+bool \hyperlink{classGeometry_1_1Shape_a9660f59db5df18d8ad95cd8d73edeb17}{operator==} (const \hyperlink{classGeometry_1_1Shape}{Shape} \&rhs) const 
+\item 
+bool \hyperlink{classGeometry_1_1Shape_aae9ac7a4269aeb197ec92a2d4230c178}{operator!=} (const \hyperlink{classGeometry_1_1Shape}{Shape} \&rhs) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometry_1_1Shape_a2f668d80c0a457a81a96de0253cfc67d}{}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}!````~Shape@{$\sim$\+Shape}}
+\index{````~Shape@{$\sim$\+Shape}!Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+\subsubsection[{$\sim$\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}virtual Geometry\+::\+Shape\+::$\sim$\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\label{classGeometry_1_1Shape_a2f668d80c0a457a81a96de0253cfc67d}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}{}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}!compute\+Area@{compute\+Area}}
+\index{compute\+Area@{compute\+Area}!Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+\subsubsection[{compute\+Area}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Geometry\+::\+Shape\+::compute\+Area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}
+
+
+Implemented in \hyperlink{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}{Geometry\+::\+Rectangle}, and \hyperlink{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{Geometry\+::\+Clipper\+Polygon}.
+
+\hypertarget{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}{}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}!has\+\_\+inside@{has\+\_\+inside}}
+\index{has\+\_\+inside@{has\+\_\+inside}!Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+\subsubsection[{has\+\_\+inside}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Geometry\+::\+Shape\+::has\+\_\+inside (
+\begin{DoxyParamCaption}
+\item[{{\bf Point2\+D}}]{p}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}
+
+
+Implemented in \hyperlink{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}{Geometry\+::\+Rectangle}, and \hyperlink{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{Geometry\+::\+Clipper\+Polygon}.
+
+\hypertarget{classGeometry_1_1Shape_aae9ac7a4269aeb197ec92a2d4230c178}{}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Shape\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Shape} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Shape_aae9ac7a4269aeb197ec92a2d4230c178}
+\hypertarget{classGeometry_1_1Shape_a9660f59db5df18d8ad95cd8d73edeb17}{}\index{Geometry\+::\+Shape@{Geometry\+::\+Shape}!operator==@{operator==}}
+\index{operator==@{operator==}!Geometry\+::\+Shape@{Geometry\+::\+Shape}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Shape\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Shape} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Shape_a9660f59db5df18d8ad95cd8d73edeb17}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+geometry/\hyperlink{Shape_8h}{Shape.\+h}\end{DoxyCompactItemize}

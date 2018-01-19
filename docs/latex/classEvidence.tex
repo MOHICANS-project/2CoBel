@@ -1,0 +1,429 @@
+\hypertarget{classEvidence}{}\section{Evidence Class Reference}
+\label{classEvidence}\index{Evidence@{Evidence}}
+
+
+{\ttfamily \#include $<$Evidence.\+h$>$}
+
+
+
+Collaboration diagram for Evidence\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{classEvidence__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classEvidence_a85bcdfc070d0885b2c49c6930fe5a30f}{Evidence} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}{discernment\+\_\+frame}, double \+\_\+ignorance=0)
+\item 
+\hyperlink{classEvidence_a0e7f11da2d686f8a33e3e59937b543d5}{Evidence} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainerDispatcher}{Focal\+Element\+Container\+Dispatcher} $>$ \hyperlink{classEvidence_a8ae2742750940957698135fd9014d6d4}{dispatcher}, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}{discernment\+\_\+frame}, double \+\_\+ignorance=0)
+\item 
+\hyperlink{classEvidence_a5e0b5cb75efbbcff102602ab07ed0ce5}{Evidence} (const \hyperlink{classEvidence}{Evidence} \&other)
+\item 
+\hyperlink{classEvidence}{Evidence} \& \hyperlink{classEvidence_a2e6f8b584bba250e859e4b8f16f286e2}{operator=} (const \hyperlink{classEvidence}{Evidence} \&other)
+\item 
+\hyperlink{classEvidence_a749172343fd62d98eb6c42636b5b61a4}{Evidence} (\hyperlink{classEvidence}{Evidence} \&\&other)=default
+\item 
+\hyperlink{classEvidence}{Evidence} \& \hyperlink{classEvidence_a02106bb9e91afce2555be1cd830862de}{operator=} (\hyperlink{classEvidence}{Evidence} \&\&other)=default
+\item 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \& \hyperlink{classEvidence_ab2d805af2fafd03c9d148040eeb181b0}{get\+Focal\+\_\+elements} () const 
+\item 
+const std\+::vector$<$ double $>$ \& \hyperlink{classEvidence_a5cbcf217bf5159feccedba5edbd250c1}{get\+Mass\+Array} () const 
+\item 
+size\+\_\+t \hyperlink{classEvidence_af58901dda7c77519e3638b95304c4878}{num\+Focal\+Elements} () const 
+\item 
+void \hyperlink{classEvidence_ac12ebfac60dd08a07c3e852e66903520}{set\+Mass} (double mass, int index)
+\item 
+void \hyperlink{classEvidence_a854a8035ac5f008e9173edcfcf40f071}{set\+Mass} (double mass, const \hyperlink{classFocalElement}{Focal\+Element} \&fe)
+\item 
+double \hyperlink{classEvidence_a2f1e64bfe1c9eefc7f50a20aeab30a44}{get\+Mass} (const \hyperlink{classFocalElement}{Focal\+Element} \&fe)
+\item 
+void \hyperlink{classEvidence_a852aee625445547abfb4bb9a2031c10e}{delete\+Focal\+Element} (int index)
+\item 
+void \hyperlink{classEvidence_a1ebefa9999ec36cfd2fb782e6895e54c}{delete\+Focal\+Element} (const \hyperlink{classFocalElement}{Focal\+Element} \&fe)
+\item 
+void \hyperlink{classEvidence_a074be49ba8c3477d6d740a34ae2118b7}{add\+Focal\+Element} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ elem, double mass)
+\item 
+double \hyperlink{classEvidence_a69d3ef43e4010c1e5ab348701b3430cb}{conflict} ()
+\item 
+double \hyperlink{classEvidence_a8176961ffccb6c5597b6d20140d15b4c}{plausibility} (const \hyperlink{classFocalElement}{Focal\+Element} \&elem)
+\item 
+double \hyperlink{classEvidence_ad4e362c68673bcdf0c63f15b3c47d652}{belief} (const \hyperlink{classFocalElement}{Focal\+Element} \&elem)
+\item 
+double \hyperlink{classEvidence_a1d3cb97d6c475943693880b8379d4303}{q\+\_\+} (const \hyperlink{classFocalElement}{Focal\+Element} \&elem)
+\item 
+double \hyperlink{classEvidence_aae3ddf2df6726ab42164adc1b608d819}{Bet\+P} (const \hyperlink{classFocalElement}{Focal\+Element} \&w)
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a8967d11cadf86a581716686450b9a2c8}{max\+Bet\+P\+\_\+with\+Singletons} (int approx\+\_\+step\+\_\+size=1)
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a1670bedca69121445d988cd2ebff1c51}{max\+Bet\+P\+\_\+with\+Maximal\+Intersections} ()
+\item 
+bool \hyperlink{classEvidence_aab94dd76c710a6d4be701117a4c52039}{is\+Valid\+B\+B\+A} () const 
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_a4fada753531a85794be21cd9937fde21}{conjunctive\+\_\+rule} (const \hyperlink{classEvidence}{Evidence} \&other, bool normalize\+Dempster=true)
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_ac40aa65ecd126e0ef1f8fe55eec0d4da}{disjunctive\+\_\+rule} (const \hyperlink{classEvidence}{Evidence} \&other)
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_a17f68e6fd02cff470d046f89024dee64}{vacuous\+\_\+extension} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ discernment\+\_\+frame\+\_\+2, bool extend\+\_\+right=true)
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_a042d324e0ed4d3e07c87f16b4a1095ca}{marginalization} (bool marginalize\+\_\+right=true) const 
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_a10ac437fdfbdba9c819ef913cdca9178}{vacuous\+\_\+extension\+\_\+and\+\_\+conjuction} (const \hyperlink{classEvidence}{Evidence} \&other)
+\item 
+\hyperlink{classEvidence}{Evidence} \hyperlink{classEvidence_ad89a807b7f71a018f8dbf9224e74b52b}{conditioning} (const \hyperlink{classFocalElement}{Focal\+Element} \&C)
+\item 
+void \hyperlink{classEvidence_afaa46e0ce034a05c4749c7021430d60a}{discount} (double alpha)
+\item 
+void \hyperlink{classEvidence_aa6a44be2f65aa439e2bdcf9333659abb}{normalize} ()
+\item 
+double \hyperlink{classEvidence_a2d6b2109c1347c004d00c2ef6bd515d8}{get\+Ignorance} () const 
+\item 
+void \hyperlink{classEvidence_a11377c6946b7727015936b35dcf86cc8}{set\+Ignorance} (double \hyperlink{classEvidence_a77a5358b14a274c62a6b229ec4f844a0}{ignorance})
+\item 
+const std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \& \hyperlink{classEvidence_a875150a8830c15d0cf3391d73889214e}{get\+Discernment\+\_\+frame} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classEvidence_a5396b2087d6353fb4b2bc2976db93174}{extend\+Path} (unsigned long long \&path, size\+\_\+t pos)
+\item 
+void \hyperlink{classEvidence_aa3d0e63bb1be45a646f6443186298ed7}{extend\+Path} (boost\+::dynamic\+\_\+bitset$<$$>$ \&path, size\+\_\+t pos)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classEvidence_a33d81e2a221474b3547da413d48161ca}{dfs} (std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&output\+\_\+vec, std\+::vector$<$ T $>$ \&check)
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_acff22e57c3c79f40ad47f5e10f96d81c}{max\+Bet\+P} (std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&elems, bool compute\+Inters)
+\item 
+\hyperlink{classEvidence_a8136cd1d58c59e4b6a5088e9ac581797}{Evidence} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainerDispatcher}{Focal\+Element\+Container\+Dispatcher} $>$ \hyperlink{classEvidence_a8ae2742750940957698135fd9014d6d4}{dispatcher}, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainer}{Focal\+Element\+Container} $>$ \&\&\hyperlink{classEvidence_a1476adbcd8bc99817cc77b338b50cdef}{fecontainer}, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}{discernment\+\_\+frame}, double \+\_\+ignorance=0)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}{discernment\+\_\+frame}
+\item 
+double \hyperlink{classEvidence_a77a5358b14a274c62a6b229ec4f844a0}{ignorance}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainerDispatcher}{Focal\+Element\+Container\+Dispatcher} $>$ \hyperlink{classEvidence_a8ae2742750940957698135fd9014d6d4}{dispatcher}
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainer}{Focal\+Element\+Container} $>$ \hyperlink{classEvidence_a1476adbcd8bc99817cc77b338b50cdef}{fecontainer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classEvidence_a8136cd1d58c59e4b6a5088e9ac581797}{}\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\subsubsection[{Evidence}]{\setlength{\rightskip}{0pt plus 5cm}Evidence\+::\+Evidence (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element\+Container\+Dispatcher} $>$}]{dispatcher, }
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element\+Container} $>$ \&\&}]{fecontainer, }
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{discernment\+\_\+frame, }
+\item[{double}]{\+\_\+ignorance = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [protected]}}\label{classEvidence_a8136cd1d58c59e4b6a5088e9ac581797}
+\hypertarget{classEvidence_a85bcdfc070d0885b2c49c6930fe5a30f}{}\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\subsubsection[{Evidence}]{\setlength{\rightskip}{0pt plus 5cm}Evidence\+::\+Evidence (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{discernment\+\_\+frame, }
+\item[{double}]{\+\_\+ignorance = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classEvidence_a85bcdfc070d0885b2c49c6930fe5a30f}
+\hypertarget{classEvidence_a0e7f11da2d686f8a33e3e59937b543d5}{}\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\subsubsection[{Evidence}]{\setlength{\rightskip}{0pt plus 5cm}Evidence\+::\+Evidence (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element\+Container\+Dispatcher} $>$}]{dispatcher, }
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{discernment\+\_\+frame, }
+\item[{double}]{\+\_\+ignorance = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classEvidence_a0e7f11da2d686f8a33e3e59937b543d5}
+\hypertarget{classEvidence_a5e0b5cb75efbbcff102602ab07ed0ce5}{}\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\subsubsection[{Evidence}]{\setlength{\rightskip}{0pt plus 5cm}Evidence\+::\+Evidence (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evidence} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a5e0b5cb75efbbcff102602ab07ed0ce5}
+\hypertarget{classEvidence_a749172343fd62d98eb6c42636b5b61a4}{}\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!Evidence@{Evidence}}
+\subsubsection[{Evidence}]{\setlength{\rightskip}{0pt plus 5cm}Evidence\+::\+Evidence (
+\begin{DoxyParamCaption}
+\item[{{\bf Evidence} \&\&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [default]}}\label{classEvidence_a749172343fd62d98eb6c42636b5b61a4}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classEvidence_a074be49ba8c3477d6d740a34ae2118b7}{}\index{Evidence@{Evidence}!add\+Focal\+Element@{add\+Focal\+Element}}
+\index{add\+Focal\+Element@{add\+Focal\+Element}!Evidence@{Evidence}}
+\subsubsection[{add\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::add\+Focal\+Element (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{elem, }
+\item[{double}]{mass}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a074be49ba8c3477d6d740a34ae2118b7}
+\hypertarget{classEvidence_ad4e362c68673bcdf0c63f15b3c47d652}{}\index{Evidence@{Evidence}!belief@{belief}}
+\index{belief@{belief}!Evidence@{Evidence}}
+\subsubsection[{belief}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::belief (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{elem}
+\end{DoxyParamCaption}
+)}\label{classEvidence_ad4e362c68673bcdf0c63f15b3c47d652}
+\hypertarget{classEvidence_aae3ddf2df6726ab42164adc1b608d819}{}\index{Evidence@{Evidence}!Bet\+P@{Bet\+P}}
+\index{Bet\+P@{Bet\+P}!Evidence@{Evidence}}
+\subsubsection[{Bet\+P}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::\+Bet\+P (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{w}
+\end{DoxyParamCaption}
+)}\label{classEvidence_aae3ddf2df6726ab42164adc1b608d819}
+\hypertarget{classEvidence_ad89a807b7f71a018f8dbf9224e74b52b}{}\index{Evidence@{Evidence}!conditioning@{conditioning}}
+\index{conditioning@{conditioning}!Evidence@{Evidence}}
+\subsubsection[{conditioning}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::conditioning (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{C}
+\end{DoxyParamCaption}
+)}\label{classEvidence_ad89a807b7f71a018f8dbf9224e74b52b}
+\hypertarget{classEvidence_a69d3ef43e4010c1e5ab348701b3430cb}{}\index{Evidence@{Evidence}!conflict@{conflict}}
+\index{conflict@{conflict}!Evidence@{Evidence}}
+\subsubsection[{conflict}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::conflict (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a69d3ef43e4010c1e5ab348701b3430cb}
+\hypertarget{classEvidence_a4fada753531a85794be21cd9937fde21}{}\index{Evidence@{Evidence}!conjunctive\+\_\+rule@{conjunctive\+\_\+rule}}
+\index{conjunctive\+\_\+rule@{conjunctive\+\_\+rule}!Evidence@{Evidence}}
+\subsubsection[{conjunctive\+\_\+rule}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::conjunctive\+\_\+rule (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evidence} \&}]{other, }
+\item[{bool}]{normalize\+Dempster = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a4fada753531a85794be21cd9937fde21}
+\hypertarget{classEvidence_a852aee625445547abfb4bb9a2031c10e}{}\index{Evidence@{Evidence}!delete\+Focal\+Element@{delete\+Focal\+Element}}
+\index{delete\+Focal\+Element@{delete\+Focal\+Element}!Evidence@{Evidence}}
+\subsubsection[{delete\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::delete\+Focal\+Element (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a852aee625445547abfb4bb9a2031c10e}
+\hypertarget{classEvidence_a1ebefa9999ec36cfd2fb782e6895e54c}{}\index{Evidence@{Evidence}!delete\+Focal\+Element@{delete\+Focal\+Element}}
+\index{delete\+Focal\+Element@{delete\+Focal\+Element}!Evidence@{Evidence}}
+\subsubsection[{delete\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::delete\+Focal\+Element (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{fe}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a1ebefa9999ec36cfd2fb782e6895e54c}
+\hypertarget{classEvidence_a33d81e2a221474b3547da413d48161ca}{}\index{Evidence@{Evidence}!dfs@{dfs}}
+\index{dfs@{dfs}!Evidence@{Evidence}}
+\subsubsection[{dfs}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void Evidence\+::dfs (
+\begin{DoxyParamCaption}
+\item[{std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&}]{adj\+\_\+list, }
+\item[{size\+\_\+t}]{current\+\_\+pos, }
+\item[{T}]{path, }
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{current\+\_\+intersection, }
+\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$$>$ \&}]{output\+\_\+vec, }
+\item[{std\+::vector$<$ T $>$ \&}]{check}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a33d81e2a221474b3547da413d48161ca}
+\hypertarget{classEvidence_afaa46e0ce034a05c4749c7021430d60a}{}\index{Evidence@{Evidence}!discount@{discount}}
+\index{discount@{discount}!Evidence@{Evidence}}
+\subsubsection[{discount}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::discount (
+\begin{DoxyParamCaption}
+\item[{double}]{alpha}
+\end{DoxyParamCaption}
+)}\label{classEvidence_afaa46e0ce034a05c4749c7021430d60a}
+\hypertarget{classEvidence_ac40aa65ecd126e0ef1f8fe55eec0d4da}{}\index{Evidence@{Evidence}!disjunctive\+\_\+rule@{disjunctive\+\_\+rule}}
+\index{disjunctive\+\_\+rule@{disjunctive\+\_\+rule}!Evidence@{Evidence}}
+\subsubsection[{disjunctive\+\_\+rule}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::disjunctive\+\_\+rule (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evidence} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{classEvidence_ac40aa65ecd126e0ef1f8fe55eec0d4da}
+\hypertarget{classEvidence_a5396b2087d6353fb4b2bc2976db93174}{}\index{Evidence@{Evidence}!extend\+Path@{extend\+Path}}
+\index{extend\+Path@{extend\+Path}!Evidence@{Evidence}}
+\subsubsection[{extend\+Path}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::extend\+Path (
+\begin{DoxyParamCaption}
+\item[{unsigned long long \&}]{path, }
+\item[{size\+\_\+t}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a5396b2087d6353fb4b2bc2976db93174}
+\hypertarget{classEvidence_aa3d0e63bb1be45a646f6443186298ed7}{}\index{Evidence@{Evidence}!extend\+Path@{extend\+Path}}
+\index{extend\+Path@{extend\+Path}!Evidence@{Evidence}}
+\subsubsection[{extend\+Path}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::extend\+Path (
+\begin{DoxyParamCaption}
+\item[{boost\+::dynamic\+\_\+bitset$<$$>$ \&}]{path, }
+\item[{size\+\_\+t}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_aa3d0e63bb1be45a646f6443186298ed7}
+\hypertarget{classEvidence_a875150a8830c15d0cf3391d73889214e}{}\index{Evidence@{Evidence}!get\+Discernment\+\_\+frame@{get\+Discernment\+\_\+frame}}
+\index{get\+Discernment\+\_\+frame@{get\+Discernment\+\_\+frame}!Evidence@{Evidence}}
+\subsubsection[{get\+Discernment\+\_\+frame}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ \& Evidence\+::get\+Discernment\+\_\+frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_a875150a8830c15d0cf3391d73889214e}
+\hypertarget{classEvidence_ab2d805af2fafd03c9d148040eeb181b0}{}\index{Evidence@{Evidence}!get\+Focal\+\_\+elements@{get\+Focal\+\_\+elements}}
+\index{get\+Focal\+\_\+elements@{get\+Focal\+\_\+elements}!Evidence@{Evidence}}
+\subsubsection[{get\+Focal\+\_\+elements}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ \& Evidence\+::get\+Focal\+\_\+elements (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_ab2d805af2fafd03c9d148040eeb181b0}
+\hypertarget{classEvidence_a2d6b2109c1347c004d00c2ef6bd515d8}{}\index{Evidence@{Evidence}!get\+Ignorance@{get\+Ignorance}}
+\index{get\+Ignorance@{get\+Ignorance}!Evidence@{Evidence}}
+\subsubsection[{get\+Ignorance}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::get\+Ignorance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_a2d6b2109c1347c004d00c2ef6bd515d8}
+\hypertarget{classEvidence_a2f1e64bfe1c9eefc7f50a20aeab30a44}{}\index{Evidence@{Evidence}!get\+Mass@{get\+Mass}}
+\index{get\+Mass@{get\+Mass}!Evidence@{Evidence}}
+\subsubsection[{get\+Mass}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::get\+Mass (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{fe}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a2f1e64bfe1c9eefc7f50a20aeab30a44}
+\hypertarget{classEvidence_a5cbcf217bf5159feccedba5edbd250c1}{}\index{Evidence@{Evidence}!get\+Mass\+Array@{get\+Mass\+Array}}
+\index{get\+Mass\+Array@{get\+Mass\+Array}!Evidence@{Evidence}}
+\subsubsection[{get\+Mass\+Array}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ double $>$ \& Evidence\+::get\+Mass\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_a5cbcf217bf5159feccedba5edbd250c1}
+\hypertarget{classEvidence_aab94dd76c710a6d4be701117a4c52039}{}\index{Evidence@{Evidence}!is\+Valid\+B\+B\+A@{is\+Valid\+B\+B\+A}}
+\index{is\+Valid\+B\+B\+A@{is\+Valid\+B\+B\+A}!Evidence@{Evidence}}
+\subsubsection[{is\+Valid\+B\+B\+A}]{\setlength{\rightskip}{0pt plus 5cm}bool Evidence\+::is\+Valid\+B\+B\+A (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_aab94dd76c710a6d4be701117a4c52039}
+\hypertarget{classEvidence_a042d324e0ed4d3e07c87f16b4a1095ca}{}\index{Evidence@{Evidence}!marginalization@{marginalization}}
+\index{marginalization@{marginalization}!Evidence@{Evidence}}
+\subsubsection[{marginalization}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::marginalization (
+\begin{DoxyParamCaption}
+\item[{bool}]{marginalize\+\_\+right = {\ttfamily true}}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_a042d324e0ed4d3e07c87f16b4a1095ca}
+\hypertarget{classEvidence_acff22e57c3c79f40ad47f5e10f96d81c}{}\index{Evidence@{Evidence}!max\+Bet\+P@{max\+Bet\+P}}
+\index{max\+Bet\+P@{max\+Bet\+P}!Evidence@{Evidence}}
+\subsubsection[{max\+Bet\+P}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Evidence\+::max\+Bet\+P (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$$>$ \&}]{elems, }
+\item[{bool}]{compute\+Inters}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_acff22e57c3c79f40ad47f5e10f96d81c}
+\hypertarget{classEvidence_a1670bedca69121445d988cd2ebff1c51}{}\index{Evidence@{Evidence}!max\+Bet\+P\+\_\+with\+Maximal\+Intersections@{max\+Bet\+P\+\_\+with\+Maximal\+Intersections}}
+\index{max\+Bet\+P\+\_\+with\+Maximal\+Intersections@{max\+Bet\+P\+\_\+with\+Maximal\+Intersections}!Evidence@{Evidence}}
+\subsubsection[{max\+Bet\+P\+\_\+with\+Maximal\+Intersections}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Evidence\+::max\+Bet\+P\+\_\+with\+Maximal\+Intersections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a1670bedca69121445d988cd2ebff1c51}
+\hypertarget{classEvidence_a8967d11cadf86a581716686450b9a2c8}{}\index{Evidence@{Evidence}!max\+Bet\+P\+\_\+with\+Singletons@{max\+Bet\+P\+\_\+with\+Singletons}}
+\index{max\+Bet\+P\+\_\+with\+Singletons@{max\+Bet\+P\+\_\+with\+Singletons}!Evidence@{Evidence}}
+\subsubsection[{max\+Bet\+P\+\_\+with\+Singletons}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Evidence\+::max\+Bet\+P\+\_\+with\+Singletons (
+\begin{DoxyParamCaption}
+\item[{int}]{approx\+\_\+step\+\_\+size = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a8967d11cadf86a581716686450b9a2c8}
+\hypertarget{classEvidence_aa6a44be2f65aa439e2bdcf9333659abb}{}\index{Evidence@{Evidence}!normalize@{normalize}}
+\index{normalize@{normalize}!Evidence@{Evidence}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classEvidence_aa6a44be2f65aa439e2bdcf9333659abb}
+\hypertarget{classEvidence_af58901dda7c77519e3638b95304c4878}{}\index{Evidence@{Evidence}!num\+Focal\+Elements@{num\+Focal\+Elements}}
+\index{num\+Focal\+Elements@{num\+Focal\+Elements}!Evidence@{Evidence}}
+\subsubsection[{num\+Focal\+Elements}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Evidence\+::num\+Focal\+Elements (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classEvidence_af58901dda7c77519e3638b95304c4878}
+\hypertarget{classEvidence_a2e6f8b584bba250e859e4b8f16f286e2}{}\index{Evidence@{Evidence}!operator=@{operator=}}
+\index{operator=@{operator=}!Evidence@{Evidence}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} \& Evidence\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evidence} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a2e6f8b584bba250e859e4b8f16f286e2}
+\hypertarget{classEvidence_a02106bb9e91afce2555be1cd830862de}{}\index{Evidence@{Evidence}!operator=@{operator=}}
+\index{operator=@{operator=}!Evidence@{Evidence}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence}\& Evidence\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Evidence} \&\&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [default]}}\label{classEvidence_a02106bb9e91afce2555be1cd830862de}
+\hypertarget{classEvidence_a8176961ffccb6c5597b6d20140d15b4c}{}\index{Evidence@{Evidence}!plausibility@{plausibility}}
+\index{plausibility@{plausibility}!Evidence@{Evidence}}
+\subsubsection[{plausibility}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::plausibility (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{elem}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a8176961ffccb6c5597b6d20140d15b4c}
+\hypertarget{classEvidence_a1d3cb97d6c475943693880b8379d4303}{}\index{Evidence@{Evidence}!q\+\_\+@{q\+\_\+}}
+\index{q\+\_\+@{q\+\_\+}!Evidence@{Evidence}}
+\subsubsection[{q\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::q\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{elem}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a1d3cb97d6c475943693880b8379d4303}
+\hypertarget{classEvidence_a11377c6946b7727015936b35dcf86cc8}{}\index{Evidence@{Evidence}!set\+Ignorance@{set\+Ignorance}}
+\index{set\+Ignorance@{set\+Ignorance}!Evidence@{Evidence}}
+\subsubsection[{set\+Ignorance}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::set\+Ignorance (
+\begin{DoxyParamCaption}
+\item[{double}]{ignorance}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a11377c6946b7727015936b35dcf86cc8}
+\hypertarget{classEvidence_ac12ebfac60dd08a07c3e852e66903520}{}\index{Evidence@{Evidence}!set\+Mass@{set\+Mass}}
+\index{set\+Mass@{set\+Mass}!Evidence@{Evidence}}
+\subsubsection[{set\+Mass}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::set\+Mass (
+\begin{DoxyParamCaption}
+\item[{double}]{mass, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{classEvidence_ac12ebfac60dd08a07c3e852e66903520}
+\hypertarget{classEvidence_a854a8035ac5f008e9173edcfcf40f071}{}\index{Evidence@{Evidence}!set\+Mass@{set\+Mass}}
+\index{set\+Mass@{set\+Mass}!Evidence@{Evidence}}
+\subsubsection[{set\+Mass}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::set\+Mass (
+\begin{DoxyParamCaption}
+\item[{double}]{mass, }
+\item[{const {\bf Focal\+Element} \&}]{fe}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a854a8035ac5f008e9173edcfcf40f071}
+\hypertarget{classEvidence_a17f68e6fd02cff470d046f89024dee64}{}\index{Evidence@{Evidence}!vacuous\+\_\+extension@{vacuous\+\_\+extension}}
+\index{vacuous\+\_\+extension@{vacuous\+\_\+extension}!Evidence@{Evidence}}
+\subsubsection[{vacuous\+\_\+extension}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::vacuous\+\_\+extension (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{discernment\+\_\+frame\+\_\+2, }
+\item[{bool}]{extend\+\_\+right = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a17f68e6fd02cff470d046f89024dee64}
+\hypertarget{classEvidence_a10ac437fdfbdba9c819ef913cdca9178}{}\index{Evidence@{Evidence}!vacuous\+\_\+extension\+\_\+and\+\_\+conjuction@{vacuous\+\_\+extension\+\_\+and\+\_\+conjuction}}
+\index{vacuous\+\_\+extension\+\_\+and\+\_\+conjuction@{vacuous\+\_\+extension\+\_\+and\+\_\+conjuction}!Evidence@{Evidence}}
+\subsubsection[{vacuous\+\_\+extension\+\_\+and\+\_\+conjuction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Evidence} Evidence\+::vacuous\+\_\+extension\+\_\+and\+\_\+conjuction (
+\begin{DoxyParamCaption}
+\item[{const {\bf Evidence} \&}]{other}
+\end{DoxyParamCaption}
+)}\label{classEvidence_a10ac437fdfbdba9c819ef913cdca9178}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}{}\index{Evidence@{Evidence}!discernment\+\_\+frame@{discernment\+\_\+frame}}
+\index{discernment\+\_\+frame@{discernment\+\_\+frame}!Evidence@{Evidence}}
+\subsubsection[{discernment\+\_\+frame}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Evidence\+::discernment\+\_\+frame\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a4564fa5d7963b912d66549ac33d86dfd}
+\hypertarget{classEvidence_a8ae2742750940957698135fd9014d6d4}{}\index{Evidence@{Evidence}!dispatcher@{dispatcher}}
+\index{dispatcher@{dispatcher}!Evidence@{Evidence}}
+\subsubsection[{dispatcher}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element\+Container\+Dispatcher}$>$ Evidence\+::dispatcher\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a8ae2742750940957698135fd9014d6d4}
+\hypertarget{classEvidence_a1476adbcd8bc99817cc77b338b50cdef}{}\index{Evidence@{Evidence}!fecontainer@{fecontainer}}
+\index{fecontainer@{fecontainer}!Evidence@{Evidence}}
+\subsubsection[{fecontainer}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element\+Container}$>$ Evidence\+::fecontainer\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a1476adbcd8bc99817cc77b338b50cdef}
+\hypertarget{classEvidence_a77a5358b14a274c62a6b229ec4f844a0}{}\index{Evidence@{Evidence}!ignorance@{ignorance}}
+\index{ignorance@{ignorance}!Evidence@{Evidence}}
+\subsubsection[{ignorance}]{\setlength{\rightskip}{0pt plus 5cm}double Evidence\+::ignorance\hspace{0.3cm}{\ttfamily [protected]}}\label{classEvidence_a77a5358b14a274c62a6b229ec4f844a0}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Evidence_8h}{Evidence.\+h}\item 
+\hyperlink{Evidence_8cpp}{Evidence.\+cpp}\end{DoxyCompactItemize}

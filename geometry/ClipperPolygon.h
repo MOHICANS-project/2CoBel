@@ -7,17 +7,29 @@
 
 #include <stdexcept>
 #include "Shape.h"
-#include "../../third_party/clipper/cpp/clipper.hpp"
+#include "../third_party/clipper/cpp/clipper.hpp"
 
 namespace Geometry {
+    /**
+     * @class ClipperPolygon
+     * Simple polygon representation using the <a href='http://www.angusj.com/delphi/clipper.php'>Clipper library</a>
+     */
     class ClipperPolygon : public Shape {
 
         ClipperLib::Path polygon;
 
 
     public:
+        /**
+         * Constructor.
+         * @param vertices Array of ordered Point2D vertices composing the polygon. For positive areas computation, the order must be clockwise.
+         */
         explicit ClipperPolygon(std::vector<Point2D> &vertices);
 
+        /**
+         * Constructor.
+         * @param polygon The polygon shape.
+         */
         explicit ClipperPolygon(ClipperLib::Path polygon);
 
         ~ClipperPolygon() override = default;
@@ -26,7 +38,10 @@ namespace Geometry {
 
         bool has_inside(Point2D p) const override;
 
-
+        /**
+         * Get the polygon.
+         * @return The polygon.
+         */
         const ClipperLib::Path &getPolygon() const;
 
         friend std::ostream &operator<<(std::ostream &os, const ClipperPolygon &polygon);

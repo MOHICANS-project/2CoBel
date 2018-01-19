@@ -3,7 +3,9 @@
 //
 
 #include "Clipper2DFocalElement.h"
-#include "ConflictFocalElement.h"
+#include <cmath>
+
+const float EPS = 1e-4;
 
 
 Clipper2DFocalElement::Clipper2DFocalElement(std::vector<Geometry::ClipperPolygon> polygons) : polygons(std::move(
@@ -26,7 +28,7 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::clone() const {
 }
 
 bool Clipper2DFocalElement::equal_to(FocalElement const &rhs) const {
-    return cardinality() == rhs.cardinality() && intersect(rhs)->cardinality() == cardinality();
+    return fabs(cardinality() - rhs.cardinality()) < EPS && fabs(intersect(rhs)->cardinality() - cardinality()) < EPS;
 }
 
 bool Clipper2DFocalElement::is_inside(FocalElement const &rhs) const {
@@ -49,7 +51,6 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElemen
         outvec.emplace_back(path);
     }
 
-    if (outvec.empty())return std::unique_ptr<FocalElement>(new ConflictFocalElement());
     return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
 }
 
@@ -100,9 +101,18 @@ std::vector<std::unique_ptr<FocalElement>> Clipper2DFocalElement::getInnerSingle
 }
 
 void Clipper2DFocalElement::print(std::ostream &os) const {
+    if (isEmpty())os << "Empty set";
     for (auto &polygon : polygons) {
         os << polygon << std::endl;
     }
+}
+
+bool Clipper2DFocalElement::isEmpty() const {
+    return polygons.empty();
+}
+
+void Clipper2DFocalElement::clear() {
+    polygons.clear();
 }
 
 

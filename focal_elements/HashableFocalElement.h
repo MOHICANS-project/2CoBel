@@ -8,10 +8,16 @@
 #include <iostream>
 #include "FocalElement.h"
 
-
+/**
+ * @class HashableFocalElement
+ * FocalElement for which an hash function for fast retrieval can be defined.
+ */
 class HashableFocalElement : public FocalElement {
 public:
-
+    /**
+     * Compute the hash function.
+     * @return The value of the hash.
+     */
     virtual size_t hash() const =0;
 };
 

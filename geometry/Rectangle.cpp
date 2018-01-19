@@ -120,11 +120,11 @@ namespace Geometry {
         }
 
         if (intersection.getYmin() > ymin) {
-            rectangles.emplace_back(xmin, xmax, ymin, intersection.getYmin());
+            rectangles.emplace_back(intersection.getXmin(), intersection.getXmax(), ymin, intersection.getYmin());
         }
 
         if (intersection.getYmax() < ymax) {
-            rectangles.emplace_back(xmin, xmax, intersection.getYmax(), ymax);
+            rectangles.emplace_back(intersection.getXmin(), intersection.getXmax(), intersection.getYmax(), ymax);
         }
 
         return rectangles;

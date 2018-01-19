@@ -1,0 +1,257 @@
+\hypertarget{classFocalElementContainer}{}\section{Focal\+Element\+Container Class Reference}
+\label{classFocalElementContainer}\index{Focal\+Element\+Container@{Focal\+Element\+Container}}
+
+
+Container of \hyperlink{classFocalElement}{Focal\+Element} objects.  
+
+
+
+
+{\ttfamily \#include $<$Focal\+Element\+Container.\+h$>$}
+
+
+
+Inheritance diagram for Focal\+Element\+Container\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classFocalElementContainer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Focal\+Element\+Container\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classFocalElementContainer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classFocalElementContainer_a939ab96df66f872bf1600e9536c15aaf}{$\sim$\+Focal\+Element\+Container} ()=default
+\item 
+virtual void \hyperlink{classFocalElementContainer_a79977845eba147c3d29d8c500dbe593c}{clear} ()=0
+\begin{DoxyCompactList}\small\item\em Clear the container. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classFocalElementContainer_a951895e83f8ef4ba79fa1c45d2d3c1ac}{push} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ elem, double mass)=0
+\begin{DoxyCompactList}\small\item\em Add a new \hyperlink{classFocalElement}{Focal\+Element} to the container. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classFocalElementContainer_a37edfcf750dfc72a7f3a92a2ab6bd62e}{set} (int index, double mass)=0
+\begin{DoxyCompactList}\small\item\em Set the mass value at a given position. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classFocalElementContainer_a444a088fc937650226f2ecdd1db59510}{set} (const \hyperlink{classFocalElement}{Focal\+Element} \&fe, double mass)=0
+\begin{DoxyCompactList}\small\item\em Set the mass value of the given \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
+virtual double \hyperlink{classFocalElementContainer_a5ffaa25475069d4868cec5a73ccf314f}{get} (const \hyperlink{classFocalElement}{Focal\+Element} \&fe)=0
+\begin{DoxyCompactList}\small\item\em Get the mass value of the given \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classFocalElementContainer_aaf91ad85eeb5b218171a142d7c3e1116}{erase} (int index)=0
+\begin{DoxyCompactList}\small\item\em Erase the \hyperlink{classFocalElement}{Focal\+Element} at the given position. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classFocalElementContainer_af20780adab46a8d4e5b42c8b1934ea86}{erase} (const \hyperlink{classFocalElement}{Focal\+Element} \&fe)=0
+\begin{DoxyCompactList}\small\item\em Erase the given \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
+virtual const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \& \hyperlink{classFocalElementContainer_aa06ed4c0c21777cdc5256b576dc5e718}{get\+Focal\+Elements\+Array} ()=0
+\begin{DoxyCompactList}\small\item\em Get the array of \hyperlink{classFocalElement}{Focal\+Element} object. \end{DoxyCompactList}\item 
+virtual const std\+::vector$<$ double $>$ \& \hyperlink{classFocalElementContainer_a9197229964bfdf8765f81bf7b85c669d}{get\+Mass\+Array} ()=0
+\begin{DoxyCompactList}\small\item\em Ge the array of masses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Container of \hyperlink{classFocalElement}{Focal\+Element} objects. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFocalElementContainer_a939ab96df66f872bf1600e9536c15aaf}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!````~Focal\+Element\+Container@{$\sim$\+Focal\+Element\+Container}}
+\index{````~Focal\+Element\+Container@{$\sim$\+Focal\+Element\+Container}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{$\sim$\+Focal\+Element\+Container}]{\setlength{\rightskip}{0pt plus 5cm}virtual Focal\+Element\+Container\+::$\sim$\+Focal\+Element\+Container (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\label{classFocalElementContainer_a939ab96df66f872bf1600e9536c15aaf}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFocalElementContainer_a79977845eba147c3d29d8c500dbe593c}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!clear@{clear}}
+\index{clear@{clear}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a79977845eba147c3d29d8c500dbe593c}
+
+
+Clear the container. 
+
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a352c7bc7f6b705bd1a5d5e5b9ec225fe}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_aa20631dceaa742116e6ad6ddf7a38555}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_aaf91ad85eeb5b218171a142d7c3e1116}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!erase@{erase}}
+\index{erase@{erase}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::erase (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_aaf91ad85eeb5b218171a142d7c3e1116}
+
+
+Erase the \hyperlink{classFocalElement}{Focal\+Element} at the given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The target position. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a06450d7d5174bdeecd2238570143e2b3}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a123f043d029c636824e4ca8153cd6aea}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_af20780adab46a8d4e5b42c8b1934ea86}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!erase@{erase}}
+\index{erase@{erase}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{erase}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::erase (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{fe}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_af20780adab46a8d4e5b42c8b1934ea86}
+
+
+Erase the given \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fe} & The target \hyperlink{classFocalElement}{Focal\+Element}. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a8d072157c5715b764e3158427157a242}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a5bef7f21bc02455dd0cde6dbef69541a}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_a5ffaa25475069d4868cec5a73ccf314f}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!get@{get}}
+\index{get@{get}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Focal\+Element\+Container\+::get (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{fe}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a5ffaa25475069d4868cec5a73ccf314f}
+
+
+Get the mass value of the given \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fe} & The target \hyperlink{classFocalElement}{Focal\+Element} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The associated mass value 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a0b384b37bee91526a932756a65727be0}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a3a9fd25120f480a33770e52d198ecc33}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_aa06ed4c0c21777cdc5256b576dc5e718}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!get\+Focal\+Elements\+Array@{get\+Focal\+Elements\+Array}}
+\index{get\+Focal\+Elements\+Array@{get\+Focal\+Elements\+Array}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{get\+Focal\+Elements\+Array}]{\setlength{\rightskip}{0pt plus 5cm}virtual const std\+::vector$<$std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ $>$\& Focal\+Element\+Container\+::get\+Focal\+Elements\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_aa06ed4c0c21777cdc5256b576dc5e718}
+
+
+Get the array of \hyperlink{classFocalElement}{Focal\+Element} object. 
+
+\begin{DoxyReturn}{Returns}
+Array of \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a11ab286119f448d1a480dd4336875b9f}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a2db442b704235b974d96cd5670ab1630}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_a9197229964bfdf8765f81bf7b85c669d}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!get\+Mass\+Array@{get\+Mass\+Array}}
+\index{get\+Mass\+Array@{get\+Mass\+Array}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{get\+Mass\+Array}]{\setlength{\rightskip}{0pt plus 5cm}virtual const std\+::vector$<$double$>$\& Focal\+Element\+Container\+::get\+Mass\+Array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a9197229964bfdf8765f81bf7b85c669d}
+
+
+Ge the array of masses. 
+
+\begin{DoxyReturn}{Returns}
+Array of masses. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a8be85b980960704d31563d0ad64b8aad}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a0ae8e8ad18f3d8c09db25688f2da684b}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_a951895e83f8ef4ba79fa1c45d2d3c1ac}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!push@{push}}
+\index{push@{push}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{push}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::push (
+\begin{DoxyParamCaption}
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{elem, }
+\item[{double}]{mass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a951895e83f8ef4ba79fa1c45d2d3c1ac}
+
+
+Add a new \hyperlink{classFocalElement}{Focal\+Element} to the container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elem} & The \hyperlink{classFocalElement}{Focal\+Element} to be added. \\
+\hline
+{\em mass} & The mass value. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a896a7b5c2719e63b1ad8a53a6d33c6c7}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_aefcc139561645f96f3ec877992005d2b}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_a37edfcf750dfc72a7f3a92a2ab6bd62e}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!set@{set}}
+\index{set@{set}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::set (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{double}]{mass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a37edfcf750dfc72a7f3a92a2ab6bd62e}
+
+
+Set the mass value at a given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The target position. \\
+\hline
+{\em mass} & The new mass value. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a95613540899807e8094f39f75f92e088}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_ae764ae489ed94b366de805a3a45278b9}{Generic\+Focal\+Element\+Container}.
+
+\hypertarget{classFocalElementContainer_a444a088fc937650226f2ecdd1db59510}{}\index{Focal\+Element\+Container@{Focal\+Element\+Container}!set@{set}}
+\index{set@{set}!Focal\+Element\+Container@{Focal\+Element\+Container}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+Container\+::set (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{fe, }
+\item[{double}]{mass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElementContainer_a444a088fc937650226f2ecdd1db59510}
+
+
+Set the mass value of the given \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fe} & The target \hyperlink{classFocalElement}{Focal\+Element}. \\
+\hline
+{\em mass} & The new mass value. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classHashableFocalElementContainer_a16ac0c831312f31641aa716b19a3efed}{Hashable\+Focal\+Element\+Container}, and \hyperlink{classGenericFocalElementContainer_a33d167fa35d3e19ec214560c281681ea}{Generic\+Focal\+Element\+Container}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+builders/\hyperlink{FocalElementContainer_8h}{Focal\+Element\+Container.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="HashableFocalElement" name="HashableFocalElement">
+<area shape="rect" id="node3" href="$classUnidimensionalFocalElement.html" title="{UnidimensionalFocalElement\n||+ UnidimensionalFocalElement()\l+ ~UnidimensionalFocalElement()\l+ cardinality()\l+ getKey()\l+ hash()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l+ createDiscernmentFrame()\l+ createSingletonHypotesis()\l}" alt="" coords="5,417,224,641"/>
+<area shape="rect" id="node2" href="$classFocalElement.html" title="{FocalElement\n||+ ~FocalElement()\l+ cardinality()\l+ operator==()\l+ operator!=()\l+ inside()\l+ contains()\l+ intersect()\l+ unite()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="39,5,190,244"/>
+</map>

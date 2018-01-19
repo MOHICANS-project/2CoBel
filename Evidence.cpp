@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cfloat>
 #include <src/evidential/focal_elements/CompositeFocalElement.h>
+#include <src/evidential/errors/InvalidBBAError.h>
 #include "Evidence.h"
 #include "errors/IllegalArgumentError.h"
 
@@ -22,7 +23,7 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
 
     bool found_one = false;
     for (auto next_pos : adj_list[current_pos]) {
-        const FocalElement &fe = *focal_elements[next_pos];
+        const FocalElement &fe = *fecontainer->getFocalElementsArray()[next_pos];
         std::unique_ptr<FocalElement> next_inter = current_intersection->intersect(fe);
         if (next_inter->cardinality() == 0)continue;
         found_one = true;
@@ -49,20 +50,29 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
 
 Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : discernment_frame(
         std::move(_discernment_frame)), ignorance(_ignorance) {
-    dispatcher = std::unique_ptr<FocalElementArrayBuilderDispatcher>(new DefaultFocalElementArrayBuilderDispatcher());
-    febuilder = dispatcher->getBuilder(*discernment_frame);
+    dispatcher = std::unique_ptr<FocalElementContainerDispatcher>(new DefaultFocalElementContainerDispatcher());
+    fecontainer = dispatcher->getContainer(*discernment_frame);
 }
 
-Evidence::Evidence(std::unique_ptr<FocalElementArrayBuilderDispatcher> _dispatcher,
+Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
                    std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : dispatcher(
         std::move(_dispatcher)), discernment_frame(std::move(_discernment_frame)), ignorance(_ignorance) {
-    febuilder = dispatcher->getBuilder(*discernment_frame);
+    fecontainer = dispatcher->getContainer(*discernment_frame);
 
 }
+
+Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
+                   std::unique_ptr<FocalElementContainer> &&_fecontainer,
+                   std::unique_ptr<FocalElement> _discernment_frame,
+                   double _ignorance) : dispatcher(
+        std::move(_dispatcher)), fecontainer(std::move(_fecontainer)), discernment_frame(std::move(_discernment_frame)),
+                                        ignorance(_ignorance) {
+}
+
 
 
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() const {
-    return focal_elements;
+    return fecontainer->getFocalElementsArray();
 }
 
 void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) {
@@ -72,16 +82,17 @@ void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) 
         throw IncompatibleTypeError("Mass value has to be > 0.");
     if (elem->cardinality() < 0)
         throw IncompatibleTypeError("Focal element cardinality has to be >= 0.");
+    if (elem->isEmpty())
+        throw IncompatibleTypeError("Cannot add the empty set.");
     if (!elem->inside(*discernment_frame)) {
         std::cout << *elem << std::endl;
         throw IncompatibleTypeError("The focal element has to lie inside the discernment frame.");
     }
-    focal_elements.push_back(std::move(elem));
-    mass_array.push_back(mass);
+    fecontainer->push(std::move(elem), mass);
 }
 
 const std::vector<double> &Evidence::getMassArray() const {
-    return mass_array;
+    return fecontainer->getMassArray();
 }
 
 double Evidence::getIgnorance() const {
@@ -90,15 +101,18 @@ double Evidence::getIgnorance() const {
 
 
 double Evidence::conflict() {
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     double conf = 1.0 - std::accumulate(mass_array.begin(), mass_array.end(), 0.0) - ignorance;
     return fabs(conf) < FLT_EPSILON ? 0.0 : conf;
 }
 
 double Evidence::plausibility(const FocalElement &elem) {
     double pl = 0;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
-        if (*fe.intersect(elem) != empty_set) pl += mass_array[i];
+        if (!fe.intersect(elem)->isEmpty()) pl += mass_array[i];
     }
     pl += ignorance;
     return pl;
@@ -106,16 +120,20 @@ double Evidence::plausibility(const FocalElement &elem) {
 
 double Evidence::belief(const FocalElement &elem) {
     double bel = 0;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
         if (fe.inside(elem)) bel += mass_array[i];
     }
-    if (elem == (*discernment_frame))bel += ignorance;
+    if (*discernment_frame == elem)bel += ignorance;
     return bel;
 }
 
 double Evidence::q_(const FocalElement &elem) {
     double q = 0;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
         if (elem.inside(fe)) q += mass_array[i];
@@ -128,6 +146,8 @@ double Evidence::BetP(const FocalElement &w) {
     if (w.cardinality() == 0)return 0;
     double bp = 0;
     double conftot = conflict();
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
         if (fe.cardinality() == 0)conftot += mass_array[i];
@@ -165,6 +185,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
     if (!computeInters) return winner.clone();
 
     std::vector<int> index_intersecting;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
         if (winner.inside(fe)) index_intersecting.push_back(i);
@@ -185,7 +206,11 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
 }
 
 std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_size) {
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     std::vector<std::unique_ptr<FocalElement>> all_singletons;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     for (const auto &fe : focal_elements) {
         if (all_singletons.size() >= discernment_frame->cardinality())break;
         std::vector<std::unique_ptr<FocalElement>> singletons = fe->getInnerSingletons(approx_step_size);
@@ -205,8 +230,11 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_s
 
 
 std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() {
-
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     std::unordered_map<size_t, std::vector<size_t>> adj_list;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     for (size_t i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe1 = *focal_elements[i];
         if (fe1.cardinality() == 0.0)continue;
@@ -250,8 +278,9 @@ void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) {
     path[pos] = 1;
 }
 
-bool Evidence::isValidBBA() {
+bool Evidence::isValidBBA() const {
     double cum = 0.0;
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (auto mass : mass_array) {
         if (mass < 0.0 && fabs(mass) > FLT_EPSILON)return false;
         if (mass > 1.0 && fabs(mass - 1.0) > FLT_EPSILON)return false;
@@ -262,26 +291,41 @@ bool Evidence::isValidBBA() {
 
 
 Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempster = true) {
+    if (!isValidBBA() || !other.isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
+
     if ((*other.getDiscernment_frame()) != (*discernment_frame))
         throw IncompatibleTypeError("Conjunctive rule can be applied only on the same discernment frame");
+
+    auto *df = dynamic_cast<const CompositeFocalElement *>(discernment_frame.get());
+    if (df != nullptr) {
+        Evidence ev_left = marginalization().conjunctive_rule(other.marginalization(), false);
+        Evidence ev_right = marginalization(false).conjunctive_rule(other.marginalization(false), false);
+        Evidence res = ev_left.vacuous_extension_and_conjuction(ev_right);
+        if (normalizeDempster)res.normalize();
+        return res;
+    }
+
     double conflict_new = 0.0;
 
+    std::unique_ptr<FocalElementContainer> new_fecontainer = dispatcher->getContainer(*discernment_frame);
 
-    febuilder->clear();
-
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe1 = *focal_elements[i];
         for (int j = 0; j < other.getFocal_elements().size(); ++j) {
             const FocalElement &fe2 = *other.getFocal_elements()[j];
             std::unique_ptr<FocalElement> inters = fe1.intersect(fe2);
             double mm = mass_array[i] * other.getMassArray()[j];
-            if (*inters == empty_set) conflict_new += mm;
-            else febuilder->push(std::move(inters), mm);
+            if (inters->isEmpty()) conflict_new += mm;
+            else new_fecontainer->push(std::move(inters), mm);
         }
         if (other.getIgnorance() > 0) {
             std::unique_ptr<FocalElement> inters = fe1.clone();
             double mm = mass_array[i] * other.getIgnorance();
-            febuilder->push(std::move(inters), mm);
+            new_fecontainer->push(std::move(inters), mm);
         }
     }
     if (ignorance > 0) {
@@ -289,19 +333,19 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
             const FocalElement &fe2 = *other.getFocal_elements()[j];
             std::unique_ptr<FocalElement> inters = fe2.clone();
             double mm = ignorance * other.getMassArray()[j];
-            febuilder->push(std::move(inters), mm);
+            new_fecontainer->push(std::move(inters), mm);
         }
     }
-    std::vector<std::unique_ptr<FocalElement>> outfes = febuilder->getFocalElementsArray();
-    std::vector<double> outmasses = febuilder->getMassArray();
 
-
-    Evidence outev(dispatcher->clone(), discernment_frame->clone(), ignorance * other.getIgnorance());
-    for (int k = 0; k < outfes.size(); ++k) {
-        outev.addFocalElement(std::move(outfes[k]), outmasses[k] / (normalizeDempster ? (1 - conflict_new) : 1));
+    if (normalizeDempster) {
+        const std::vector<double> &new_masses = new_fecontainer->getMassArray();
+        for (int i = 0; i < new_masses.size(); ++i) {
+            new_fecontainer->set(i, new_masses[i] / (1 - conflict_new));
+        }
     }
 
-    febuilder->clear();
+    Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(),
+                   ignorance * other.getIgnorance());
 
     return outev;
 }
@@ -312,11 +356,17 @@ const std::unique_ptr<FocalElement> &Evidence::getDiscernment_frame() const {
 }
 
 Evidence Evidence::disjunctive_rule(const Evidence &other) {
+    if (!isValidBBA() || !other.isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     if ((*other.getDiscernment_frame()) != (*discernment_frame))
         throw IncompatibleTypeError("Disjunctive rule can be applied only on the same discernment frame");
 
-    double ignorance_new = 0.0;
+    std::unique_ptr<FocalElementContainer> new_fecontainer = dispatcher->getContainer(*discernment_frame);
 
+    double ignorance_new = 0.0;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe1 = *focal_elements[i];
         for (int j = 0; j < other.getFocal_elements().size(); ++j) {
@@ -324,7 +374,7 @@ Evidence Evidence::disjunctive_rule(const Evidence &other) {
             std::unique_ptr<FocalElement> uni = fe1.unite(fe2);
             double mm = mass_array[i] * other.getMassArray()[j];
             if (*uni == *discernment_frame)ignorance_new += mm;
-            else febuilder->push(std::move(uni), mm);
+            else new_fecontainer->push(std::move(uni), mm);
 
         }
         if (other.getIgnorance() > 0) {
@@ -340,100 +390,131 @@ Evidence Evidence::disjunctive_rule(const Evidence &other) {
     }
     ignorance_new += ignorance * other.getIgnorance();
 
-    std::vector<std::unique_ptr<FocalElement>> outfes = febuilder->getFocalElementsArray();
-    std::vector<double> outmasses = febuilder->getMassArray();
+    Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(), ignorance_new);
 
-
-    Evidence outev(dispatcher->clone(), discernment_frame->clone(), ignorance_new);
-    for (int k = 0; k < outfes.size(); ++k) {
-        outev.addFocalElement(std::move(outfes[k]), outmasses[k]);
-    }
-
-    febuilder->clear();
 
     return outev;
 }
 
 void Evidence::discount(double alpha) {
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     if (alpha < 0 || alpha > 1) throw IllegalArgumentError("The discounting factor has to be in the interval [0,1].");
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < mass_array.size(); ++i) {
-        mass_array[i] *= (1 - alpha);
+        fecontainer->set(i, mass_array[i] * (1 - alpha));
     }
     ignorance *= (1 - alpha);
     ignorance += alpha;
 }
 
 Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true) {
-
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     std::unique_ptr<FocalElement> disc_fr_copy = discernment_frame_2->clone();
     std::unique_ptr<FocalElement> new_discernment_frame(
             new CompositeFocalElement(extend_right ? discernment_frame->clone() : std::move(disc_fr_copy),
                                       extend_right ? std::move(disc_fr_copy) : discernment_frame->clone()));
+
     Evidence outev(dispatcher->clone(), std::move(new_discernment_frame), ignorance);
+
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         outev.addFocalElement(std::unique_ptr<FocalElement>(
                 new CompositeFocalElement(extend_right ? focal_elements[i]->clone() : discernment_frame_2->clone(),
                                           extend_right ? discernment_frame_2->clone() : focal_elements[i]->clone())),
                               mass_array[i]);
     }
+    double conf = conflict();
+    if (conf > 0) {
+        std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
+        empty_set->clear();
+        outev.addFocalElement(std::unique_ptr<FocalElement>(
+                new CompositeFocalElement(extend_right ? std::move(empty_set) : discernment_frame_2->clone(),
+                                          extend_right ? discernment_frame_2->clone() : std::move(empty_set))),
+                              conf);
+    }
 
     return outev;
 }
 
-Evidence Evidence::marginalization(bool marginalize_right = true) {
-
+Evidence Evidence::marginalization(bool marginalize_right = true) const {
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     auto *df = dynamic_cast<const CompositeFocalElement *>(discernment_frame.get());
     if (df == nullptr)return *this;
 
-    double ignorance_new = 0;
+    std::unique_ptr<FocalElementContainer> new_fecontainer = dispatcher->getContainer(*discernment_frame);
 
+    double ignorance_new = ignorance;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         auto *fe = dynamic_cast<const CompositeFocalElement *>(focal_elements[i].get());
         if ((marginalize_right && *fe->getLeft() == *df->getLeft()) ||
             (!marginalize_right && *fe->getRight() == *df->getRight()))
             ignorance_new += mass_array[i];
-        if ((marginalize_right && *fe->getLeft() == empty_set) ||
-            (!marginalize_right && *fe->getRight() == empty_set))
+        else if ((marginalize_right && fe->getLeft()->isEmpty()) ||
+                 (!marginalize_right && fe->getRight()->isEmpty()))
             continue;
-        febuilder->push(marginalize_right ? fe->getLeft()->clone() : fe->getRight()->clone(), mass_array[i]);
+        else new_fecontainer->push(marginalize_right ? fe->getLeft()->clone() : fe->getRight()->clone(), mass_array[i]);
     }
 
 
-    std::vector<std::unique_ptr<FocalElement>> outfes = febuilder->getFocalElementsArray();
-    std::vector<double> outmasses = febuilder->getMassArray();
-
-
-    Evidence outev(dispatcher->clone(), marginalize_right ? df->getLeft()->clone() : df->getRight()->clone(),
+    Evidence outev(dispatcher->clone(), std::move(new_fecontainer),
+                   marginalize_right ? df->getLeft()->clone() : df->getRight()->clone(),
                    ignorance_new);
-    for (int k = 0; k < outfes.size(); ++k) {
-        outev.addFocalElement(std::move(outfes[k]), outmasses[k]);
-    }
 
-    febuilder->clear();
+
     return outev;
 }
 
 
 Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) {
+    if (!isValidBBA() || !other.isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
     Evidence outev(dispatcher->clone(), std::unique_ptr<FocalElement>(
             new CompositeFocalElement(discernment_frame->clone(), other.getDiscernment_frame()->clone())),
                    ignorance * other.getIgnorance());
-
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         for (int j = 0; j < other.getFocal_elements().size(); ++j) {
             outev.addFocalElement(std::unique_ptr<FocalElement>(
                     new CompositeFocalElement(focal_elements[i]->clone(), other.getFocal_elements()[j]->clone())),
                                   mass_array[i] * other.getMassArray()[j]);
         }
-        outev.addFocalElement(std::unique_ptr<FocalElement>(
-                new CompositeFocalElement(focal_elements[i]->clone(), other.getDiscernment_frame()->clone())),
-                              mass_array[i] * other.getIgnorance());
+        if (other.getIgnorance() > 0)
+            outev.addFocalElement(std::unique_ptr<FocalElement>(
+                    new CompositeFocalElement(focal_elements[i]->clone(), other.getDiscernment_frame()->clone())),
+                                  mass_array[i] * other.getIgnorance());
     }
-
-    for (int k = 0; k < other.getFocal_elements().size(); ++k) {
-        outev.addFocalElement(std::unique_ptr<FocalElement>(
-                new CompositeFocalElement(discernment_frame->clone(), other.getFocal_elements()[k]->clone())),
-                              ignorance * other.getMassArray()[k]);
+    if (ignorance > 0) {
+        for (int k = 0; k < other.getFocal_elements().size(); ++k) {
+            outev.addFocalElement(std::unique_ptr<FocalElement>(
+                    new CompositeFocalElement(discernment_frame->clone(), other.getFocal_elements()[k]->clone())),
+                                  ignorance * other.getMassArray()[k]);
+        }
+    }
+    double conf = conflict();
+    if (conf > 0) {
+        std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
+        empty_set->clear();
+        for (int k = 0; k < other.getFocal_elements().size(); ++k) {
+            outev.addFocalElement(std::unique_ptr<FocalElement>(
+                    new CompositeFocalElement(empty_set->clone(), other.getFocal_elements()[k]->clone())),
+                                  conf * other.getMassArray()[k]);
+        }
+        if (other.getIgnorance() > 0)
+            outev.addFocalElement(std::unique_ptr<FocalElement>(
+                    new CompositeFocalElement(empty_set->clone(), other.getDiscernment_frame()->clone())),
+                                  conf * other.getIgnorance());
     }
 
     return outev;
@@ -444,9 +525,7 @@ void Evidence::setMass(double mass, int index) {
         throw IncompatibleTypeError(
                 "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
-    if (index < 0 || index >= mass_array.size()) throw IllegalArgumentError("Index out of bounds.");
-
-    mass_array[index] = mass;
+    fecontainer->set(index, mass);
 }
 
 void Evidence::setMass(double mass, const FocalElement &fe) {
@@ -454,75 +533,86 @@ void Evidence::setMass(double mass, const FocalElement &fe) {
         throw IncompatibleTypeError(
                 "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
-
-    bool found = false;
-    for (int i = 0; i < focal_elements.size(); ++i) {
-        if (fe == *focal_elements[i]) {
-            mass_array[i] = mass;
-            found = true;
-            break;
-        }
-    }
-    if (!found)throw IllegalArgumentError("The focal element does not exist.");
+    fecontainer->set(fe, mass);
 }
 
 void Evidence::deleteFocalElement(int index) {
-    if (index < 0 || index >= mass_array.size()) throw IllegalArgumentError("Index out of bounds.");
-    focal_elements[index].reset();
-    focal_elements.erase(focal_elements.begin() + index);
-    mass_array.erase(mass_array.begin() + index);
+    fecontainer->erase(index);
 }
 
 void Evidence::deleteFocalElement(const FocalElement &fe) {
-    int index = -1;
-    for (int i = 0; i < focal_elements.size(); ++i) {
-        if (fe == *focal_elements[i]) {
-            index = i;
-            break;
-        }
-    }
-    if (index < 0)throw IllegalArgumentError("The focal element does not exist.");
-    focal_elements[index].reset();
-    focal_elements.erase(focal_elements.begin() + index);
-    mass_array.erase(mass_array.begin() + index);
+    fecontainer->erase(fe);
 }
 
 
 Evidence::Evidence(const Evidence &other) {
     discernment_frame = other.getDiscernment_frame()->clone();
     ignorance = other.getIgnorance();
+    dispatcher = other.dispatcher->clone();
+    fecontainer = dispatcher->getContainer(*discernment_frame);
     const std::vector<std::unique_ptr<FocalElement>> &fe_other = other.getFocal_elements();
     const std::vector<double> &ms_other = other.getMassArray();
     for (int i = 0; i < ms_other.size(); ++i) {
-        focal_elements.push_back(fe_other[i]->clone());
-        mass_array.push_back(ms_other[i]);
+        fecontainer->push(fe_other[i]->clone(), ms_other[i]);
     }
-    dispatcher = other.dispatcher->clone();
-    febuilder = dispatcher->getBuilder(*discernment_frame);
+
 }
 
 Evidence &Evidence::operator=(const Evidence &other) {
 
     discernment_frame = other.getDiscernment_frame()->clone();
     ignorance = other.getIgnorance();
+    dispatcher = other.dispatcher->clone();
+    fecontainer = dispatcher->getContainer(*discernment_frame);
     const std::vector<std::unique_ptr<FocalElement>> &fe_other = other.getFocal_elements();
     const std::vector<double> &ms_other = other.getMassArray();
     for (int i = 0; i < ms_other.size(); ++i) {
-        focal_elements.push_back(fe_other[i]->clone());
-        mass_array.push_back(ms_other[i]);
+        fecontainer->push(fe_other[i]->clone(), ms_other[i]);
     }
-    dispatcher = other.dispatcher->clone();
-    febuilder = dispatcher->getBuilder(*discernment_frame);
+
     return *this;
 }
 
 double Evidence::getMass(const FocalElement &fe) {
-    for (int i = 0; i < focal_elements.size(); ++i) {
-        if (*focal_elements[i] == fe) {
-            return mass_array[i];
-        }
+    return fecontainer->get(fe);
+}
+
+void Evidence::normalize() {
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
+    double conf = conflict();
+    if (conf == 0.0)return;
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
+    for (int i = 0; i < mass_array.size(); ++i) {
+        fecontainer->set(i, mass_array[i] / (1 - conf));
     }
 }
+
+Evidence Evidence::conditioning(const FocalElement &C) {
+    if (!isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
+    if (*discernment_frame == C) return *this;
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &mass_array = fecontainer->getMassArray();
+
+    std::unique_ptr<FocalElementContainer> new_fecontainer = dispatcher->getContainer(*discernment_frame);
+
+    for (int i = 0; i < focal_elements.size(); ++i) {
+        new_fecontainer->push(std::move(focal_elements[i]->intersect(C)), mass_array[i]);
+    }
+
+    Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(), 0);
+
+}
+
+size_t Evidence::numFocalElements() const {
+    return fecontainer->getFocalElementsArray().size();
+}
+
+
+
 
 
 

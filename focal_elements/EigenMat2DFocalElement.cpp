@@ -4,7 +4,6 @@
 
 #include <src/evidential/errors/ConstructorArgumentsError.h>
 #include "EigenMat2DFocalElement.h"
-#include "ConflictFocalElement.h"
 
 namespace EigenFE {
 
@@ -71,14 +70,11 @@ namespace EigenFE {
         int numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
         int numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
         MatrixXb new_image(numrows, numcols);
-        bool isempty = true;
         for (int i = 0; i < numrows; ++i) {
             for (int j = 0; j < numcols; ++j) {
                 new_image(i, j) = image(i - y_off1, j - x_off1) & rhsr.getImage()(i - y_off2, j - x_off2);
-                if (isempty && new_image(i, j)) isempty = false;
             }
         }
-        if (isempty)return std::unique_ptr<FocalElement>(new ConflictFocalElement());
         return std::unique_ptr<FocalElement>(new EigenMat2DFocalElement(new_bounding_box, new_image));
     }
 
@@ -122,6 +118,7 @@ namespace EigenFE {
 
     std::vector<std::unique_ptr<FocalElement>> EigenMat2DFocalElement::getInnerSingletons(int step_size) const {
         std::vector<std::unique_ptr<FocalElement>> singletons;
+        if (isEmpty()) return singletons;
         for (int i = 0; i < image.rows(); i += step_size)
             for (int j = 0; j < image.cols(); j += step_size)
                 if (image(i, j)) {
@@ -137,6 +134,10 @@ namespace EigenFE {
     }
 
     void EigenMat2DFocalElement::print(std::ostream &os) const {
+        if (isEmpty()) {
+            os << "Empty set";
+            return;
+        }
         for (int i = 0; i < image.rows(); ++i) {
             for (int j = 0; j < image.cols(); ++j) {
 
@@ -144,6 +145,17 @@ namespace EigenFE {
             }
             os << std::endl;
         }
+    }
+
+    bool EigenMat2DFocalElement::isEmpty() const {
+        return cardinality() == 0;
+    }
+
+    void EigenMat2DFocalElement::clear() {
+        bounding_box = Geometry::Rectangle();
+        MatrixXb newim(1, 1);
+        image = newim;
+        image(0, 0) = false;
     }
 
 }

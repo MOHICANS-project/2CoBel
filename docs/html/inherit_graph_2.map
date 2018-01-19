@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classFocalElement.html" title="FocalElement" alt="" coords="5,107,108,133"/>
+<area shape="rect" id="node2" href="$classBoxSet2DFocalElement.html" title="2D FocalElement expressed as a set of rectangles. " alt="" coords="167,5,329,32"/>
+<area shape="rect" id="node3" href="$classClipper2DFocalElement.html" title="2D FocalElement using the Clipper library " alt="" coords="168,56,328,83"/>
+<area shape="rect" id="node4" href="$classCompositeFocalElement.html" title="CompositeFocalElement" alt="" coords="165,107,331,133"/>
+<area shape="rect" id="node5" href="$classEigenFE_1_1EigenMat2DFocalElement.html" title="EigenFE::EigenMat2DFocal\lElement" alt="" coords="156,158,340,199"/>
+<area shape="rect" id="node6" href="$classHashableFocalElement.html" title="HashableFocalElement" alt="" coords="169,224,327,251"/>
+<area shape="rect" id="node7" href="$classUnidimensionalFocalElement.html" title="UnidimensionalFocalElement" alt="" coords="388,224,579,251"/>
+</map>

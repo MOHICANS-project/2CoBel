@@ -10,21 +10,37 @@
 
 namespace Geometry {
 
-
+    /**
+     * @class Point2D
+     * 2D point in integer coordinates.
+     */
     class Point2D {
 
         int x;
         int y;
 
     public:
+        /**
+         * Construcor.
+         * @param x
+         * @param y
+         */
         explicit Point2D(int x = 0, int y = 0) : x(x), y(y) {}
 
         virtual ~Point2D() = default;
 
+        /**
+         * Get x.
+         * @return x.
+         */
         int X() const {
             return x;
         }
 
+        /**
+         * Get y.
+         * @return y.
+         */
         int Y() const {
             return y;
         }

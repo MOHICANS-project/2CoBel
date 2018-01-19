@@ -1,0 +1,8 @@
+<map id="FocalElement" name="FocalElement">
+<area shape="rect" id="node2" href="$classBoxSet2DFocalElement.html" title="2D FocalElement expressed as a set of rectangles. " alt="" coords="5,292,196,531"/>
+<area shape="rect" id="node3" href="$classClipper2DFocalElement.html" title="2D FocalElement using the Clipper library " alt="" coords="220,321,408,501"/>
+<area shape="rect" id="node4" href="$classCompositeFocalElement.html" title="{CompositeFocalElement\n||+ CompositeFocalElement()\l+ CompositeFocalElement()\l+ operator=()\l+ ~CompositeFocalElement()\l+ cardinality()\l+ getLeft()\l+ getRight()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="432,299,625,523"/>
+<area shape="rect" id="node5" href="$classEigenFE_1_1EigenMat2DFocalElement.html" title="{EigenFE::EigenMat2DFocal\lElement\n||+ EigenMat2DFocalElement()\l+ ~EigenMat2DFocalElement()\l+ cardinality()\l+ getBounding_box()\l+ getImage()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="650,307,853,516"/>
+<area shape="rect" id="node6" href="$classHashableFocalElement.html" title="{HashableFocalElement\n||+ hash()\l}" alt="" coords="877,373,1034,450"/>
+<area shape="rect" id="node7" href="$classUnidimensionalFocalElement.html" title="{UnidimensionalFocalElement\n||+ UnidimensionalFocalElement()\l+ ~UnidimensionalFocalElement()\l+ cardinality()\l+ getKey()\l+ hash()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l+ createDiscernmentFrame()\l+ createSingletonHypotesis()\l}" alt="" coords="846,579,1065,803"/>
+</map>

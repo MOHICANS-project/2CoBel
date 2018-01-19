@@ -6,7 +6,6 @@
 #include <bitset>
 #include <iostream>
 #include "UnidimensionalFocalElement.h"
-#include "ConflictFocalElement.h"
 
 
 unsigned long long UnidimensionalFocalElement::getKey() const {
@@ -33,7 +32,6 @@ std::unique_ptr<FocalElement> UnidimensionalFocalElement::do_intersection(FocalE
 
     auto rhsr = static_cast<const UnidimensionalFocalElement &>(rhs);
     unsigned long long newID = ID & rhsr.getKey();
-    if (newID == 0)return std::unique_ptr<FocalElement>(new ConflictFocalElement());
     return std::unique_ptr<FocalElement>(new UnidimensionalFocalElement(newID));
 }
 
@@ -50,7 +48,7 @@ std::unique_ptr<FocalElement> UnidimensionalFocalElement::clone() const {
 
 std::vector<std::unique_ptr<FocalElement>> UnidimensionalFocalElement::getInnerSingletons(int step_size) const {
     std::vector<std::unique_ptr<FocalElement>> singletons;
-
+    if (isEmpty()) return singletons;
     for (unsigned long long i = 0; i < sizeof(unsigned long long) * 8; i += step_size) {
         unsigned long long mask = 1ull << i;
         if (mask & ID)
@@ -64,6 +62,10 @@ size_t UnidimensionalFocalElement::hash() const {
 }
 
 void UnidimensionalFocalElement::print(std::ostream &os) const {
+    if (isEmpty()) {
+        os << "Empty set";
+        return;
+    }
     std::bitset<sizeof(unsigned long long) * CHAR_BIT> b(ID);
     const std::string str_bits = b.to_string();
     const auto first_digit = str_bits.find('1');
@@ -81,6 +83,14 @@ std::unique_ptr<UnidimensionalFocalElement>
 UnidimensionalFocalElement::createSingletonHypotesis(size_t hypotesis_number) {
     auto newID = static_cast<unsigned long long>(pow(2.0, hypotesis_number));
     return std::unique_ptr<UnidimensionalFocalElement>(new UnidimensionalFocalElement(newID));
+}
+
+bool UnidimensionalFocalElement::isEmpty() const {
+    return ID == 0;
+}
+
+void UnidimensionalFocalElement::clear() {
+    ID = 0;
 }
 
 

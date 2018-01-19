@@ -8,6 +8,10 @@
 
 #include <stdexcept>
 
+/**
+ * @class DefaultFocalElementContainerDispatcher
+ * Error in the arguments of a constructor method.
+ */
 class ConstructorArgumentsError : public std::runtime_error {
 public:
     explicit ConstructorArgumentsError(const char* msg) : runtime_error(msg) {}

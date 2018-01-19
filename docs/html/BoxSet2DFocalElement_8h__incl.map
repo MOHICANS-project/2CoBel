@@ -1,0 +1,7 @@
+<map id="focal_elements/BoxSet2DFocalElement.h" name="focal_elements/BoxSet2DFocalElement.h">
+<area shape="rect" id="node3" href="$Rectangle_8h.html" title="src/evidential/geometry\l/Rectangle.h" alt="" coords="612,95,769,136"/>
+<area shape="rect" id="node10" href="$FocalElement_8h.html" title="FocalElement.h" alt="" coords="354,184,467,211"/>
+<area shape="rect" id="node6" href="$Point2D_8h.html" title="Point2D.h" alt="" coords="876,266,956,293"/>
+<area shape="rect" id="node7" href="$Shape_8h.html" title="Shape.h" alt="" coords="807,184,878,211"/>
+<area shape="rect" id="node11" href="$IncompatibleTypeError_8h.html" title="src/evidential/errors\l/IncompatibleTypeError.h" alt="" coords="5,259,173,300"/>
+</map>

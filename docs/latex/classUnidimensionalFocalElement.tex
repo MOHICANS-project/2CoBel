@@ -1,0 +1,165 @@
+\hypertarget{classUnidimensionalFocalElement}{}\section{Unidimensional\+Focal\+Element Class Reference}
+\label{classUnidimensionalFocalElement}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+
+
+{\ttfamily \#include $<$Unidimensional\+Focal\+Element.\+h$>$}
+
+
+
+Inheritance diagram for Unidimensional\+Focal\+Element\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classUnidimensionalFocalElement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Unidimensional\+Focal\+Element\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classUnidimensionalFocalElement__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classUnidimensionalFocalElement_a634c688c14ef7a5a561dedf62e4cb0c3}{Unidimensional\+Focal\+Element} (unsigned long long I\+D)
+\item 
+\hyperlink{classUnidimensionalFocalElement_a0750b8a513e6ca16fdb94ff8012b78de}{$\sim$\+Unidimensional\+Focal\+Element} () override=default
+\item 
+double \hyperlink{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{cardinality} () const override
+\item 
+unsigned long long \hyperlink{classUnidimensionalFocalElement_a398bbc7cb6cabc000e549161323c3cf4}{get\+Key} () const 
+\item 
+size\+\_\+t \hyperlink{classUnidimensionalFocalElement_a073ce6e51cb7fff32b53e5f7b1d729c7}{hash} () const override
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classUnidimensionalFocalElement_ad37dc12733140cfd631d451ebfefcaf7}{get\+Inner\+Singletons} (int step\+\_\+size=1) const override
+\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classUnidimensionalFocalElement_aa06e27bc6c262783704883477d630d60}{clone} () const override
+\item 
+bool \hyperlink{classUnidimensionalFocalElement_a836c8a041ffba3e3e2ff7e584469a650}{is\+Empty} () const override
+\item 
+void \hyperlink{classUnidimensionalFocalElement_a1bd0c21e3e7e5a3ef78f4b47b98b6202}{clear} () override
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::unique\+\_\+ptr$<$ \hyperlink{classUnidimensionalFocalElement}{Unidimensional\+Focal\+Element} $>$ \hyperlink{classUnidimensionalFocalElement_aba30678a3cd2534ea8becf0229fdb399}{create\+Discernment\+Frame} (unsigned char card)
+\item 
+static std\+::unique\+\_\+ptr$<$ \hyperlink{classUnidimensionalFocalElement}{Unidimensional\+Focal\+Element} $>$ \hyperlink{classUnidimensionalFocalElement_aa99e8f904b1cfdc880b41a36defe8aa5}{create\+Singleton\+Hypotesis} (size\+\_\+t hypotesis\+\_\+number)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classUnidimensionalFocalElement_a634c688c14ef7a5a561dedf62e4cb0c3}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{Unidimensional\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Unidimensional\+Focal\+Element\+::\+Unidimensional\+Focal\+Element (
+\begin{DoxyParamCaption}
+\item[{unsigned long long}]{I\+D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}\label{classUnidimensionalFocalElement_a634c688c14ef7a5a561dedf62e4cb0c3}
+\hypertarget{classUnidimensionalFocalElement_a0750b8a513e6ca16fdb94ff8012b78de}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!````~Unidimensional\+Focal\+Element@{$\sim$\+Unidimensional\+Focal\+Element}}
+\index{````~Unidimensional\+Focal\+Element@{$\sim$\+Unidimensional\+Focal\+Element}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{$\sim$\+Unidimensional\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Unidimensional\+Focal\+Element\+::$\sim$\+Unidimensional\+Focal\+Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classUnidimensionalFocalElement_a0750b8a513e6ca16fdb94ff8012b78de}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!cardinality@{cardinality}}
+\index{cardinality@{cardinality}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{cardinality}]{\setlength{\rightskip}{0pt plus 5cm}double Unidimensional\+Focal\+Element\+::cardinality (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}
+
+
+Implements \hyperlink{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{Focal\+Element}.
+
+\hypertarget{classUnidimensionalFocalElement_a1bd0c21e3e7e5a3ef78f4b47b98b6202}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!clear@{clear}}
+\index{clear@{clear}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Unidimensional\+Focal\+Element\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_a1bd0c21e3e7e5a3ef78f4b47b98b6202}
+
+
+Implements \hyperlink{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{Focal\+Element}.
+
+\hypertarget{classUnidimensionalFocalElement_aa06e27bc6c262783704883477d630d60}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!clone@{clone}}
+\index{clone@{clone}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Unidimensional\+Focal\+Element\+::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_aa06e27bc6c262783704883477d630d60}
+
+
+Implements \hyperlink{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{Focal\+Element}.
+
+\hypertarget{classUnidimensionalFocalElement_aba30678a3cd2534ea8becf0229fdb399}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!create\+Discernment\+Frame@{create\+Discernment\+Frame}}
+\index{create\+Discernment\+Frame@{create\+Discernment\+Frame}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{create\+Discernment\+Frame}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Unidimensional\+Focal\+Element} $>$ Unidimensional\+Focal\+Element\+::create\+Discernment\+Frame (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{card}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classUnidimensionalFocalElement_aba30678a3cd2534ea8becf0229fdb399}
+\hypertarget{classUnidimensionalFocalElement_aa99e8f904b1cfdc880b41a36defe8aa5}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!create\+Singleton\+Hypotesis@{create\+Singleton\+Hypotesis}}
+\index{create\+Singleton\+Hypotesis@{create\+Singleton\+Hypotesis}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{create\+Singleton\+Hypotesis}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Unidimensional\+Focal\+Element} $>$ Unidimensional\+Focal\+Element\+::create\+Singleton\+Hypotesis (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{hypotesis\+\_\+number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{classUnidimensionalFocalElement_aa99e8f904b1cfdc880b41a36defe8aa5}
+\hypertarget{classUnidimensionalFocalElement_ad37dc12733140cfd631d451ebfefcaf7}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
+\index{get\+Inner\+Singletons@{get\+Inner\+Singletons}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{get\+Inner\+Singletons}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ Unidimensional\+Focal\+Element\+::get\+Inner\+Singletons (
+\begin{DoxyParamCaption}
+\item[{int}]{step\+\_\+size = {\ttfamily 1}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_ad37dc12733140cfd631d451ebfefcaf7}
+
+
+Implements \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{Focal\+Element}.
+
+\hypertarget{classUnidimensionalFocalElement_a398bbc7cb6cabc000e549161323c3cf4}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!get\+Key@{get\+Key}}
+\index{get\+Key@{get\+Key}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{get\+Key}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long Unidimensional\+Focal\+Element\+::get\+Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classUnidimensionalFocalElement_a398bbc7cb6cabc000e549161323c3cf4}
+\hypertarget{classUnidimensionalFocalElement_a073ce6e51cb7fff32b53e5f7b1d729c7}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!hash@{hash}}
+\index{hash@{hash}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{hash}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Unidimensional\+Focal\+Element\+::hash (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_a073ce6e51cb7fff32b53e5f7b1d729c7}
+
+
+Implements \hyperlink{classHashableFocalElement_a8b7bfbf1e107fa5a6cfc5033db196c63}{Hashable\+Focal\+Element}.
+
+\hypertarget{classUnidimensionalFocalElement_a836c8a041ffba3e3e2ff7e584469a650}{}\index{Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!Unidimensional\+Focal\+Element@{Unidimensional\+Focal\+Element}}
+\subsubsection[{is\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Unidimensional\+Focal\+Element\+::is\+Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classUnidimensionalFocalElement_a836c8a041ffba3e3e2ff7e584469a650}
+
+
+Implements \hyperlink{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{Focal\+Element}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+focal\+\_\+elements/\hyperlink{UnidimensionalFocalElement_8h}{Unidimensional\+Focal\+Element.\+h}\item 
+focal\+\_\+elements/\hyperlink{UnidimensionalFocalElement_8cpp}{Unidimensional\+Focal\+Element.\+cpp}\end{DoxyCompactItemize}

@@ -4,17 +4,23 @@
 
 #include <iostream>
 #include "BoxSet2DFocalElement.h"
-#include "ConflictFocalElement.h"
 
 
 BoxSet2DFocalElement::BoxSet2DFocalElement(const std::vector<Geometry::Rectangle> &boxes) : boxes(boxes) {
     int xmin = INT32_MAX, xmax = INT32_MIN, ymin = INT32_MAX, ymax = INT32_MIN;
     for (const auto &box : boxes) {
         if (box.getXmin() < xmin)xmin = box.getXmin();
-        else if (box.getXmax() > xmax)xmax = box.getXmax();
+        if (box.getXmax() > xmax)xmax = box.getXmax();
         if (box.getYmin() < ymin)ymin = box.getYmin();
-        else if (box.getYmax() > ymax)ymax = box.getYmax();
+        if (box.getYmax() > ymax)ymax = box.getYmax();
     }
+    if (!boxes.empty()) {
+        bounding_box.setXmax(xmax);
+        bounding_box.setXmin(xmin);
+        bounding_box.setYmax(ymax);
+        bounding_box.setYmin(ymin);
+    }
+
 }
 
 
@@ -28,7 +34,6 @@ double BoxSet2DFocalElement::cardinality() const {
 
 bool BoxSet2DFocalElement::equal_to(FocalElement const &rhs) const {
     auto rhsr = static_cast<const BoxSet2DFocalElement &>(rhs);
-
     if (bounding_box != rhsr.getBounding_box() || cardinality() != rhsr.cardinality())return false;
     for (const auto &box : boxes) {
         Geometry::Point2D to_test[] = {Geometry::Point2D(box.getXmin(), box.getYmin()),
@@ -80,9 +85,12 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_intersection(FocalElement
             if (rect.computeArea() > 0)new_boxes.push_back(rect);
         }
     }
-    if (new_boxes.empty())return std::unique_ptr<FocalElement>(new ConflictFocalElement());
-    return std::unique_ptr<FocalElement>(new BoxSet2DFocalElement(new_boxes));
 
+    auto *nn = new BoxSet2DFocalElement(new_boxes);
+    nn->simplify_contigous();
+    std::unique_ptr<FocalElement> pp;
+    pp.reset(nn);
+    return std::move(pp);
 }
 
 std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_union(FocalElement const &rhs) const {
@@ -119,8 +127,11 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_union(FocalElement const 
         real_new_boxes.push_back(box);
     }
 
-
-    return std::unique_ptr<FocalElement>(new BoxSet2DFocalElement(real_new_boxes));
+    auto *nn = new BoxSet2DFocalElement(real_new_boxes);
+    nn->simplify_contigous();
+    std::unique_ptr<FocalElement> pp;
+    pp.reset(nn);
+    return std::move(pp);
 
 }
 
@@ -138,8 +149,8 @@ void BoxSet2DFocalElement::simplify_contigous() {
                     int cc0 = boxes[j].getYmin();
                     int ll2 = boxes[j].getXmax();
                     int cc2 = boxes[j].getYmax();
-                    if ((ll0 == l0 && ll2 == l2 && (cc0 == c2 || cc0 == c2 + 1 || cc2 == c0 || cc2 == c0 - 1)) ||
-                        (cc0 == c0 && cc2 == c2 && (ll0 == l2 || ll0 == l2 + 1 || ll2 == l0 || ll2 == l0 - 1))) {
+                    if ((ll0 == l0 && ll2 == l2 && (cc0 == c2 || cc2 == c0)) ||
+                        (cc0 == c0 && cc2 == c2 && (ll0 == l2 || ll2 == l0))) {
                         l0 = std::min(l0, ll0);
                         l2 = std::max(l2, ll2);
                         c0 = std::min(c0, cc0);
@@ -231,6 +242,7 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::clone() const {
 
 std::vector<std::unique_ptr<FocalElement>> BoxSet2DFocalElement::getInnerSingletons(int step_size) const {
     std::vector<std::unique_ptr<FocalElement>> singletons;
+    if (isEmpty())return singletons;
     for (int x = bounding_box.getXmin(); x <= bounding_box.getXmax(); x += step_size) {
         for (int y = bounding_box.getYmin(); y <= bounding_box.getYmax(); y += step_size) {
             std::vector<Geometry::Rectangle> boxes;
@@ -243,9 +255,19 @@ std::vector<std::unique_ptr<FocalElement>> BoxSet2DFocalElement::getInnerSinglet
 }
 
 void BoxSet2DFocalElement::print(std::ostream &os) const {
+    if (isEmpty()) os << "Empty set";
     for (auto &box : boxes) {
         os << box << std::endl;
     }
+}
+
+bool BoxSet2DFocalElement::isEmpty() const {
+    return boxes.empty();
+}
+
+void BoxSet2DFocalElement::clear() {
+    bounding_box = Geometry::Rectangle();
+    boxes.clear();
 }
 
 

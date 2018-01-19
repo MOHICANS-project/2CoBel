@@ -1,0 +1,59 @@
+\hypertarget{namespaceGeometry}{}\section{Geometry Namespace Reference}
+\label{namespaceGeometry}\index{Geometry@{Geometry}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classGeometry_1_1ClipperPolygon}{Clipper\+Polygon}
+\item 
+class \hyperlink{classGeometry_1_1Point2D}{Point2\+D}
+\item 
+class \hyperlink{classGeometry_1_1Rectangle}{Rectangle}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGeometry_1_1Rectangle}{Rectangle} parallel to the plane axis. \end{DoxyCompactList}\item 
+class \hyperlink{classGeometry_1_1Shape}{Shape}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{namespaceGeometry_a22a5a71e9b20685458a895f1ce751fab}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classGeometry_1_1ClipperPolygon}{Clipper\+Polygon} \&polygon)
+\item 
+bool \hyperlink{namespaceGeometry_a8694892694aaa62c463ea4fb268f0e5e}{is\+Orthogonal} (const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&a, const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&b, const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&c)
+\item 
+bool \hyperlink{namespaceGeometry_ad19234394b8890f16dd489a33c6d62ca}{is\+Rectangle} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2\+D} $>$ \&vertices)
+\item 
+std\+::ostream \& \hyperlink{namespaceGeometry_a41187ad6b2f42115fea347fc93f7992f}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classGeometry_1_1Rectangle}{Rectangle} \&rectangle)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceGeometry_a8694892694aaa62c463ea4fb268f0e5e}{}\index{Geometry@{Geometry}!is\+Orthogonal@{is\+Orthogonal}}
+\index{is\+Orthogonal@{is\+Orthogonal}!Geometry@{Geometry}}
+\subsubsection[{is\+Orthogonal}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::is\+Orthogonal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2\+D} \&}]{a, }
+\item[{const {\bf Point2\+D} \&}]{b, }
+\item[{const {\bf Point2\+D} \&}]{c}
+\end{DoxyParamCaption}
+)}\label{namespaceGeometry_a8694892694aaa62c463ea4fb268f0e5e}
+\hypertarget{namespaceGeometry_ad19234394b8890f16dd489a33c6d62ca}{}\index{Geometry@{Geometry}!is\+Rectangle@{is\+Rectangle}}
+\index{is\+Rectangle@{is\+Rectangle}!Geometry@{Geometry}}
+\subsubsection[{is\+Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::is\+Rectangle (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Point2\+D} $>$ \&}]{vertices}
+\end{DoxyParamCaption}
+)}\label{namespaceGeometry_ad19234394b8890f16dd489a33c6d62ca}
+\hypertarget{namespaceGeometry_a22a5a71e9b20685458a895f1ce751fab}{}\index{Geometry@{Geometry}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Geometry@{Geometry}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& Geometry\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf Clipper\+Polygon} \&}]{polygon}
+\end{DoxyParamCaption}
+)}\label{namespaceGeometry_a22a5a71e9b20685458a895f1ce751fab}
+\hypertarget{namespaceGeometry_a41187ad6b2f42115fea347fc93f7992f}{}\index{Geometry@{Geometry}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Geometry@{Geometry}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& Geometry\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf Rectangle} \&}]{rectangle}
+\end{DoxyParamCaption}
+)}\label{namespaceGeometry_a41187ad6b2f42115fea347fc93f7992f}

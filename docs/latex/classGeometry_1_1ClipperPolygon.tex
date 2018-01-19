@@ -1,0 +1,117 @@
+\hypertarget{classGeometry_1_1ClipperPolygon}{}\section{Geometry\+:\+:Clipper\+Polygon Class Reference}
+\label{classGeometry_1_1ClipperPolygon}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+
+
+{\ttfamily \#include $<$Clipper\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for Geometry\+:\+:Clipper\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classGeometry_1_1ClipperPolygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Geometry\+:\+:Clipper\+Polygon\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{classGeometry_1_1ClipperPolygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{Clipper\+Polygon} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2\+D} $>$ \&vertices)
+\item 
+\hyperlink{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}{Clipper\+Polygon} (Clipper\+Lib\+::\+Path polygon)
+\item 
+\hyperlink{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}{$\sim$\+Clipper\+Polygon} () override=default
+\item 
+double \hyperlink{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{compute\+Area} () const override
+\item 
+bool \hyperlink{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p) const override
+\item 
+const Clipper\+Lib\+::\+Path \& \hyperlink{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}{get\+Polygon} () const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classGeometry_1_1ClipperPolygon}{Clipper\+Polygon} \&polygon)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
+\index{Clipper\+Polygon@{Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf Point2\+D} $>$ \&}]{vertices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}
+\hypertarget{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
+\index{Clipper\+Polygon@{Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Clipper\+Lib\+::\+Path}]{polygon}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}
+\hypertarget{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!````~Clipper\+Polygon@{$\sim$\+Clipper\+Polygon}}
+\index{````~Clipper\+Polygon@{$\sim$\+Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{$\sim$\+Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::$\sim$\+Clipper\+Polygon (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!compute\+Area@{compute\+Area}}
+\index{compute\+Area@{compute\+Area}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{compute\+Area}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Clipper\+Polygon\+::compute\+Area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}
+
+
+Implements \hyperlink{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}{Geometry\+::\+Shape}.
+
+\hypertarget{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!get\+Polygon@{get\+Polygon}}
+\index{get\+Polygon@{get\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{get\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}const Clipper\+Lib\+::\+Path \& Geometry\+::\+Clipper\+Polygon\+::get\+Polygon (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}
+\hypertarget{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!has\+\_\+inside@{has\+\_\+inside}}
+\index{has\+\_\+inside@{has\+\_\+inside}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{has\+\_\+inside}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Clipper\+Polygon\+::has\+\_\+inside (
+\begin{DoxyParamCaption}
+\item[{{\bf Point2\+D}}]{p}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}
+
+
+Implements \hyperlink{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}{Geometry\+::\+Shape}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os, }
+\item[{const {\bf Clipper\+Polygon} \&}]{polygon}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\label{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+geometry/\hyperlink{ClipperPolygon_8h}{Clipper\+Polygon.\+h}\item 
+geometry/\hyperlink{ClipperPolygon_8cpp}{Clipper\+Polygon.\+cpp}\end{DoxyCompactItemize}

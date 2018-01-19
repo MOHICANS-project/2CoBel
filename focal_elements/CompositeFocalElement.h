@@ -8,20 +8,24 @@
 
 #include <src/evidential/errors/ConstructorArgumentsError.h>
 #include "FocalElement.h"
-#include "ConflictFocalElement.h"
 
+/**
+ * @class CompositeFocalElement
+ * FocalElement in a cross product space.
+ */
 class CompositeFocalElement : public FocalElement {
 
     std::unique_ptr<FocalElement> left;
     std::unique_ptr<FocalElement> right;
 
 public:
+    /**
+     * Constructor.
+     * @param _left Left FocalElement
+     * @param _right Right FocalElement
+     */
     explicit CompositeFocalElement(std::unique_ptr<FocalElement> _left, std::unique_ptr<FocalElement> _right) : left(
-            std::move(_left)), right(std::move(_right)) {
-        ConflictFocalElement empty_set;
-        if (*left == empty_set && *right == empty_set)
-            throw ConstructorArgumentsError("One of the two arguments must not be an empty set.");
-    }
+            std::move(_left)), right(std::move(_right)) {}
 
     CompositeFocalElement(const CompositeFocalElement &other);
 
@@ -33,13 +37,25 @@ public:
 
     double cardinality() const override;
 
+    /**
+     * Get the left FocalElement
+     * @return The left FocalElement
+     */
     const std::unique_ptr<FocalElement> &getLeft() const;
 
+    /**
+     * Get the right FocalElement
+     * @return The right FocalElement
+     */
     const std::unique_ptr<FocalElement> &getRight() const;
 
     std::vector<std::unique_ptr<FocalElement>> getInnerSingletons(int step_size = 1) const override;
 
     std::unique_ptr<FocalElement> clone() const override;
+
+    bool isEmpty() const override;
+
+    void clear() override;
 
 private:
     bool equal_to(FocalElement const &rhs) const override;
@@ -50,7 +66,7 @@ private:
 
     std::unique_ptr<FocalElement> do_union(FocalElement const &rhs) const override;
 
-    void print(std::ostream &os) const;
+    void print(std::ostream &os) const override;
 };
 
 
