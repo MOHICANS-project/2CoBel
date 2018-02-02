@@ -78,8 +78,8 @@ const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() 
 void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) {
     if (typeid(elem) != typeid(discernment_frame))
         throw IncompatibleTypeError("The type of focal elements has to match the one of the discernment frame.");
-    if (mass <= 0)
-        throw IncompatibleTypeError("Mass value has to be > 0.");
+    if (mass <= 0 || mass > 1)
+        throw IncompatibleTypeError("Mass value has to be > 0 and <1.");
     if (elem->cardinality() < 0)
         throw IncompatibleTypeError("Focal element cardinality has to be >= 0.");
     if (elem->isEmpty())
@@ -521,17 +521,17 @@ Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) {
 }
 
 void Evidence::setMass(double mass, int index) {
-    if (mass == 0)
+    /*if (mass == 0)
         throw IncompatibleTypeError(
-                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
+                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");*/
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
     fecontainer->set(index, mass);
 }
 
 void Evidence::setMass(double mass, const FocalElement &fe) {
-    if (mass == 0)
+    /*if (mass == 0)
         throw IncompatibleTypeError(
-                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");
+                "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");*/
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
     fecontainer->set(fe, mass);
 }
@@ -609,6 +609,17 @@ Evidence Evidence::conditioning(const FocalElement &C) {
 
 size_t Evidence::numFocalElements() const {
     return fecontainer->getFocalElementsArray().size();
+}
+
+double Evidence::getMass(size_t i) const {
+    if (i < 0 || i > fecontainer->getMassArray().size()) throw IllegalArgumentError("Out of bounds");
+    return fecontainer->getMassArray()[i];
+}
+
+double Evidence::BetP(size_t i) {
+    if (i < 0 || i > fecontainer->getMassArray().size()) throw IllegalArgumentError("Out of bounds");
+    const std::unique_ptr<FocalElement> &elem = fecontainer->getFocalElementsArray()[i];
+    return BetP(*elem);
 }
 
 

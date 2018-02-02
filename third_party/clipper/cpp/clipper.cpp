@@ -40,13 +40,7 @@
 
 #include "clipper.hpp"
 #include <cmath>
-#include <vector>
 #include <algorithm>
-#include <stdexcept>
-#include <cstring>
-#include <cstdlib>
-#include <ostream>
-#include <functional>
 
 namespace ClipperLib {
 

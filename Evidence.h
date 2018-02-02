@@ -10,8 +10,8 @@
 #include <src/evidential/focal_elements/FocalElement.h>
 #include <boost/dynamic_bitset.hpp>
 #include <unordered_map>
-#include <src/evidential/builders/FocalElementContainerDispatcher.h>
-#include <src/evidential/builders/DefaultFocalElementContainerDispatcher.h>
+#include <src/evidential/containers/FocalElementContainerDispatcher.h>
+#include <src/evidential/containers/DefaultFocalElementContainerDispatcher.h>
 
 /**
  * @class Evidence
@@ -88,6 +88,13 @@ public:
     size_t numFocalElements() const;
 
     /**
+     * Get the mass at the given position
+     * @param i position
+     * @return The related mass
+     */
+    double getMass(size_t i) const;
+
+    /**
      * Set the mass value at the given position.
      * @param mass The new mass value
      * @param index Position
@@ -160,6 +167,13 @@ public:
      * @return BetP of elem.
      */
     double BetP(const FocalElement &w);
+
+    /**
+    * Calculate the \f$BetP(A)\f$ of the ith FocalElement A.
+    * @param i Position of A.
+    * @return BetP of A.
+    */
+    double BetP(size_t i);
 
     /**
      * Find the FocalElement with maximum BetP by inspecting all the singleton FocalElements included in the set.

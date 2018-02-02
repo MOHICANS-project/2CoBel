@@ -10,6 +10,13 @@ if (DOXYGEN_FOUND)
             )
 endif (DOXYGEN_FOUND)
 
+#Eigen
+SET(EIGEN3_INCLUDE_DIR "/usr/include/eigen3")
+IF (NOT EIGEN3_INCLUDE_DIR)
+    MESSAGE(FATAL_ERROR "Please point the environment variable EIGEN3_INCLUDE_DIR to the include directory of your Eigen3 installation.")
+ENDIF ()
+INCLUDE_DIRECTORIES("${EIGEN3_INCLUDE_DIR}")
+
 
 add_subdirectory(third_party/clipper/cpp)
 
@@ -26,14 +33,14 @@ ADD_LIBRARY(evidential SHARED
         Evidence.cpp
         Evidence.h
         focal_elements/HashableFocalElement.h
-        builders/FocalElementContainer.h
-        builders/GenericFocalElementContainer.cpp
-        builders/GenericFocalElementContainer.h
-        builders/HashableFocalElementContainer.cpp
-        builders/HashableFocalElementContainer.h
-        builders/FocalElementContainerDispatcher.h
-        builders/DefaultFocalElementContainerDispatcher.cpp
-        builders/DefaultFocalElementContainerDispatcher.h
+        containers/FocalElementContainer.h
+        containers/GenericFocalElementContainer.cpp
+        containers/GenericFocalElementContainer.h
+        containers/HashableFocalElementContainer.cpp
+        containers/HashableFocalElementContainer.h
+        containers/FocalElementContainerDispatcher.h
+        containers/DefaultFocalElementContainerDispatcher.cpp
+        containers/DefaultFocalElementContainerDispatcher.h
         focal_elements/CompositeFocalElement.cpp
         focal_elements/CompositeFocalElement.h
         errors/InvalidBBAError.h)
