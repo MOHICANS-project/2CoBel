@@ -30,14 +30,14 @@ public:
     virtual double cardinality() const =0;
 
 
-    bool operator==(const FocalElement &rhs) {
+    bool operator==(const FocalElement &rhs) const {
         if (typeid(*this) != typeid(rhs)) return false;
         if ((this->isEmpty() && rhs.isEmpty())) return true;
         if ((!this->isEmpty() && rhs.isEmpty()) || (this->isEmpty() && !rhs.isEmpty())) return false;
         return this->equal_to(rhs);
     }
 
-    bool operator!=(const FocalElement &rhs) {
+    bool operator!=(const FocalElement &rhs) const {
         return !(*this == rhs);
     }
 

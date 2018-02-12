@@ -23,18 +23,18 @@ public:
 
 namespace std {
     template<>
-    class hash<std::unique_ptr<HashableFocalElement>> {
+    class hash<HashableFocalElement *> {
     public:
-        size_t operator()(const std::unique_ptr<HashableFocalElement> &fe) const {
+        size_t operator()(const HashableFocalElement *&fe) const {
             return fe->hash();
         }
     };
 
     template<>
-    class equal_to<std::unique_ptr<HashableFocalElement>> {
+    class equal_to<HashableFocalElement *> {
     public:
-        bool operator()(const std::unique_ptr<HashableFocalElement> &h1,
-                        const std::unique_ptr<HashableFocalElement> &h2) const {
+        bool operator()(const HashableFocalElement *&h1,
+                        const HashableFocalElement *&h2) const {
             return *h1 == *h2;
         }
     };

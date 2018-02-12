@@ -12,6 +12,7 @@
 #include "Evidence.h"
 #include "errors/IllegalArgumentError.h"
 
+const double EPS = 1e-3;
 
 template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
@@ -279,14 +280,14 @@ void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) {
 }
 
 bool Evidence::isValidBBA() const {
-    double cum = 0.0;
+    double cum = ignorance;
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (auto mass : mass_array) {
-        if (mass < 0.0 && fabs(mass) > FLT_EPSILON)return false;
-        if (mass > 1.0 && fabs(mass - 1.0) > FLT_EPSILON)return false;
+        if (mass < 0.0 && fabs(mass) > EPS)return false;
+        if (mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
         cum += mass;
     }
-    return !(cum > 1.0 && fabs(cum - 1.0) > FLT_EPSILON);
+    return !(cum > 1.0 && fabs(cum - 1.0) > EPS);
 }
 
 

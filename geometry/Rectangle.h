@@ -5,7 +5,7 @@
 #ifndef FUSION_RECTANGLE_H
 #define FUSION_RECTANGLE_H
 
-#include <vector_types.h>
+
 #include <vector>
 #include <ostream>
 #include "Point2D.h"
