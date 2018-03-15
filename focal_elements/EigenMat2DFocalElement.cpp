@@ -3,6 +3,7 @@
 //
 
 #include <src/evidential/errors/ConstructorArgumentsError.h>
+#include <iostream>
 #include "EigenMat2DFocalElement.h"
 
 namespace EigenFE {
@@ -11,9 +12,9 @@ namespace EigenFE {
     EigenMat2DFocalElement::EigenMat2DFocalElement(const Geometry::Rectangle &bounding_box, const MatrixXb &image)
             : bounding_box(bounding_box), image(image) {
         if ((bounding_box.getXmax() - bounding_box.getXmin() + 1) != image.cols() ||
-            (bounding_box.getYmax() - bounding_box.getYmin() + 1) != image.rows() || bounding_box.computeArea() == 0)
+            (bounding_box.getYmax() - bounding_box.getYmin() + 1) != image.rows())
             throw ConstructorArgumentsError(
-                    "EigenMat2DFocalElement: bounding box must have the same size has the image.");
+                    "EigenMat2DFocalElement: bounding box must have the same size as the image.");
 
     }
 
@@ -36,18 +37,7 @@ namespace EigenFE {
     }
 
     bool EigenMat2DFocalElement::equal_to(FocalElement const &rhs) const {
-
-        auto rhsr = static_cast<const EigenMat2DFocalElement &>(rhs);
-        if (bounding_box != rhsr.getBounding_box())return false;
-
-        for (int i = 0; i < image.rows(); ++i) {
-            for (int j = 0; j < image.cols(); ++j) {
-
-                if (image(i, j) != rhsr.getImage()(i, j))return false;
-            }
-        }
-
-        return true;
+        return rhs.cardinality() == cardinality() && intersect(rhs)->cardinality() == cardinality();
     }
 
     bool EigenMat2DFocalElement::is_inside(FocalElement const &rhs) const {
@@ -58,17 +48,18 @@ namespace EigenFE {
         auto rhsr = static_cast<const EigenMat2DFocalElement &>(rhs);
         Geometry::Rectangle new_bounding_box = bounding_box.intersect(rhsr.getBounding_box());
 
-        if (new_bounding_box.computeArea() == 0)
+        if (new_bounding_box.computeArea() == 0 && new_bounding_box.getXmin() == INT64_MAX)
             return std::unique_ptr<FocalElement>(new EigenMat2DFocalElement(new_bounding_box, MatrixXb::Zero(1, 1)));
 
-        int x_off1 = bounding_box.getXmin() - new_bounding_box.getXmin();
-        int y_off1 = -bounding_box.getYmax() + new_bounding_box.getYmax();
+        long x_off1 = bounding_box.getXmin() - new_bounding_box.getXmin();
+        long y_off1 = bounding_box.getYmin() - new_bounding_box.getYmin();
 
-        int x_off2 = rhsr.getBounding_box().getXmin() - new_bounding_box.getXmin();
-        int y_off2 = -rhsr.getBounding_box().getYmax() + new_bounding_box.getYmax();
+        long x_off2 = rhsr.getBounding_box().getXmin() - new_bounding_box.getXmin();
+        long y_off2 = rhsr.getBounding_box().getYmin() - new_bounding_box.getYmin();
 
-        int numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
-        int numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
+        long numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
+        long numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
+
         MatrixXb new_image(numrows, numcols);
         for (int i = 0; i < numrows; ++i) {
             for (int j = 0; j < numcols; ++j) {
@@ -85,14 +76,14 @@ namespace EigenFE {
                                              std::min(bounding_box.getYmin(), rhsr.getBounding_box().getYmin()),
                                              std::max(bounding_box.getYmax(), rhsr.getBounding_box().getYmax()));
 
-        int x_off1 = bounding_box.getXmin() - new_bounding_box.getXmin();
-        int y_off1 = -bounding_box.getYmax() + new_bounding_box.getYmax();
+        long x_off1 = bounding_box.getXmin() - new_bounding_box.getXmin();
+        long y_off1 = bounding_box.getYmin() - new_bounding_box.getYmin();
 
-        int x_off2 = rhsr.getBounding_box().getXmin() - new_bounding_box.getXmin();
-        int y_off2 = -rhsr.getBounding_box().getYmax() + new_bounding_box.getYmax();
+        long x_off2 = rhsr.getBounding_box().getXmin() - new_bounding_box.getXmin();
+        long y_off2 = rhsr.getBounding_box().getYmin() - new_bounding_box.getYmin();
 
-        int numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
-        int numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
+        long numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
+        long numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
         MatrixXb new_image(numrows, numcols);
 
         for (int i = 0; i < numrows; ++i) {
@@ -122,8 +113,8 @@ namespace EigenFE {
         for (int i = 0; i < image.rows(); i += step_size)
             for (int j = 0; j < image.cols(); j += step_size)
                 if (image(i, j)) {
-                    int xmin = bounding_box.getXmin() + i;
-                    int ymax = bounding_box.getYmax() - j;
+                    long xmin = bounding_box.getXmin() + i;
+                    long ymax = bounding_box.getYmax() - j;
                     MatrixXb new_image(1, 1);
                     new_image(0, 0) = true;
                     singletons.push_back(std::unique_ptr<FocalElement>(
@@ -148,6 +139,7 @@ namespace EigenFE {
     }
 
     bool EigenMat2DFocalElement::isEmpty() const {
+
         return cardinality() == 0;
     }
 
@@ -157,5 +149,6 @@ namespace EigenFE {
         image = newim;
         image(0, 0) = false;
     }
+
 
 }

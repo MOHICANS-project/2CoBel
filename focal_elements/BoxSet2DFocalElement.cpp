@@ -7,7 +7,7 @@
 
 
 BoxSet2DFocalElement::BoxSet2DFocalElement(const std::vector<Geometry::Rectangle> &boxes) : boxes(boxes) {
-    int xmin = INT32_MAX, xmax = INT32_MIN, ymin = INT32_MAX, ymax = INT32_MIN;
+    long xmin = INT64_MAX, xmax = INT64_MIN, ymin = INT64_MAX, ymax = INT64_MIN;
     for (const auto &box : boxes) {
         if (box.getXmin() < xmin)xmin = box.getXmin();
         if (box.getXmax() > xmax)xmax = box.getXmax();
@@ -139,16 +139,16 @@ void BoxSet2DFocalElement::simplify_contigous() {
     std::vector<bool> box_valid(boxes.size(), true);
     for (int i = 0; i < boxes.size(); ++i) {
         if (box_valid[i]) {
-            int l0 = boxes[i].getXmin();
-            int c0 = boxes[i].getYmin();
-            int l2 = boxes[i].getXmax();
-            int c2 = boxes[i].getYmax();
+            long l0 = boxes[i].getXmin();
+            long c0 = boxes[i].getYmin();
+            long l2 = boxes[i].getXmax();
+            long c2 = boxes[i].getYmax();
             for (int j = i + 1; j < boxes.size(); ++j) {
                 if (box_valid[j]) {
-                    int ll0 = boxes[j].getXmin();
-                    int cc0 = boxes[j].getYmin();
-                    int ll2 = boxes[j].getXmax();
-                    int cc2 = boxes[j].getYmax();
+                    long ll0 = boxes[j].getXmin();
+                    long cc0 = boxes[j].getYmin();
+                    long ll2 = boxes[j].getXmax();
+                    long cc2 = boxes[j].getYmax();
                     if ((ll0 == l0 && ll2 == l2 && (cc0 == c2 || cc2 == c0)) ||
                         (cc0 == c0 && cc2 == c2 && (ll0 == l2 || ll2 == l0))) {
                         l0 = std::min(l0, ll0);
@@ -243,8 +243,8 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::clone() const {
 std::vector<std::unique_ptr<FocalElement>> BoxSet2DFocalElement::getInnerSingletons(int step_size) const {
     std::vector<std::unique_ptr<FocalElement>> singletons;
     if (isEmpty())return singletons;
-    for (int x = bounding_box.getXmin(); x <= bounding_box.getXmax(); x += step_size) {
-        for (int y = bounding_box.getYmin(); y <= bounding_box.getYmax(); y += step_size) {
+    for (long x = bounding_box.getXmin(); x <= bounding_box.getXmax(); x += step_size) {
+        for (long y = bounding_box.getYmin(); y <= bounding_box.getYmax(); y += step_size) {
             std::vector<Geometry::Rectangle> boxes;
             boxes.emplace_back(x, x + 1, y, y - 1);
             std::unique_ptr<FocalElement> fe(new BoxSet2DFocalElement(boxes));

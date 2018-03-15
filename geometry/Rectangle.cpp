@@ -40,7 +40,7 @@ namespace Geometry {
         ymax = std::max(p1.Y(), p2.Y());
     }
 
-    Rectangle::Rectangle(Point2D p_up_left, int width, int height) {
+    Rectangle::Rectangle(Point2D p_up_left, long width, long height) {
         xmin = p_up_left.X();
         xmax = xmin + width;
         ymax = p_up_left.Y();
@@ -57,28 +57,28 @@ namespace Geometry {
     }
 
     Rectangle Rectangle::intersect(const Rectangle &other) const {
-        int n_xmin = std::max(xmin, other.getXmin());
-        int n_xmax = std::min(xmax, other.getXmax());
-        int n_ymin = std::max(ymin, other.getYmin());
-        int n_ymax = std::min(ymax, other.getYmax());
-        if (n_xmin >= n_xmax || n_ymin >= n_ymax) return Rectangle(0, 0, 0, 0);
+        long n_xmin = std::max(xmin, other.getXmin());
+        long n_xmax = std::min(xmax, other.getXmax());
+        long n_ymin = std::max(ymin, other.getYmin());
+        long n_ymax = std::min(ymax, other.getYmax());
+        if (n_xmin >= n_xmax || n_ymin >= n_ymax) return Rectangle(INT64_MAX, INT64_MAX, INT64_MAX, INT64_MAX);
         return Rectangle(n_xmin, n_xmax, n_ymin, n_ymax);
     }
 
 
-    int Rectangle::getXmin() const {
+    long Rectangle::getXmin() const {
         return xmin;
     }
 
-    int Rectangle::getXmax() const {
+    long Rectangle::getXmax() const {
         return xmax;
     }
 
-    int Rectangle::getYmin() const {
+    long Rectangle::getYmin() const {
         return ymin;
     }
 
-    int Rectangle::getYmax() const {
+    long Rectangle::getYmax() const {
         return ymax;
     }
 
@@ -90,19 +90,19 @@ namespace Geometry {
                ymax == rhsr.ymax;
     }
 
-    void Rectangle::setXmin(int xmin) {
+    void Rectangle::setXmin(long xmin) {
         Rectangle::xmin = xmin;
     }
 
-    void Rectangle::setXmax(int xmax) {
+    void Rectangle::setXmax(long xmax) {
         Rectangle::xmax = xmax;
     }
 
-    void Rectangle::setYmin(int ymin) {
+    void Rectangle::setYmin(long ymin) {
         Rectangle::ymin = ymin;
     }
 
-    void Rectangle::setYmax(int ymax) {
+    void Rectangle::setYmax(long ymax) {
         Rectangle::ymax = ymax;
     }
 

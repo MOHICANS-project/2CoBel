@@ -7,13 +7,13 @@
 
 
 #include <src/evidential/geometry/ClipperPolygon.h>
-#include "FocalElement.h"
+#include "HashableFocalElement.h"
 
 /**
  * @class Clipper2DFocalElement
  * 2D FocalElement using the <a href='http://www.angusj.com/delphi/clipper.php'>Clipper library</a>
  */
-class Clipper2DFocalElement : public FocalElement {
+class Clipper2DFocalElement : public HashableFocalElement {
 
     std::vector<Geometry::ClipperPolygon> polygons;
 
@@ -23,6 +23,12 @@ public:
      * @param polygons Array of polygons.
      */
     explicit Clipper2DFocalElement(std::vector<Geometry::ClipperPolygon> polygons);
+
+    /**
+     * Constructor.
+     * @param polygons Single polygon.
+     */
+    explicit Clipper2DFocalElement(Geometry::ClipperPolygon polygon);
 
     ~Clipper2DFocalElement() override = default;
 
@@ -41,6 +47,15 @@ public:
     bool isEmpty() const override;
 
     void clear() override;
+
+    size_t hash() const override;
+
+    /**
+     * Perform polygon offsetting of the current focal element.
+     * @param delta Offsetting radius.
+     * @return The dilated focal element.
+     */
+    std::unique_ptr<FocalElement> dilate(long delta);
 
 private:
     bool equal_to(FocalElement const &rhs) const override;

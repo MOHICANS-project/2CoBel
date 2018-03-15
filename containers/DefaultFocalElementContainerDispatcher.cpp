@@ -8,11 +8,15 @@
 #include "HashableFocalElementContainer.h"
 
 
+const int DefaultFocalElementContainerDispatcher::MIN_DIM = 20;
+
 std::unique_ptr<FocalElementContainer>
 DefaultFocalElementContainerDispatcher::getContainer(const FocalElement &el) {
 
     auto *rhs = dynamic_cast<const HashableFocalElement *>(&el);
-    if (rhs != nullptr) return std::unique_ptr<FocalElementContainer>(new HashableFocalElementContainer());
+    if (rhs != nullptr && el.cardinality() > MIN_DIM)
+        return std::unique_ptr<FocalElementContainer>(new HashableFocalElementContainer());
+    //if (rhs != nullptr) return std::unique_ptr<FocalElementContainer>(new HashableFocalElementContainer());
     return std::unique_ptr<FocalElementContainer>(new GenericFocalElementContainer());
 
 }

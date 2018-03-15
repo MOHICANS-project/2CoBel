@@ -31,10 +31,11 @@ protected:
 
     void extendPath(boost::dynamic_bitset<> &path, size_t pos);
 
+
     template<typename T>
     void dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
              std::unique_ptr<FocalElement> current_intersection, std::vector<std::unique_ptr<FocalElement>> &output_vec,
-             std::vector<T> &check);
+             std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root);
 
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters);
 

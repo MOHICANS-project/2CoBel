@@ -7,6 +7,7 @@
 
 
 #include <ostream>
+#include <cmath>
 
 namespace Geometry {
 
@@ -16,8 +17,8 @@ namespace Geometry {
      */
     class Point2D {
 
-        int x;
-        int y;
+        long x;
+        long y;
 
     public:
         /**
@@ -25,7 +26,7 @@ namespace Geometry {
          * @param x
          * @param y
          */
-        explicit Point2D(int x = 0, int y = 0) : x(x), y(y) {}
+        explicit Point2D(long x = 0, long y = 0) : x(x), y(y) {}
 
         virtual ~Point2D() = default;
 
@@ -33,7 +34,7 @@ namespace Geometry {
          * Get x.
          * @return x.
          */
-        int X() const {
+        long X() const {
             return x;
         }
 
@@ -41,7 +42,7 @@ namespace Geometry {
          * Get y.
          * @return y.
          */
-        int Y() const {
+        long Y() const {
             return y;
         }
 
@@ -54,10 +55,44 @@ namespace Geometry {
             return !(rhs == *this);
         }
 
+        Point2D Point2D::operator+(const Point2D &rhs) const {
+            Point2D result(x + rhs.x, y + rhs.y);
+            return result;
+        }
+
+        Point2D &Point2D::operator+=(const Point2D &rhs) {
+            x += rhs.x;
+            y += rhs.y;
+            return *this;
+        }
+
+        Point2D Point2D::operator-(const Point2D &rhs) const {
+            Point2D result(x - rhs.x, y - rhs.y);
+            return result;
+        }
+
+        Point2D &Point2D::operator-=(const Point2D &rhs) {
+            x -= rhs.x;
+            y -= rhs.y;
+            return *this;
+        }
+
+        double norm() const {
+            return sqrt(x * x + y * y);
+        }
+
+        size_t hash() const {
+            size_t h = 17;
+            h = ((h + x) << 5) - (h + x);
+            h = ((h + y) << 5) - (h + y);
+            return h;
+        }
+
         friend std::ostream &operator<<(std::ostream &os, const Point2D &d) {
             os << "[" << d.x << "," << d.y << "]";
             return os;
         }
+
 
     };
 }

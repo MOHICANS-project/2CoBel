@@ -75,7 +75,7 @@ void UnidimensionalFocalElement::print(std::ostream &os) const {
 }
 
 std::unique_ptr<UnidimensionalFocalElement> UnidimensionalFocalElement::createDiscernmentFrame(unsigned char card) {
-    auto newID = static_cast<unsigned long long>(pow(2.0, card) - 1);
+    auto newID = static_cast<unsigned long long>(pow(2.0, card)) - 1;
     return std::unique_ptr<UnidimensionalFocalElement>(new UnidimensionalFocalElement(newID));
 }
 

@@ -42,7 +42,7 @@ void GenericFocalElementContainer::set(const FocalElement &fe, double mass) {
     for (int k = 0; k < fes.size(); ++k) {
         const FocalElement &fek = *fes[k];
         if (fek == fe) {
-            mms[k] += mass;
+            mms[k] = mass;
             return;
         }
     }

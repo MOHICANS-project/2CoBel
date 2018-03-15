@@ -67,6 +67,8 @@ public:
      * @param other The FocalElement to intersect with.
      * @return The resulting intersection FocalElement.
      */
+
+
     std::unique_ptr<FocalElement> intersect(const FocalElement &other) const {
         if (typeid(*this) != typeid(other))
             throw IncompatibleTypeError("Intersection is not supported for focal elements of different type");

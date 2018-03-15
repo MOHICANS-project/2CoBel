@@ -7,14 +7,15 @@
 #include "HashableFocalElementContainer.h"
 
 void HashableFocalElementContainer::push(std::unique_ptr<FocalElement> elem, double mass) {
-    auto *tmp = static_cast<const HashableFocalElement *>(elem.get());
+    auto *tmp = static_cast<HashableFocalElement *>(elem.get());
     if (mms.find(tmp) != mms.end()) {
         masses[mms.at(tmp)] += mass;
         return;
     }
+
     fes.push_back(std::move(elem));
     masses.push_back(mass);
-    mms.insert(std::make_pair(tmp, masses.size() - 1));
+    mms.insert(std::make_pair(tmp, fes.size() - 1));
 }
 
 
@@ -42,7 +43,7 @@ void HashableFocalElementContainer::set(int index, double mass) {
 void HashableFocalElementContainer::set(const FocalElement &fe, double mass) {
     auto *tmp = static_cast<const HashableFocalElement *>(&fe);
     if (mms.find(tmp) != mms.end()) {
-        masses[mms.at(tmp)] += mass;
+        masses[mms.at(tmp)] = mass;
         return;
     }
 }

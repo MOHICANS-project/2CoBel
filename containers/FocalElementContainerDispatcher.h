@@ -19,10 +19,10 @@ public:
 
     /**
      * Get the container given the FocalElement type.
-     * @param el Target FocalElement
+     * @param df Target discernment frame
      * @return The related FocalElementContainer
      */
-    virtual std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &el)=0;
+    virtual std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &df)=0;
 
     /**
      * Clone method.

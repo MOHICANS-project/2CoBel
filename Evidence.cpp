@@ -9,26 +9,33 @@
 #include <cfloat>
 #include <src/evidential/focal_elements/CompositeFocalElement.h>
 #include <src/evidential/errors/InvalidBBAError.h>
+#include <focal_elements/HashableFocalElement.h>
+#include <focal_elements/Clipper2DFocalElement.h>
 #include "Evidence.h"
 #include "errors/IllegalArgumentError.h"
 
 const double EPS = 1e-3;
 
+
 template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
                    std::unique_ptr<FocalElement> current_intersection,
-                   std::vector<std::unique_ptr<FocalElement>> &output_vec, std::vector<T> &check) {
+                   std::vector<std::unique_ptr<FocalElement>> &output_vec, std::vector<T> &check,
+                   std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) {
 
     extendPath(path, current_pos);
-    //std::cout << "Current path: " << path << std::endl;
 
     bool found_one = false;
     for (auto next_pos : adj_list[current_pos]) {
-        const FocalElement &fe = *fecontainer->getFocalElementsArray()[next_pos];
+        const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
+        if (parents[next_pos] >= 0 && parents[next_pos] < cur_root) {
+            //if(VERBOSE)std::cout << "Early stopped: " << path << " to " << next_pos+1 <<  std::endl;
+            continue;
+        } // early stopping
         std::unique_ptr<FocalElement> next_inter = current_intersection->intersect(fe);
         if (next_inter->cardinality() == 0)continue;
         found_one = true;
-        dfs(adj_list, next_pos, path, std::move(next_inter), output_vec, check);
+        dfs(adj_list, next_pos, path, std::move(next_inter), output_vec, check, indices, parents, cur_root);
     }
 
     if (!found_one) {
@@ -41,7 +48,6 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
             }
         }
         if (!red) {
-            //std::cout << "Adding path: " << path << std::endl;
             output_vec.push_back(std::move(current_intersection));
             check.push_back(path);
         }
@@ -71,7 +77,6 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
 }
 
 
-
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() const {
     return fecontainer->getFocalElementsArray();
 }
@@ -81,14 +86,12 @@ void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) 
         throw IncompatibleTypeError("The type of focal elements has to match the one of the discernment frame.");
     if (mass <= 0 || mass > 1)
         throw IncompatibleTypeError("Mass value has to be > 0 and <1.");
-    if (elem->cardinality() < 0)
-        throw IncompatibleTypeError("Focal element cardinality has to be >= 0.");
+    if (elem->cardinality() < 0) {
+        std::string err = "Focal element cardinality has to be >= 0 [" + std::to_string(elem->cardinality()) + "].";
+        throw IncompatibleTypeError(err.c_str());
+    }
     if (elem->isEmpty())
         throw IncompatibleTypeError("Cannot add the empty set.");
-    if (!elem->inside(*discernment_frame)) {
-        std::cout << *elem << std::endl;
-        throw IncompatibleTypeError("The focal element has to lie inside the discernment frame.");
-    }
     fecontainer->push(std::move(elem), mass);
 }
 
@@ -176,11 +179,13 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
         const FocalElement &singleton = *elems[j];
         double card = singleton.cardinality();
         double bp = BetP(singleton) / card;
+        //std::cout << singleton << " " << bp << std::endl;
         if (bp > maxbp) {
             maxbp = bp;
             indexmax = j;
         }
     }
+
     const FocalElement &winner = *elems[indexmax];
 
     if (!computeInters) return winner.clone();
@@ -226,6 +231,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_s
             if (results == all_singletons.end())all_singletons.push_back(std::move(singletons[i]));
         }
     }
+    //std::cout << all_singletons.size() << std::endl;
     return maxBetP(all_singletons, true);
 }
 
@@ -234,17 +240,47 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
-    std::unordered_map<size_t, std::vector<size_t>> adj_list;
+
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+
+    //Sort by cardinality
+    std::vector<size_t> indices(focal_elements.size());
+    for (size_t l = 0; l < focal_elements.size(); ++l) {
+        indices[l] = l;
+    }
+
+    std::sort(indices.begin(), indices.end(),
+              [&](size_t x, size_t y) { return focal_elements[x]->cardinality() > focal_elements[y]->cardinality(); });
+
+
+    std::vector<int> parents(focal_elements.size(), -1);
+    std::vector<int> oldest_parents(focal_elements.size(), -1);
+
+    std::unordered_map<size_t, std::vector<size_t>> adj_list;
+
     for (size_t i = 0; i < focal_elements.size(); ++i) {
-        const FocalElement &fe1 = *focal_elements[i];
+        const FocalElement &fe1 = *focal_elements[indices[i]];
         if (fe1.cardinality() == 0.0)continue;
         adj_list.insert(std::make_pair(i, std::vector<size_t>()));
         for (size_t j = i + 1; j < focal_elements.size(); ++j) {
-            const FocalElement &fe2 = *focal_elements[j];
-            if (fe1.intersect(fe2)->cardinality() > 0) {
-                adj_list[i].push_back(j);
+            const FocalElement &fe2 = *focal_elements[indices[j]];
+            std::unique_ptr<FocalElement> interbuf = fe1.intersect(fe2);
+            if (interbuf->cardinality() > 0) {
+                if (fabs(interbuf->cardinality() - fe2.cardinality()) < 1e-4) {
+                    parents[j] = static_cast<int>(i);
+                    if (oldest_parents[j] < 0)oldest_parents[j] = static_cast<int>(i);
+                } else {
+                    adj_list[i].push_back(j);
+                }
             }
+        }
+    }
+
+
+    for (int m = 0; m < focal_elements.size(); ++m) {
+        if (parents[m] >= 0) {
+            adj_list[parents[m]].insert(std::upper_bound(adj_list[parents[m]].begin(), adj_list[parents[m]].end(), m),
+                                        m);
         }
     }
 
@@ -252,19 +288,21 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() {
 
     if (focal_elements.size() <= sizeof(unsigned long long) * 4) {
         std::vector<unsigned long long> checks;
-        for (size_t k = 0; k < focal_elements.size() - 1; ++k) {
-            if (focal_elements[k]->cardinality() > 0)
-                dfs(adj_list, k, 0ull, focal_elements[k]->clone(), inters, checks);
+        for (size_t k = 0; k < focal_elements.size(); ++k) {
+            if (focal_elements[indices[k]]->cardinality() > 0 && parents[k] < 0) {
+                dfs(adj_list, k, 0ull, focal_elements[indices[k]]->clone(), inters, checks, indices, oldest_parents, k);
+            }
         }
     } else {
         std::vector<boost::dynamic_bitset<>> checks;
-        for (size_t k = 0; k < focal_elements.size() - 1; ++k) {
-            if (focal_elements[k]->cardinality() > 0) {
+        for (size_t k = 0; k < focal_elements.size(); ++k) {
+            if (focal_elements[indices[k]]->cardinality() > 0 && parents[k] < 0) {
                 boost::dynamic_bitset<> root(focal_elements.size());
-                dfs(adj_list, k, root, focal_elements[k]->clone(), inters, checks);
+                dfs(adj_list, k, root, focal_elements[indices[k]]->clone(), inters, checks, indices, oldest_parents, k);
             }
         }
     }
+
 
     if (focal_elements.size() == 1 && focal_elements[0]->cardinality() > 0)inters.push_back(focal_elements[0]->clone());
 

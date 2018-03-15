@@ -25,7 +25,7 @@ namespace std {
     template<>
     class hash<HashableFocalElement *> {
     public:
-        size_t operator()(const HashableFocalElement *&fe) const {
+        size_t operator()(const HashableFocalElement *fe) const {
             return fe->hash();
         }
     };
@@ -33,8 +33,8 @@ namespace std {
     template<>
     class equal_to<HashableFocalElement *> {
     public:
-        bool operator()(const HashableFocalElement *&h1,
-                        const HashableFocalElement *&h2) const {
+        bool operator()(const HashableFocalElement *h1,
+                        const HashableFocalElement *h2) const {
             return *h1 == *h2;
         }
     };

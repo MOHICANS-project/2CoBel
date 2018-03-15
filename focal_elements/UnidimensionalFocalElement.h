@@ -42,7 +42,7 @@ public:
     std::unique_ptr<FocalElement> clone() const override;
 
     /**
-     * Create a discernment frame of given cardinality.
+     * Create a discernment frame of cardinality.
      * @param card Cardinality of the discernment frame.
      * @return FocalElement with ID corresponding to a card number of ones in binary represenation.
      */

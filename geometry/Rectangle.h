@@ -17,7 +17,7 @@ namespace Geometry {
      * Rectangle parallel to the plane axis
      */
     class Rectangle : public Shape {
-        int xmin, xmax, ymin, ymax;
+        long xmin, xmax, ymin, ymax;
 
     public:
         Rectangle() { xmin = xmax = ymin = ymax = 0; }
@@ -29,7 +29,7 @@ namespace Geometry {
          * @param ymin
          * @param ymax
          */
-        Rectangle(int xmin, int xmax, int ymin, int ymax) : xmin(xmin), xmax(xmax), ymin(ymin), ymax(ymax) {}
+        Rectangle(long xmin, long xmax, long ymin, long ymax) : xmin(xmin), xmax(xmax), ymin(ymin), ymax(ymax) {}
 
         /**
          * Constructor.
@@ -50,7 +50,7 @@ namespace Geometry {
          * @param width
          * @param height
          */
-        Rectangle(Point2D p_up_left, int width, int height);
+        Rectangle(Point2D p_up_left, long width, long height);
 
         ~Rectangle() override = default;
 
@@ -76,49 +76,49 @@ namespace Geometry {
          * Get xmin.
          * @return xmin
          */
-        int getXmin() const;
+        long getXmin() const;
 
         /**
          * Get xmax.
          * @return xmax
          */
-        int getXmax() const;
+        long getXmax() const;
 
         /**
          * Get ymin.
          * @return ymin
          */
-        int getYmin() const;
+        long getYmin() const;
 
         /**
          * Get ymax.
          * @return ymax
          */
-        int getYmax() const;
+        long getYmax() const;
 
         /**
          * Set xmin.
          * @param xmin
          */
-        void setXmin(int xmin);
+        void setXmin(long xmin);
 
         /**
          * Set xmax.
          * @param xmax
          */
-        void setXmax(int xmax);
+        void setXmax(long xmax);
 
         /**
          * Set ymin.
          * @param ymin
          */
-        void setYmin(int ymin);
+        void setYmin(long ymin);
 
         /**
          * Set ymax.
          * @param ymax
          */
-        void setYmax(int ymax);
+        void setYmax(long ymax);
 
         friend std::ostream &operator<<(std::ostream &os, const Rectangle &rectangle);
 

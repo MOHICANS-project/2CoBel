@@ -14,6 +14,9 @@
  * The default dispatcher for FocalElementContainer. It distinguishes between generic and hashable FocalElement.
  */
 class DefaultFocalElementContainerDispatcher : public FocalElementContainerDispatcher {
+
+    static const int MIN_DIM;
+
 public:
     std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &el) override;
 

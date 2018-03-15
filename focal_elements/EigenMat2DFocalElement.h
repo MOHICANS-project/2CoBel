@@ -61,6 +61,7 @@ namespace EigenFE {
 
         void clear() override;
 
+
     private:
         bool equal_to(FocalElement const &rhs) const override;
 
