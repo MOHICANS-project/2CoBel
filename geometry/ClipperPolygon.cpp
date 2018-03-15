@@ -4,7 +4,7 @@
 
 
 #include <cmath>
-#include <src/evidential/errors/ConstructorArgumentsError.h>
+#include "../errors/ConstructorArgumentsError.h"
 #include <utility>
 #include <iostream>
 #include "ClipperPolygon.h"

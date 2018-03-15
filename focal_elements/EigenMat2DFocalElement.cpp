@@ -2,7 +2,7 @@
 // Created by nicola on 17/11/17.
 //
 
-#include <src/evidential/errors/ConstructorArgumentsError.h>
+#include "../errors/ConstructorArgumentsError.h"
 #include <iostream>
 #include "EigenMat2DFocalElement.h"
 

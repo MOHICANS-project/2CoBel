@@ -55,23 +55,23 @@ namespace Geometry {
             return !(rhs == *this);
         }
 
-        Point2D Point2D::operator+(const Point2D &rhs) const {
+        Point2D operator+(const Point2D &rhs) const {
             Point2D result(x + rhs.x, y + rhs.y);
             return result;
         }
 
-        Point2D &Point2D::operator+=(const Point2D &rhs) {
+        Point2D& operator+=(const Point2D &rhs) {
             x += rhs.x;
             y += rhs.y;
             return *this;
         }
 
-        Point2D Point2D::operator-(const Point2D &rhs) const {
+        Point2D operator-(const Point2D &rhs) const {
             Point2D result(x - rhs.x, y - rhs.y);
             return result;
         }
 
-        Point2D &Point2D::operator-=(const Point2D &rhs) {
+        Point2D& operator-=(const Point2D &rhs) {
             x -= rhs.x;
             y -= rhs.y;
             return *this;

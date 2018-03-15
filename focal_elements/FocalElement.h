@@ -5,7 +5,7 @@
 #ifndef FUSION_FOCALELEMENT_H
 #define FUSION_FOCALELEMENT_H
 
-#include "src/evidential/errors/IncompatibleTypeError.h"
+#include "../errors/IncompatibleTypeError.h"
 #include <vector>
 #include <memory>
 #include <set>

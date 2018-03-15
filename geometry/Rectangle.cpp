@@ -4,7 +4,7 @@
 
 #include <cmath>
 #include <stdexcept>
-#include <src/evidential/errors/ConstructorArgumentsError.h>
+#include "../errors/ConstructorArgumentsError.h"
 #include <cfloat>
 #include "Rectangle.h"
 

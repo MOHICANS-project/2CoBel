@@ -7,10 +7,8 @@
 #include <unordered_map>
 #include <iostream>
 #include <cfloat>
-#include <src/evidential/focal_elements/CompositeFocalElement.h>
-#include <src/evidential/errors/InvalidBBAError.h>
-#include <focal_elements/HashableFocalElement.h>
-#include <focal_elements/Clipper2DFocalElement.h>
+#include "focal_elements/CompositeFocalElement.h"
+#include "errors/InvalidBBAError.h"
 #include "Evidence.h"
 #include "errors/IllegalArgumentError.h"
 
@@ -329,7 +327,7 @@ bool Evidence::isValidBBA() const {
 }
 
 
-Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempster = true) {
+Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempster) {
     if (!isValidBBA() || !other.isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -449,7 +447,7 @@ void Evidence::discount(double alpha) {
     ignorance += alpha;
 }
 
-Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true) {
+Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right) {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -481,7 +479,7 @@ Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_f
     return outev;
 }
 
-Evidence Evidence::marginalization(bool marginalize_right = true) const {
+Evidence Evidence::marginalization(bool marginalize_right) const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }

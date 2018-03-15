@@ -7,7 +7,7 @@
 
 
 #include <vector>
-#include <src/evidential/geometry/Rectangle.h>
+#include "../geometry/Rectangle.h"
 #include "FocalElement.h"
 
 /**

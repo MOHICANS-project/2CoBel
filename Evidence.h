@@ -7,11 +7,11 @@
 
 
 #include <vector>
-#include <src/evidential/focal_elements/FocalElement.h>
+#include "focal_elements/FocalElement.h"
 #include <boost/dynamic_bitset.hpp>
 #include <unordered_map>
-#include <src/evidential/containers/FocalElementContainerDispatcher.h>
-#include <src/evidential/containers/DefaultFocalElementContainerDispatcher.h>
+#include "containers/FocalElementContainerDispatcher.h"
+#include "containers/DefaultFocalElementContainerDispatcher.h"
 
 /**
  * @class Evidence

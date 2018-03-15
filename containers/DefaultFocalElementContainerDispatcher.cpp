@@ -2,7 +2,7 @@
 // Created by nicola on 30/11/17.
 //
 
-#include <src/evidential/focal_elements/HashableFocalElement.h>
+#include "../focal_elements/HashableFocalElement.h"
 #include "DefaultFocalElementContainerDispatcher.h"
 #include "GenericFocalElementContainer.h"
 #include "HashableFocalElementContainer.h"

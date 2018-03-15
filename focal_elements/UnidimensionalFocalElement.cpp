@@ -2,9 +2,11 @@
 // Created by nicola on 14/11/17.
 //
 
-#include <cxcore.h>
+
 #include <bitset>
 #include <iostream>
+#include <climits>
+#include <cmath>
 #include "UnidimensionalFocalElement.h"
 
 

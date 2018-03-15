@@ -6,7 +6,7 @@
 #define FUSION_EIGENMAT2DFOCALELEMENT_H
 
 #include <Eigen/Dense>
-#include <src/evidential/geometry/Rectangle.h>
+#include "../geometry/Rectangle.h"
 #include "FocalElement.h"
 /**
  * @namespace EigenFE

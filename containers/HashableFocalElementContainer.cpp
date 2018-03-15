@@ -2,8 +2,8 @@
 // Created by nicola on 30/11/17.
 //
 
-#include <src/evidential/focal_elements/HashableFocalElement.h>
-#include <src/evidential/errors/IllegalArgumentError.h>
+#include "../focal_elements/HashableFocalElement.h"
+#include "../errors/IllegalArgumentError.h"
 #include "HashableFocalElementContainer.h"
 
 void HashableFocalElementContainer::push(std::unique_ptr<FocalElement> elem, double mass) {

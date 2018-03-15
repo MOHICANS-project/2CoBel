@@ -6,7 +6,7 @@
 #define FUSION_FOCALELEMENTARRAYBUILDER_H
 
 #include <vector>
-#include <src/evidential/focal_elements/FocalElement.h>
+#include "../focal_elements/FocalElement.h"
 
 /**
  * @class FocalElementContainer

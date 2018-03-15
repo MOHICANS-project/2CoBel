@@ -6,7 +6,7 @@
 #define FUSION_CLIPPER2DFOCALELEMENT_H
 
 
-#include <src/evidential/geometry/ClipperPolygon.h>
+#include "../geometry/ClipperPolygon.h"
 #include "HashableFocalElement.h"
 
 /**

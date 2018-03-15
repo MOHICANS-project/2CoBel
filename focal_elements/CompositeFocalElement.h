@@ -6,7 +6,7 @@
 #define FUSION_COMPOSITEFOCALELEMENT_H
 
 
-#include <src/evidential/errors/ConstructorArgumentsError.h>
+#include "../errors/ConstructorArgumentsError.h"
 #include "FocalElement.h"
 
 /**

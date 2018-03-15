@@ -1,3 +1,17 @@
+cmake_minimum_required(VERSION 3.5)
+
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_CXX_STANDARD 11)
+
+
+add_definitions(-std=c++11 -DDEBUG -ggdb -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fbranch-probabilities)
+
+
+#Compilation flags
+set(CMAKE_CXX_FLAGS "-Wall -O3 -mssse3 -fpermissive -pthread")
 
 #Doxygen
 find_package(Doxygen)
