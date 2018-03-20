@@ -41,7 +41,7 @@ void HashableFocalElementContainer::set(int index, double mass) {
 }
 
 void HashableFocalElementContainer::set(const FocalElement &fe, double mass) {
-    auto *tmp = static_cast<const HashableFocalElement *>(&fe);
+    auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(&fe));//safe for comparison only
     if (mms.find(tmp) != mms.end()) {
         masses[mms.at(tmp)] = mass;
         return;
@@ -49,7 +49,7 @@ void HashableFocalElementContainer::set(const FocalElement &fe, double mass) {
 }
 
 double HashableFocalElementContainer::get(const FocalElement &fe) {
-    auto *tmp = dynamic_cast<const HashableFocalElement *>(&fe);
+    auto *tmp = const_cast<HashableFocalElement *>(dynamic_cast<const HashableFocalElement *>(&fe));//safe for comparison only
     if (mms.find(tmp) != mms.end()) {
         return masses[mms.at(tmp)];
     }
@@ -58,7 +58,7 @@ double HashableFocalElementContainer::get(const FocalElement &fe) {
 
 void HashableFocalElementContainer::erase(int index) {
     if (index < 0 || index > mms.size()) throw IllegalArgumentError("Out of bounds");
-    auto *tmp = static_cast<const HashableFocalElement *>(fes[index].get());
+    auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[index].get()));//safe for comparison only
     mms.erase(tmp);
     fes[index].reset();
     fes.erase(fes.begin() + index);
@@ -66,7 +66,7 @@ void HashableFocalElementContainer::erase(int index) {
 }
 
 void HashableFocalElementContainer::erase(const FocalElement &fe) {
-    auto *tmp = static_cast<const HashableFocalElement *>(&fe);
+    auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(&fe));//safe for comparison only
     if (mms.find(tmp) != mms.end()) {
         size_t index = mms.at(tmp);
         mms.erase(tmp);
