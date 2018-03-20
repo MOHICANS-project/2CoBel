@@ -14,7 +14,7 @@
  */
 class HashableFocalElementContainer : public FocalElementContainer {
 
-    std::unordered_map<HashableFocalElement *, size_t> mms;
+    std::unordered_map<HashableFocalElement const *, size_t> mms;
     std::vector<std::unique_ptr<FocalElement>> fes;
     std::vector<double> masses;
 

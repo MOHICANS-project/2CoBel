@@ -19,13 +19,15 @@
  */
 class Evidence {
 
-protected:
+    std::unique_ptr<FocalElementContainerDispatcher> dispatcher;
+    std::unique_ptr<FocalElementContainer> fecontainer;
     std::unique_ptr<FocalElement> discernment_frame;
     double ignorance;
 
 
-    std::unique_ptr<FocalElementContainerDispatcher> dispatcher;
-    std::unique_ptr<FocalElementContainer> fecontainer;
+protected:
+
+
 
     void extendPath(unsigned long long &path, size_t pos);
 

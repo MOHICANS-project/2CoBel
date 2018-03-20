@@ -53,6 +53,7 @@ double HashableFocalElementContainer::get(const FocalElement &fe) {
     if (mms.find(tmp) != mms.end()) {
         return masses[mms.at(tmp)];
     }
+    return 0;
 }
 
 void HashableFocalElementContainer::erase(int index) {
@@ -67,7 +68,7 @@ void HashableFocalElementContainer::erase(int index) {
 void HashableFocalElementContainer::erase(const FocalElement &fe) {
     auto *tmp = static_cast<const HashableFocalElement *>(&fe);
     if (mms.find(tmp) != mms.end()) {
-        int index = mms.at(tmp);
+        size_t index = mms.at(tmp);
         mms.erase(tmp);
         fes[index].reset();
         fes.erase(fes.begin() + index);

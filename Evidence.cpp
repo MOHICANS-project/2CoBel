@@ -438,7 +438,7 @@ void Evidence::discount(double alpha) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
     if (alpha < 0 || alpha > 1) throw IllegalArgumentError("The discounting factor has to be in the interval [0,1].");
-    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    //const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < mass_array.size(); ++i) {
         fecontainer->set(i, mass_array[i] * (1 - alpha));
@@ -641,7 +641,7 @@ Evidence Evidence::conditioning(const FocalElement &C) {
     }
 
     Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(), 0);
-
+    return outev;
 }
 
 size_t Evidence::numFocalElements() const {

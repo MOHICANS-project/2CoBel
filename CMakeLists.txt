@@ -11,7 +11,7 @@ add_definitions(-std=c++11 -DDEBUG -ggdb -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LAR
 
 
 #Compilation flags
-set(CMAKE_CXX_FLAGS "-Wall -O3 -mssse3 -fpermissive -pthread")
+set(CMAKE_CXX_FLAGS "-Wall -O3 -mssse3 -Wno-sign-compare -pthread")
 
 #Doxygen
 find_package(Doxygen)
