@@ -11,6 +11,7 @@
 /**
  * @class HashableFocalElementContainer
  * A container for HashableFocalElement type objects.
+ *
  */
 class HashableFocalElementContainer : public FocalElementContainer {
 
