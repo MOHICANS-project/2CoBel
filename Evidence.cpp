@@ -26,10 +26,7 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
     bool found_one = false;
     for (auto next_pos : adj_list[current_pos]) {
         const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
-        if (parents[next_pos] >= 0 && parents[next_pos] < cur_root) {
-            //if(VERBOSE)std::cout << "Early stopped: " << path << " to " << next_pos+1 <<  std::endl;
-            continue;
-        } // early stopping
+        if (parents[next_pos] >= 0 && parents[next_pos] < cur_root)continue; //early stopping
         std::unique_ptr<FocalElement> next_inter = current_intersection->intersect(fe);
         if (next_inter->cardinality() == 0)continue;
         found_one = true;
@@ -57,12 +54,14 @@ Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ign
         std::move(_discernment_frame)), ignorance(_ignorance) {
     dispatcher = std::unique_ptr<FocalElementContainerDispatcher>(new DefaultFocalElementContainerDispatcher());
     fecontainer = dispatcher->getContainer(*discernment_frame);
+    is_gssf = false;
 }
 
 Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
                    std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : dispatcher(
         std::move(_dispatcher)), discernment_frame(std::move(_discernment_frame)), ignorance(_ignorance) {
     fecontainer = dispatcher->getContainer(*discernment_frame);
+    is_gssf = false;
 
 }
 
@@ -71,7 +70,7 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
                    std::unique_ptr<FocalElement> _discernment_frame,
                    double _ignorance) : dispatcher(
         std::move(_dispatcher)), fecontainer(std::move(_fecontainer)), discernment_frame(std::move(_discernment_frame)),
-                                        ignorance(_ignorance) {
+                                        ignorance(_ignorance), is_gssf(false) {
 }
 
 
@@ -82,8 +81,8 @@ const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() 
 void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) {
     if (typeid(elem) != typeid(discernment_frame))
         throw IncompatibleTypeError("The type of focal elements has to match the one of the discernment frame.");
-    if (mass <= 0 || mass > 1)
-        throw IncompatibleTypeError("Mass value has to be > 0 and <1.");
+//    if (mass <= 0 || mass > 1)
+//        throw IncompatibleTypeError("Mass value has to be > 0 and <1.");
     if (elem->cardinality() < 0) {
         std::string err = "Focal element cardinality has to be >= 0 [" + std::to_string(elem->cardinality()) + "].";
         throw IncompatibleTypeError(err.c_str());
@@ -316,10 +315,11 @@ void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) {
 }
 
 bool Evidence::isValidBBA() const {
+
     double cum = ignorance;
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (auto mass : mass_array) {
-        if (mass < 0.0 && fabs(mass) > EPS)return false;
+        if (!is_gssf && mass < 0.0 && fabs(mass) > EPS)return false;
         if (mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
         cum += mass;
     }
@@ -382,7 +382,7 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
     }
 
     Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(),
-                   ignorance * other.getIgnorance());
+                   ignorance * other.getIgnorance() / (normalizeDempster ? (1 - conflict_new) : 1));
 
     return outev;
 }
@@ -624,6 +624,7 @@ void Evidence::normalize() {
     for (int i = 0; i < mass_array.size(); ++i) {
         fecontainer->set(i, mass_array[i] / (1 - conf));
     }
+    ignorance /= (1 - conf);
 }
 
 Evidence Evidence::conditioning(const FocalElement &C) {
@@ -657,6 +658,10 @@ double Evidence::BetP(size_t i) {
     if (i < 0 || i > fecontainer->getMassArray().size()) throw IllegalArgumentError("Out of bounds");
     const std::unique_ptr<FocalElement> &elem = fecontainer->getFocalElementsArray()[i];
     return BetP(*elem);
+}
+
+void Evidence::setGSSF() {
+    is_gssf = true;
 }
 
 

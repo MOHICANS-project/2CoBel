@@ -24,6 +24,7 @@ class Evidence {
     std::unique_ptr<FocalElement> discernment_frame;
     double ignorance;
 
+    bool is_gssf;
 
 protected:
 
@@ -83,6 +84,13 @@ public:
      * @return Array of masses.
      */
     const std::vector<double> &getMassArray() const;
+
+    /**
+     * Set it to be a Generic Simple Support Function.
+     * Negative mass values will be allowed.
+     */
+    void setGSSF();
+
 
     /**
      * Get the number of focal elements.
