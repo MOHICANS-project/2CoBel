@@ -320,9 +320,10 @@ bool Evidence::isValidBBA() const {
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (auto mass : mass_array) {
         if (!is_gssf && mass < 0.0 && fabs(mass) > EPS)return false;
-        if (mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
+        if (!is_gssf && mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
         cum += mass;
     }
+
     return !(cum > 1.0 && fabs(cum - 1.0) > EPS);
 }
 
