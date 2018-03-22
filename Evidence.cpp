@@ -170,7 +170,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
     if (elems.empty())return discernment_frame->clone();
 
 
-    int indexmax = -1;
+    std::vector<int> indices_max;
     double maxbp = 0;
     for (int j = 0; j < elems.size(); ++j) {
         const FocalElement &singleton = *elems[j];
@@ -179,19 +179,25 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
         //std::cout << singleton << " " << bp << std::endl;
         if (bp > maxbp) {
             maxbp = bp;
-            indexmax = j;
+            indices_max.clear();
+            indices_max.push_back(j);
+        } else if (bp == maxbp) {
+            indices_max.push_back(j);
         }
     }
 
-    const FocalElement &winner = *elems[indexmax];
+    std::unique_ptr<FocalElement> winner = elems[indices_max[0]]->clone();
+    for (int k = 1; k < indices_max.size(); ++k) {
+        winner = winner->unite(*elems[indices_max[k]]);
+    }
 
-    if (!computeInters) return winner.clone();
+    if (!computeInters) return winner;
 
     std::vector<int> index_intersecting;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
-        if (winner.inside(fe)) index_intersecting.push_back(i);
+        if (winner->inside(fe)) index_intersecting.push_back(i);
     }
 
 
@@ -663,6 +669,24 @@ double Evidence::BetP(size_t i) {
 
 void Evidence::setGSSF() {
     is_gssf = true;
+}
+
+bool Evidence::isConsonant() {
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+
+    //Sort by cardinality
+    std::vector<size_t> indices(focal_elements.size());
+    for (size_t l = 0; l < focal_elements.size(); ++l) {
+        indices[l] = l;
+    }
+    std::sort(indices.begin(), indices.end(),
+              [&](size_t x, size_t y) { return focal_elements[x]->cardinality() < focal_elements[y]->cardinality(); });
+
+    for (int i = 0; i < indices.size() - 1; ++i) {
+        if (!focal_elements[indices[i]]->inside(*focal_elements[indices[i + 1]]))return false;
+    }
+
+    return true;
 }
 
 
