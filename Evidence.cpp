@@ -170,7 +170,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
     if (elems.empty())return discernment_frame->clone();
 
 
-    std::vector<int> indices_max;
+    int indexmax = -1;
     double maxbp = 0;
     for (int j = 0; j < elems.size(); ++j) {
         const FocalElement &singleton = *elems[j];
@@ -179,25 +179,19 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
         //std::cout << singleton << " " << bp << std::endl;
         if (bp > maxbp) {
             maxbp = bp;
-            indices_max.clear();
-            indices_max.push_back(j);
-        } else if (bp == maxbp) {
-            indices_max.push_back(j);
+            indexmax = j;
         }
     }
 
-    std::unique_ptr<FocalElement> winner = elems[indices_max[0]]->clone();
-    for (int k = 1; k < indices_max.size(); ++k) {
-        winner = winner->unite(*elems[indices_max[k]]);
-    }
+    const FocalElement &winner = *elems[indexmax];
 
-    if (!computeInters) return winner;
+    if (!computeInters) return winner.clone();
 
     std::vector<int> index_intersecting;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     for (int i = 0; i < focal_elements.size(); ++i) {
         const FocalElement &fe = *focal_elements[i];
-        if (winner->inside(fe)) index_intersecting.push_back(i);
+        if (winner.inside(fe)) index_intersecting.push_back(i);
     }
 
 
