@@ -152,6 +152,13 @@ public:
     double conflict();
 
     /**
+    * Checks if the BBA is consonant.
+    * @return true if the BBA is consonant.
+    */
+    bool isConsonant();
+
+
+    /**
      * Calculate the \f$Pl(A)\f$ of the FocalElement A.
      * @param elem The FocalElement.
      * @return Plausibility of elem.
