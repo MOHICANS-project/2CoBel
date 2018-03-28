@@ -6,8 +6,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_CXX_STANDARD 11)
 
+find_package(PythonLibs 2.7 REQUIRED)
+include_directories(fusion PRIVATE ${PYTHON_INCLUDE_DIRS})
+link_libraries(${PYTHON_LIBRARIES})
 
-add_definitions(-std=c++11 -DDEBUG -ggdb -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fbranch-probabilities)
+add_definitions(-std=c++11 -DDEBUG -DWITHOUT_NUMPY -ggdb -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fbranch-probabilities)
 
 
 #Compilation flags
@@ -69,5 +72,8 @@ ADD_LIBRARY(geometry SHARED
 
 target_link_libraries(geometry polyclipping)
 target_link_libraries(evidential geometry)
+
+add_subdirectory(plotters)
+add_subdirectory(demos)
 
 
