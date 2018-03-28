@@ -345,7 +345,6 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
         return res;
     }
 
-    double conflict_new = 0.0;
 
     std::unique_ptr<FocalElementContainer> new_fecontainer = dispatcher->getContainer(*discernment_frame);
 
@@ -357,8 +356,7 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
             const FocalElement &fe2 = *other.getFocal_elements()[j];
             std::unique_ptr<FocalElement> inters = fe1.intersect(fe2);
             double mm = mass_array[i] * other.getMassArray()[j];
-            if (inters->isEmpty()) conflict_new += mm;
-            else new_fecontainer->push(std::move(inters), mm);
+            if (!inters->isEmpty())new_fecontainer->push(std::move(inters), mm);
         }
         if (other.getIgnorance() > 0) {
             std::unique_ptr<FocalElement> inters = fe1.clone();
@@ -375,15 +373,10 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
         }
     }
 
-    if (normalizeDempster) {
-        const std::vector<double> &new_masses = new_fecontainer->getMassArray();
-        for (int i = 0; i < new_masses.size(); ++i) {
-            new_fecontainer->set(i, new_masses[i] / (1 - conflict_new));
-        }
-    }
 
     Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(),
-                   ignorance * other.getIgnorance() / (normalizeDempster ? (1 - conflict_new) : 1));
+                   ignorance * other.getIgnorance());
+    if (normalizeDempster)outev.normalize();
 
     return outev;
 }
