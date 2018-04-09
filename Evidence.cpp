@@ -684,7 +684,7 @@ bool Evidence::isConsonant() {
 void Evidence::initCanonicalDecomposition() {
     if (isConsonant()) {
         const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
-        const std::vector<double> &masses = fecontainer->getMassArray()
+        const std::vector<double> &masses = fecontainer->getMassArray();
         std::vector<size_t> indices(focal_elements.size());
         for (size_t l = 0; l < focal_elements.size(); ++l) {
             indices[l] = l;
