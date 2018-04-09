@@ -55,6 +55,8 @@ Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ign
     dispatcher = std::unique_ptr<FocalElementContainerDispatcher>(new DefaultFocalElementContainerDispatcher());
     fecontainer = dispatcher->getContainer(*discernment_frame);
     is_gssf = false;
+    canonical_decomposition = dispatcher->getContainer(*discernment_frame);
+    is_decomposed = false;
 }
 
 Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
@@ -62,7 +64,8 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
         std::move(_dispatcher)), discernment_frame(std::move(_discernment_frame)), ignorance(_ignorance) {
     fecontainer = dispatcher->getContainer(*discernment_frame);
     is_gssf = false;
-
+    canonical_decomposition = dispatcher->getContainer(*discernment_frame);
+    is_decomposed = false;
 }
 
 Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
@@ -71,6 +74,8 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
                    double _ignorance) : dispatcher(
         std::move(_dispatcher)), fecontainer(std::move(_fecontainer)), discernment_frame(std::move(_discernment_frame)),
                                         ignorance(_ignorance), is_gssf(false) {
+    canonical_decomposition = dispatcher->getContainer(*discernment_frame);
+    is_decomposed = false;
 }
 
 
@@ -674,6 +679,42 @@ bool Evidence::isConsonant() {
     }
 
     return true;
+}
+
+void Evidence::initCanonicalDecomposition() {
+    if (isConsonant()) {
+        const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+        const std::vector<double> &masses = fecontainer->getMassArray()
+        std::vector<size_t> indices(focal_elements.size());
+        for (size_t l = 0; l < focal_elements.size(); ++l) {
+            indices[l] = l;
+        }
+
+        std::sort(indices.begin(), indices.end(),
+                  [&](size_t x, size_t y) {
+                      return focal_elements[x]->cardinality() > focal_elements[y]->cardinality();
+                  });
+
+        std::vector<double> qs(numFocalElements() + 1);
+        qs[0] = ignorance;
+        for (int i = 0; i < indices.size(); ++i) {
+            qs[i + 1] = qs[i] + masses[indices[i]];
+        }
+
+        for (int j = 0; j < qs.size() - 1; ++j) {
+            if (qs[j] != qs[j + 1])
+                canonical_decomposition->push(focal_elements[indices[j]]->clone(), qs[j] / qs[j + 1]);
+        }
+        if (qs[qs.size() - 1] != 1) {
+            std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
+            empty_set->clear();
+            canonical_decomposition->push(std::move(empty_set), 1.0 / qs[qs.size() - 1]);
+        }
+
+    }
+
+    //and here the magic
+
 }
 
 

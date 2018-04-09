@@ -26,6 +26,9 @@ class Evidence {
 
     bool is_gssf;
 
+    std::unique_ptr<FocalElementContainer> canonical_decomposition;
+    bool is_decomposed;
+
 protected:
 
 
@@ -289,6 +292,8 @@ public:
      */
     const std::unique_ptr<FocalElement> &getDiscernment_frame() const;
 
+
+    void initCanonicalDecomposition();
 
 };
 

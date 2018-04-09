@@ -45,6 +45,14 @@ public:
      */
     virtual void set(const FocalElement &fe, double mass)=0;
 
+
+    /**
+     * Returns true if the given FocalElement is inside the container.
+     * @param fe The target FocalElement
+     * @return true if the condition is met.
+     */
+    virtual bool contains(const FocalElement &fe)=0;
+
     /**
      * Get the mass value of the given FocalElement.
      * @param fe The target FocalElement

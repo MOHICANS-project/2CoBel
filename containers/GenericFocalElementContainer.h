@@ -48,6 +48,8 @@ public:
     void erase(int index) override;
 
     void erase(const FocalElement &fe) override;
+
+    bool contains(const FocalElement &fe) override;
 };
 
 
