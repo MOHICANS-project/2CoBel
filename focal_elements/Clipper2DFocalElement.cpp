@@ -50,36 +50,6 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElemen
     ClipperLib::Paths solution;
     c.Execute(ClipperLib::ctIntersection, solution);
 
-//    for(auto &path: solution){
-//        for (int i = 0; i < path.size(); ++i) {
-//
-//            if(!ClipperLib::PointInPolygon(path[i],polygons[0].getPolygon()) || !ClipperLib::PointInPolygon(path[i],rhsr.getPolygons()[0].getPolygon())){
-//
-//                    ClipperLib::IntPoint up(path[i].X,path[i].Y+1);
-//                    if(ClipperLib::PointInPolygon(up,polygons[0].getPolygon()) && ClipperLib::PointInPolygon(up,rhsr.getPolygons()[0].getPolygon()) && up!=path[(i+1)%path.size()] && up!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X,path[i].Y+1);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint right(path[i].X+1,path[i].Y);
-//                    if(ClipperLib::PointInPolygon(right,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(right,rhsr.getPolygons()[0].getPolygon())&& right!=path[(i+1)%path.size()] && right!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X+1,path[i].Y);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint down(path[i].X,path[i].Y-1);
-//                    if(ClipperLib::PointInPolygon(down,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(down,rhsr.getPolygons()[0].getPolygon())&& down!=path[(i+1)%path.size()] && down!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X,path[i].Y-1);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint left(path[i].X-1,path[i].Y);
-//                    if(ClipperLib::PointInPolygon(left,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(left,rhsr.getPolygons()[0].getPolygon())&& left!=path[(i+1)%path.size()] && left!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X-1,path[i].Y);
-//                        continue;
-//                    }
-//            }
-//
-//        }
-//    }
-
     std::vector<Geometry::ClipperPolygon> outvec;
     for (auto &path : solution) {
         outvec.emplace_back(path);
