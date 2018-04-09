@@ -715,6 +715,19 @@ void Evidence::initCanonicalDecomposition() {
 
     //and here the magic
 
+
+    is_decomposed = true;
+
+}
+
+const std::vector<std::unique_ptr<FocalElement>> &Evidence::getCanonicalDecomposition() const {
+    if (is_decomposed)return canonical_decomposition->getFocalElementsArray();
+    return std::vector<std::unique_ptr<FocalElement>>();
+}
+
+const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
+    if (is_decomposed) return canonical_decomposition->getMassArray();
+    return std::vector<double>();
 }
 
 

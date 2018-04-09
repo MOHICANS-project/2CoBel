@@ -295,6 +295,19 @@ public:
 
     void initCanonicalDecomposition();
 
+    /**
+    * Get the focal elements of the canonical decomposition.
+    * @return Array of FocalElement objects.
+    */
+    const std::vector<std::unique_ptr<FocalElement>> &getCanonicalDecomposition() const;
+
+    /**
+     * Get the weights of the canonical decomposition.
+     * @return Array of weights.
+     */
+    const std::vector<double> &getCanonicalDecompositionWeights() const;
+
+
 };
 
 
