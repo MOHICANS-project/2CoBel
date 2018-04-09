@@ -320,12 +320,12 @@ void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) {
 }
 
 bool Evidence::isValidBBA() const {
-
+    if (is_gssf)return true;
     double cum = ignorance;
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (auto mass : mass_array) {
-        if (!is_gssf && mass < 0.0 && fabs(mass) > EPS)return false;
-        if (!is_gssf && mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
+        if (mass < 0.0 && fabs(mass) > EPS)return false;
+        if (mass > 1.0 && fabs(mass - 1.0) > EPS)return false;
         cum += mass;
     }
 
@@ -708,7 +708,7 @@ void Evidence::initCanonicalDecomposition() {
         if (qs[qs.size() - 1] != 1) {
             std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
             empty_set->clear();
-            canonical_decomposition->push(std::move(empty_set), 1.0 / qs[qs.size() - 1]);
+            canonical_decomposition->push(std::move(empty_set), qs[qs.size() - 1]);
         }
 
     }
