@@ -593,12 +593,15 @@ Evidence::Evidence(const Evidence &other) {
     }
     is_gssf = other.is_gssf;
     canonical_decomposition = dispatcher->getContainer(*discernment_frame);
-    const std::vector<std::unique_ptr<FocalElement>> &cd_other = other.getCanonicalDecomposition();
-    const std::vector<double> &ws_other = other.getCanonicalDecompositionWeights();
-    for (int i = 0; i < ws_other.size(); ++i) {
-        canonical_decomposition->push(cd_other[i]->clone(), ws_other[i]);
-    }
     is_decomposed = other.is_decomposed;
+    if (is_decomposed) {
+        const std::vector<std::unique_ptr<FocalElement>> &cd_other = other.getCanonicalDecomposition();
+        const std::vector<double> &ws_other = other.getCanonicalDecompositionWeights();
+        for (int i = 0; i < ws_other.size(); ++i) {
+            canonical_decomposition->push(cd_other[i]->clone(), ws_other[i]);
+        }
+    }
+
 }
 
 Evidence &Evidence::operator=(const Evidence &other) {
@@ -614,12 +617,15 @@ Evidence &Evidence::operator=(const Evidence &other) {
     }
     is_gssf = other.is_gssf;
     canonical_decomposition = dispatcher->getContainer(*discernment_frame);
-    const std::vector<std::unique_ptr<FocalElement>> &cd_other = other.getCanonicalDecomposition();
-    const std::vector<double> &ws_other = other.getCanonicalDecompositionWeights();
-    for (int i = 0; i < ws_other.size(); ++i) {
-        canonical_decomposition->push(cd_other[i]->clone(), ws_other[i]);
-    }
     is_decomposed = other.is_decomposed;
+    if (is_decomposed) {
+        const std::vector<std::unique_ptr<FocalElement>> &cd_other = other.getCanonicalDecomposition();
+        const std::vector<double> &ws_other = other.getCanonicalDecompositionWeights();
+        for (int i = 0; i < ws_other.size(); ++i) {
+            canonical_decomposition->push(cd_other[i]->clone(), ws_other[i]);
+        }
+    }
+
     return *this;
 }
 
