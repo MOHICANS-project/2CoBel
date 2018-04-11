@@ -21,7 +21,7 @@ namespace Geometry {
     }
 
     ClipperPolygon::ClipperPolygon(ClipperLib::Path polygon) : polygon(std::move(polygon)) {
-        ClipperLib::CleanPolygon(polygon, 10e-3);
+        ClipperLib::CleanPolygon(this->polygon, 10e-3);
     }
 
 
