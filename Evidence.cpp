@@ -113,6 +113,7 @@ double Evidence::conflict() const {
 }
 
 double Evidence::plausibility(const FocalElement &elem) const {
+    if (elem.isEmpty())return 0;
     double pl = 0;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
@@ -137,6 +138,7 @@ double Evidence::belief(const FocalElement &elem) const {
 }
 
 double Evidence::q_(const FocalElement &elem) const {
+    if (elem.isEmpty())return 1.0;
     double q = 0;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
