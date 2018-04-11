@@ -32,18 +32,17 @@ class Evidence {
 protected:
 
 
+    void extendPath(unsigned long long &path, size_t pos) const;
 
-    void extendPath(unsigned long long &path, size_t pos);
-
-    void extendPath(boost::dynamic_bitset<> &path, size_t pos);
+    void extendPath(boost::dynamic_bitset<> &path, size_t pos) const;
 
 
     template<typename T>
     void dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
              std::unique_ptr<FocalElement> current_intersection, std::vector<std::unique_ptr<FocalElement>> &output_vec,
-             std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root);
+             std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) const;
 
-    std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters);
+    std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
 
     explicit Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
@@ -127,7 +126,7 @@ public:
      * @param fe The target FocalElement
      * @return The related mass value.
      */
-    double getMass(const FocalElement &fe);
+    double getMass(const FocalElement &fe) const;
 
     /**
      * Delete the FocalElement at the given position
@@ -152,13 +151,13 @@ public:
      * Calculate the conflict (mass of the empty set).
      * @return Conflict value.
      */
-    double conflict();
+    double conflict() const;
 
     /**
     * Checks if the BBA is consonant.
     * @return true if the BBA is consonant.
     */
-    bool isConsonant();
+    bool isConsonant() const;
 
 
     /**
@@ -166,35 +165,35 @@ public:
      * @param elem The FocalElement.
      * @return Plausibility of elem.
      */
-    double plausibility(const FocalElement &elem);
+    double plausibility(const FocalElement &elem) const;
 
     /**
      * Calculate the \f$Bel(A)\f$ of the FocalElement A.
      * @param elem The FocalElement.
      * @return Belief of elem.
      */
-    double belief(const FocalElement &elem);
+    double belief(const FocalElement &elem) const;
 
     /**
      * Calculate the \f$q(A)\f$ of the FocalElement A.
      * @param elem The FocalElement.
      * @return q of elem.
      */
-    double q_(const FocalElement &elem);
+    double q_(const FocalElement &elem) const;
 
     /**
      * Calculate the \f$BetP(A)\f$ of the FocalElement A.
      * @param elem The FocalElement.
      * @return BetP of elem.
      */
-    double BetP(const FocalElement &w);
+    double BetP(const FocalElement &w) const;
 
     /**
     * Calculate the \f$BetP(A)\f$ of the ith FocalElement A.
     * @param i Position of A.
     * @return BetP of A.
     */
-    double BetP(size_t i);
+    double BetP(size_t i) const;
 
     /**
      * Find the FocalElement with maximum BetP by inspecting all the singleton FocalElements included in the set.
@@ -203,14 +202,14 @@ public:
      * @param approx_step_size Sampling step of the singleton set
      * @return The FocalELemt with maximum BetP
      */
-    std::unique_ptr<FocalElement> maxBetP_withSingletons(int approx_step_size = 1);
+    std::unique_ptr<FocalElement> maxBetP_withSingletons(int approx_step_size = 1) const;
 
     /**
      * Find the FocalElement with maximum BetP by inspecting all the maximal intersections of the current set.
      * Maximal intersections are all the FocalElement intersections which are not contained into others (implying a lower BetP).
      * @return The FocalELemt with maximum BetP
      */
-    std::unique_ptr<FocalElement> maxBetP_withMaximalIntersections();
+    std::unique_ptr<FocalElement> maxBetP_withMaximalIntersections() const;
 
     /**
      * Check if the BBA is valid. All the masses must be >0 and the conflict must be >=0.
@@ -224,14 +223,14 @@ public:
      * @param normalizeDempster True if the Dempster Rule has to be applied for normalization.
      * @return The BBA result of the conjuctive combination.
      */
-    Evidence conjunctive_rule(const Evidence &other, bool normalizeDempster = true);
+    Evidence conjunctive_rule(const Evidence &other, bool normalizeDempster = true) const;
 
     /**
      * Disjunctive combination rule on two sources.
      * @param other The other BBA to combine with.
      * @return The BBA result of the disjunctive combination.
      */
-    Evidence disjunctive_rule(const Evidence &other);
+    Evidence disjunctive_rule(const Evidence &other) const;
 
     /**
      * Perform vacuous extension of the current BBA from discernment frame \f$\Omega_{1}\f$ to \f$\Omega_{1} \times \Omega_{2}\f$
@@ -239,7 +238,7 @@ public:
      * @param extend_right If true, extend to\f$\Omega_{1} \times \Omega_{2}\f$, otherwise to \f$\Omega_{2} \times \Omega_{1}\f$
      * @return The BBA result of vacuous extension.
      */
-    Evidence vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true);
+    Evidence vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right = true) const;
 
 
     /**
@@ -254,14 +253,14 @@ public:
      * @param other The other BBA
      * @return The BBA result of vacuous extension and conjunction.
      */
-    Evidence vacuous_extension_and_conjuction(const Evidence &other);
+    Evidence vacuous_extension_and_conjuction(const Evidence &other) const;
 
     /**
      * Perform conditioning operation on the current BBA.
      * @param C The condition FocalElement.
      * @return The BBA result of conditioning.
      */
-    Evidence conditioning(const FocalElement &C);
+    Evidence conditioning(const FocalElement &C) const;
 
     /**
      * Perform discounting operator on the masses values.

@@ -19,7 +19,7 @@ template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
                    std::unique_ptr<FocalElement> current_intersection,
                    std::vector<std::unique_ptr<FocalElement>> &output_vec, std::vector<T> &check,
-                   std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) {
+                   std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) const {
 
     extendPath(path, current_pos);
 
@@ -106,13 +106,13 @@ double Evidence::getIgnorance() const {
 }
 
 
-double Evidence::conflict() {
+double Evidence::conflict() const {
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     double conf = 1.0 - std::accumulate(mass_array.begin(), mass_array.end(), 0.0) - ignorance;
     return fabs(conf) < FLT_EPSILON ? 0.0 : conf;
 }
 
-double Evidence::plausibility(const FocalElement &elem) {
+double Evidence::plausibility(const FocalElement &elem) const {
     double pl = 0;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
@@ -124,7 +124,7 @@ double Evidence::plausibility(const FocalElement &elem) {
     return pl;
 }
 
-double Evidence::belief(const FocalElement &elem) {
+double Evidence::belief(const FocalElement &elem) const {
     double bel = 0;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
@@ -136,7 +136,7 @@ double Evidence::belief(const FocalElement &elem) {
     return bel;
 }
 
-double Evidence::q_(const FocalElement &elem) {
+double Evidence::q_(const FocalElement &elem) const {
     double q = 0;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
@@ -148,7 +148,7 @@ double Evidence::q_(const FocalElement &elem) {
     return q;
 }
 
-double Evidence::BetP(const FocalElement &w) {
+double Evidence::BetP(const FocalElement &w) const {
     if (w.cardinality() == 0)return 0;
     double bp = 0;
     double conftot = conflict();
@@ -170,7 +170,8 @@ void Evidence::setIgnorance(double ignorance) {
     Evidence::ignorance = ignorance;
 }
 
-std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) {
+std::unique_ptr<FocalElement>
+Evidence::maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const {
 
     if (elems.empty())return discernment_frame->clone();
 
@@ -213,7 +214,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP(std::vector<std::unique_ptr<Foca
     return feout;
 }
 
-std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_size) {
+std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_size) const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -238,7 +239,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_s
 }
 
 
-std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() {
+std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -311,11 +312,11 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() {
     return maxBetP(inters, false);
 }
 
-void Evidence::extendPath(unsigned long long &path, size_t pos) {
+void Evidence::extendPath(unsigned long long &path, size_t pos) const {
     path = path | (1ull << pos);
 }
 
-void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) {
+void Evidence::extendPath(boost::dynamic_bitset<> &path, size_t pos) const {
     path[pos] = 1;
 }
 
@@ -333,7 +334,7 @@ bool Evidence::isValidBBA() const {
 }
 
 
-Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempster) {
+Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempster) const {
     if (!isValidBBA() || !other.isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -391,7 +392,7 @@ const std::unique_ptr<FocalElement> &Evidence::getDiscernment_frame() const {
     return discernment_frame;
 }
 
-Evidence Evidence::disjunctive_rule(const Evidence &other) {
+Evidence Evidence::disjunctive_rule(const Evidence &other) const {
     if (!isValidBBA() || !other.isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -446,7 +447,7 @@ void Evidence::discount(double alpha) {
     ignorance += alpha;
 }
 
-Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right) {
+Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right) const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -511,7 +512,7 @@ Evidence Evidence::marginalization(bool marginalize_right) const {
 }
 
 
-Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) {
+Evidence Evidence::vacuous_extension_and_conjuction(const Evidence &other) const {
     if (!isValidBBA() || !other.isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -629,7 +630,7 @@ Evidence &Evidence::operator=(const Evidence &other) {
     return *this;
 }
 
-double Evidence::getMass(const FocalElement &fe) {
+double Evidence::getMass(const FocalElement &fe) const {
     return fecontainer->get(fe);
 }
 
@@ -646,7 +647,7 @@ void Evidence::normalize() {
     ignorance /= (1 - conf);
 }
 
-Evidence Evidence::conditioning(const FocalElement &C) {
+Evidence Evidence::conditioning(const FocalElement &C) const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
     }
@@ -673,7 +674,7 @@ double Evidence::getMass(size_t i) const {
     return fecontainer->getMassArray()[i];
 }
 
-double Evidence::BetP(size_t i) {
+double Evidence::BetP(size_t i) const {
     if (i < 0 || i > fecontainer->getMassArray().size()) throw IllegalArgumentError("Out of bounds");
     const std::unique_ptr<FocalElement> &elem = fecontainer->getFocalElementsArray()[i];
     return BetP(*elem);
@@ -683,7 +684,7 @@ void Evidence::setGSSF() {
     is_gssf = true;
 }
 
-bool Evidence::isConsonant() {
+bool Evidence::isConsonant() const {
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
 
     //Sort by cardinality
