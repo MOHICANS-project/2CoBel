@@ -151,7 +151,7 @@ double Evidence::q_(const FocalElement &elem) const {
 }
 
 double Evidence::BetP(const FocalElement &w) const {
-    if (w.cardinality() == 0)return 0;
+    if (w.cardinality() == 0)return 0.0;
     double bp = 0;
     double conftot = conflict();
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
