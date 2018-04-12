@@ -1,4 +1,4 @@
 <map id="FocalElementContainer" name="FocalElementContainer">
-<area shape="rect" id="node2" href="$classGenericFocalElementContainer.html" title="A container for any type of FocalElement object. " alt="" coords="5,263,236,545"/>
-<area shape="rect" id="node3" href="$classHashableFocalElementContainer.html" title="A container for HashableFocalElement type objects. " alt="" coords="260,263,501,545"/>
+<area shape="rect" id="node2" href="$classGenericFocalElementContainer.html" title="A container for any type of FocalElement object. " alt="" coords="5,277,236,501"/>
+<area shape="rect" id="node3" href="$classHashableFocalElementContainer.html" title="A container for HashableFocalElement type objects. " alt="" coords="260,277,501,501"/>
 </map>

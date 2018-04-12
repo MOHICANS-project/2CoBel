@@ -1,13 +1,10 @@
-var searchData =
-    [
-        ['defaultfocalelementcontainerdispatcher', ['DefaultFocalElementContainerDispatcher', ['../classDefaultFocalElementContainerDispatcher.html', 1, '']]],
-        ['defaultfocalelementcontainerdispatcher_2ecpp', ['DefaultFocalElementContainerDispatcher.cpp', ['../DefaultFocalElementContainerDispatcher_8cpp.html', 1, '']]],
-        ['defaultfocalelementcontainerdispatcher_2eh', ['DefaultFocalElementContainerDispatcher.h', ['../DefaultFocalElementContainerDispatcher_8h.html', 1, '']]],
-        ['deletefocalelement', ['deleteFocalElement', ['../classEvidence.html#a852aee625445547abfb4bb9a2031c10e', 1, 'Evidence::deleteFocalElement(int index)'], ['../classEvidence.html#a1ebefa9999ec36cfd2fb782e6895e54c', 1, 'Evidence::deleteFocalElement(const FocalElement &amp;fe)']]],
-        ['dfs', ['dfs', ['../classEvidence.html#a33d81e2a221474b3547da413d48161ca', 1, 'Evidence']]],
-        ['difference', ['difference', ['../classGeometry_1_1Rectangle.html#ac803730dcde1c4e059abd1dc962b6314', 1, 'Geometry::Rectangle']]],
-        ['discernment_5fframe', ['discernment_frame', ['../classEvidence.html#a4564fa5d7963b912d66549ac33d86dfd', 1, 'Evidence']]],
-        ['discount', ['discount', ['../classEvidence.html#afaa46e0ce034a05c4749c7021430d60a', 1, 'Evidence']]],
-        ['disjunctive_5frule', ['disjunctive_rule', ['../classEvidence.html#ac40aa65ecd126e0ef1f8fe55eec0d4da', 1, 'Evidence']]],
-        ['dispatcher', ['dispatcher', ['../classEvidence.html#a8ae2742750940957698135fd9014d6d4', 1, 'Evidence']]]
-    ];
+var searchData=
+[
+  ['backward',['backward',['../CMakeCache_8txt.html#a4e00b9c657cdeb7b14ea0c43097dcecc',1,'CMakeCache.txt']]],
+  ['belief',['belief',['../classEvidence.html#ac0b30688e56b6414e1a7733f58bec0dc',1,'Evidence']]],
+  ['betp',['BetP',['../classEvidence.html#ae5e4bfa5009105ed1f61349eaad4cf9a',1,'Evidence::BetP(const FocalElement &amp;w) const '],['../classEvidence.html#ae417c974c680ef23eade3016e89b45b1',1,'Evidence::BetP(size_t i) const ']]],
+  ['boxset2dfocalelement',['BoxSet2DFocalElement',['../classBoxSet2DFocalElement.html',1,'BoxSet2DFocalElement'],['../classBoxSet2DFocalElement.html#a8215ede5350376e541893ce73d8e5a05',1,'BoxSet2DFocalElement::BoxSet2DFocalElement()']]],
+  ['boxset2dfocalelement_2ecpp',['BoxSet2DFocalElement.cpp',['../BoxSet2DFocalElement_8cpp.html',1,'']]],
+  ['boxset2dfocalelement_2eh',['BoxSet2DFocalElement.h',['../BoxSet2DFocalElement_8h.html',1,'']]],
+  ['buildevidence',['buildEvidence',['../clipper__demo_8cpp.html#a4e15b37fd9e2dd5067632a6006ccff2d',1,'clipper_demo.cpp']]]
+];

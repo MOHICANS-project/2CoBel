@@ -1,4 +1,4 @@
 <map id="Geometry::Shape" name="Geometry::Shape">
-<area shape="rect" id="node2" href="$classGeometry_1_1ClipperPolygon.html" title="{Geometry::ClipperPolygon\n||+ ClipperPolygon()\l+ ClipperPolygon()\l+ ~ClipperPolygon()\l+ computeArea()\l+ has_inside()\l+ getPolygon()\l}" alt="" coords="5,226,180,377"/>
+<area shape="rect" id="node2" href="$classGeometry_1_1ClipperPolygon.html" title="Simple polygon representation using the Clipper library " alt="" coords="5,204,180,399"/>
 <area shape="rect" id="node3" href="$classGeometry_1_1Rectangle.html" title="Rectangle parallel to the plane axis. " alt="" coords="205,189,351,413"/>
 </map>

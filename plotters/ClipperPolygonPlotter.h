@@ -13,6 +13,10 @@
 class ClipperPolygonPlotter {
 
 public:
+    /**
+     * Plot Clipper2DFocalElements with matplotlib wrapper.
+     * @param elems Focal elements array.
+     */
     void plotClipperFocalElements(std::vector<std::reference_wrapper<FocalElement>> &elems);
 
 };

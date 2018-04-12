@@ -32,40 +32,40 @@ Collaboration diagram for Geometry\+:\+:Rectangle\+:\nopagebreak
 \item 
 \hyperlink{classGeometry_1_1Rectangle_a3a73665b3e36e9d73968ca77eece4552}{Rectangle} ()
 \item 
-\hyperlink{classGeometry_1_1Rectangle_a1cd6a95c02b14cf1e2dd8bd0c2d2070a}{Rectangle} (int xmin, int xmax, int ymin, int ymax)
-\item 
-\hyperlink{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}{Rectangle} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2\+D} $>$ \&vertices)
-\item 
-\hyperlink{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}{Rectangle} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p1, \hyperlink{classGeometry_1_1Point2D}{Point2\+D} p2)
-\item 
-\hyperlink{classGeometry_1_1Rectangle_aba6f31692e8a75c818b6adb90b8619f5}{Rectangle} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p\+\_\+up\+\_\+left, int width, int height)
-\item 
+\hyperlink{classGeometry_1_1Rectangle_a6e9d73d75bafe76243b6939f0630897c}{Rectangle} (long xmin, long xmax, long ymin, long ymax)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}{Rectangle} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2D} $>$ \&vertices)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}{Rectangle} (\hyperlink{classGeometry_1_1Point2D}{Point2D} p1, \hyperlink{classGeometry_1_1Point2D}{Point2D} p2)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classGeometry_1_1Rectangle_ae609ed3d87f6dc59d5a0aae1c17709aa}{Rectangle} (\hyperlink{classGeometry_1_1Point2D}{Point2D} p\+\_\+up\+\_\+left, long width, long height)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classGeometry_1_1Rectangle_a29f446cb310ac71f9826ee9c8226191b}{$\sim$\+Rectangle} () override=default
 \item 
 double \hyperlink{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}{compute\+Area} () const override
-\item 
-bool \hyperlink{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p) const override
-\item 
+\begin{DoxyCompactList}\small\item\em Get the area of the shape. \end{DoxyCompactList}\item 
+bool \hyperlink{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2D} p) const override
+\begin{DoxyCompactList}\small\item\em Check if the point is inside the current shape. \end{DoxyCompactList}\item 
 \hyperlink{classGeometry_1_1Rectangle}{Rectangle} \hyperlink{classGeometry_1_1Rectangle_afd899e69807bf618719805dff42f574d}{intersect} (const \hyperlink{classGeometry_1_1Rectangle}{Rectangle} \&other) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Intersect a \hyperlink{classGeometry_1_1Rectangle}{Rectangle} with another one. \end{DoxyCompactList}\item 
 std\+::vector$<$ \hyperlink{classGeometry_1_1Rectangle}{Rectangle} $>$ \hyperlink{classGeometry_1_1Rectangle_ac803730dcde1c4e059abd1dc962b6314}{difference} (const \hyperlink{classGeometry_1_1Rectangle}{Rectangle} \&other) const 
-\item 
-int \hyperlink{classGeometry_1_1Rectangle_a44036e573fe4cfb1533048a607a1dfe0}{get\+Xmin} () const 
-\item 
-int \hyperlink{classGeometry_1_1Rectangle_abb5e007b1aa9b4ec5639610a4b885204}{get\+Xmax} () const 
-\item 
-int \hyperlink{classGeometry_1_1Rectangle_a10dd3e13fd427e5b5b8f587b07c7d5a0}{get\+Ymin} () const 
-\item 
-int \hyperlink{classGeometry_1_1Rectangle_a6d45059acd2577de8c7ba4931fe7d161}{get\+Ymax} () const 
-\item 
-void \hyperlink{classGeometry_1_1Rectangle_a6792f5cf3952460ecf56d930ea63cd05}{set\+Xmin} (int xmin)
-\item 
-void \hyperlink{classGeometry_1_1Rectangle_a3c1f74aca050c86f7e7af099ae39a247}{set\+Xmax} (int xmax)
-\item 
-void \hyperlink{classGeometry_1_1Rectangle_a3d2b1d2680db2a0ca90011581a1f49f1}{set\+Ymin} (int ymin)
-\item 
-void \hyperlink{classGeometry_1_1Rectangle_abe9028949408a6d59a0df398e2a28d1c}{set\+Ymax} (int ymax)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Apply difference operator with another \hyperlink{classGeometry_1_1Rectangle}{Rectangle}. \end{DoxyCompactList}\item 
+long \hyperlink{classGeometry_1_1Rectangle_a8deb4fa571eaa05911456c14e2fa25ab}{get\+Xmin} () const 
+\begin{DoxyCompactList}\small\item\em Get xmin. \end{DoxyCompactList}\item 
+long \hyperlink{classGeometry_1_1Rectangle_ab034b771c6a3d7c482daac66a0d97ad8}{get\+Xmax} () const 
+\begin{DoxyCompactList}\small\item\em Get xmax. \end{DoxyCompactList}\item 
+long \hyperlink{classGeometry_1_1Rectangle_a4fd564dbf894c57e3b04c5f1d9f139cd}{get\+Ymin} () const 
+\begin{DoxyCompactList}\small\item\em Get ymin. \end{DoxyCompactList}\item 
+long \hyperlink{classGeometry_1_1Rectangle_aebea5b9d1990639bac462fa00714d4a1}{get\+Ymax} () const 
+\begin{DoxyCompactList}\small\item\em Get ymax. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_1_1Rectangle_a9429d96831fcf302b35306187a1a5c87}{set\+Xmin} (long xmin)
+\begin{DoxyCompactList}\small\item\em Set xmin. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_1_1Rectangle_af4a0d6ea20241c23ace59d198fd5de3c}{set\+Xmax} (long xmax)
+\begin{DoxyCompactList}\small\item\em Set xmax. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_1_1Rectangle_a9cd50d8752fbf874d9979cf7189963f4}{set\+Ymin} (long ymin)
+\begin{DoxyCompactList}\small\item\em Set ymin. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_1_1Rectangle_abc92fe5c878653505e409686aeb614f8}{set\+Ymax} (long ymax)
+\begin{DoxyCompactList}\small\item\em Set ymax. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -77,160 +77,315 @@ std\+::ostream \& \hyperlink{classGeometry_1_1Rectangle_a6928c586de0f57714ed6e38
 \hyperlink{classGeometry_1_1Rectangle}{Rectangle} parallel to the plane axis. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classGeometry_1_1Rectangle_a3a73665b3e36e9d73968ca77eece4552}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
+\subsubsection[{\texorpdfstring{Rectangle()}{Rectangle()}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Rectangle_a3a73665b3e36e9d73968ca77eece4552}
-\hypertarget{classGeometry_1_1Rectangle_a1cd6a95c02b14cf1e2dd8bd0c2d2070a}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Rectangle_a3a73665b3e36e9d73968ca77eece4552}{}\label{classGeometry_1_1Rectangle_a3a73665b3e36e9d73968ca77eece4552}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
+\subsubsection[{\texorpdfstring{Rectangle(long xmin, long xmax, long ymin, long ymax)}{Rectangle(long xmin, long xmax, long ymin, long ymax)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
 \begin{DoxyParamCaption}
-\item[{int}]{xmin, }
-\item[{int}]{xmax, }
-\item[{int}]{ymin, }
-\item[{int}]{ymax}
+\item[{long}]{xmin, }
+\item[{long}]{xmax, }
+\item[{long}]{ymin, }
+\item[{long}]{ymax}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Rectangle_a1cd6a95c02b14cf1e2dd8bd0c2d2070a}
-\hypertarget{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Rectangle_a6e9d73d75bafe76243b6939f0630897c}{}\label{classGeometry_1_1Rectangle_a6e9d73d75bafe76243b6939f0630897c}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xmin} & \\
+\hline
+{\em xmax} & \\
+\hline
+{\em ymin} & \\
+\hline
+{\em ymax} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
+\subsubsection[{\texorpdfstring{Rectangle(std\+::vector$<$ Point2\+D $>$ \&vertices)}{Rectangle(std::vector< Point2D > &vertices)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
 \begin{DoxyParamCaption}
-\item[{std\+::vector$<$ {\bf Point2\+D} $>$ \&}]{vertices}
+\item[{std\+::vector$<$ {\bf Point2D} $>$ \&}]{vertices}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}
-\hypertarget{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}{}\label{classGeometry_1_1Rectangle_af43cb3bd05884b9edd3cadfacbf379f7}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Array of vertices. \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
+\subsubsection[{\texorpdfstring{Rectangle(\+Point2\+D p1, Point2\+D p2)}{Rectangle(Point2D p1, Point2D p2)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
 \begin{DoxyParamCaption}
-\item[{{\bf Point2\+D}}]{p1, }
-\item[{{\bf Point2\+D}}]{p2}
+\item[{{\bf Point2D}}]{p1, }
+\item[{{\bf Point2D}}]{p2}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}
-\hypertarget{classGeometry_1_1Rectangle_aba6f31692e8a75c818b6adb90b8619f5}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
+)}\hypertarget{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}{}\label{classGeometry_1_1Rectangle_a03200e2f3bb2e4fca3b2f76d768e5c95}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & top-\/left corner \\
+\hline
+{\em p2} & bottom-\/right corner \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!Rectangle@{Rectangle}}
 \index{Rectangle@{Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
+\subsubsection[{\texorpdfstring{Rectangle(\+Point2\+D p\+\_\+up\+\_\+left, long width, long height)}{Rectangle(Point2D p_up_left, long width, long height)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::\+Rectangle (
 \begin{DoxyParamCaption}
-\item[{{\bf Point2\+D}}]{p\+\_\+up\+\_\+left, }
-\item[{int}]{width, }
-\item[{int}]{height}
+\item[{{\bf Point2D}}]{p\+\_\+up\+\_\+left, }
+\item[{long}]{width, }
+\item[{long}]{height}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_aba6f31692e8a75c818b6adb90b8619f5}
-\hypertarget{classGeometry_1_1Rectangle_a29f446cb310ac71f9826ee9c8226191b}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!````~Rectangle@{$\sim$\+Rectangle}}
+)}\hypertarget{classGeometry_1_1Rectangle_ae609ed3d87f6dc59d5a0aae1c17709aa}{}\label{classGeometry_1_1Rectangle_ae609ed3d87f6dc59d5a0aae1c17709aa}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+up\+\_\+left} & to-\/left corner \\
+\hline
+{\em width} & \\
+\hline
+{\em height} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!````~Rectangle@{$\sim$\+Rectangle}}
 \index{````~Rectangle@{$\sim$\+Rectangle}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{$\sim$\+Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::$\sim$\+Rectangle (
+\subsubsection[{\texorpdfstring{$\sim$\+Rectangle() override=default}{~Rectangle() override=default}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Rectangle\+::$\sim$\+Rectangle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classGeometry_1_1Rectangle_a29f446cb310ac71f9826ee9c8226191b}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\hypertarget{classGeometry_1_1Rectangle_a29f446cb310ac71f9826ee9c8226191b}{}\label{classGeometry_1_1Rectangle_a29f446cb310ac71f9826ee9c8226191b}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!compute\+Area@{compute\+Area}}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!compute\+Area@{compute\+Area}}
 \index{compute\+Area@{compute\+Area}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{compute\+Area}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Rectangle\+::compute\+Area (
+\subsubsection[{\texorpdfstring{compute\+Area() const override}{computeArea() const override}}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Rectangle\+::compute\+Area (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}{}\label{classGeometry_1_1Rectangle_adcae3b63e18582f1d4983dfa80029fb7}
+
+
+Get the area of the shape. 
+
+\begin{DoxyReturn}{Returns}
+Area. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}{Geometry\+::\+Shape}.
 
-\hypertarget{classGeometry_1_1Rectangle_ac803730dcde1c4e059abd1dc962b6314}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!difference@{difference}}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!difference@{difference}}
 \index{difference@{difference}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{difference}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Rectangle} $>$ Geometry\+::\+Rectangle\+::difference (
+\subsubsection[{\texorpdfstring{difference(const Rectangle \&other) const }{difference(const Rectangle &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ {\bf Rectangle} $>$ Geometry\+::\+Rectangle\+::difference (
 \begin{DoxyParamCaption}
 \item[{const {\bf Rectangle} \&}]{other}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_ac803730dcde1c4e059abd1dc962b6314}
-\hypertarget{classGeometry_1_1Rectangle_abb5e007b1aa9b4ec5639610a4b885204}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Xmax@{get\+Xmax}}
+) const}\hypertarget{classGeometry_1_1Rectangle_ac803730dcde1c4e059abd1dc962b6314}{}\label{classGeometry_1_1Rectangle_ac803730dcde1c4e059abd1dc962b6314}
+
+
+Apply difference operator with another \hyperlink{classGeometry_1_1Rectangle}{Rectangle}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classGeometry_1_1Rectangle}{Rectangle} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of Rectangles of size from 0 to 4. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Xmax@{get\+Xmax}}
 \index{get\+Xmax@{get\+Xmax}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{get\+Xmax}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Rectangle\+::get\+Xmax (
+\subsubsection[{\texorpdfstring{get\+Xmax() const }{getXmax() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Rectangle\+::get\+Xmax (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_abb5e007b1aa9b4ec5639610a4b885204}
-\hypertarget{classGeometry_1_1Rectangle_a44036e573fe4cfb1533048a607a1dfe0}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Xmin@{get\+Xmin}}
+) const}\hypertarget{classGeometry_1_1Rectangle_ab034b771c6a3d7c482daac66a0d97ad8}{}\label{classGeometry_1_1Rectangle_ab034b771c6a3d7c482daac66a0d97ad8}
+
+
+Get xmax. 
+
+\begin{DoxyReturn}{Returns}
+xmax 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Xmin@{get\+Xmin}}
 \index{get\+Xmin@{get\+Xmin}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{get\+Xmin}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Rectangle\+::get\+Xmin (
+\subsubsection[{\texorpdfstring{get\+Xmin() const }{getXmin() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Rectangle\+::get\+Xmin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_a44036e573fe4cfb1533048a607a1dfe0}
-\hypertarget{classGeometry_1_1Rectangle_a6d45059acd2577de8c7ba4931fe7d161}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Ymax@{get\+Ymax}}
+) const}\hypertarget{classGeometry_1_1Rectangle_a8deb4fa571eaa05911456c14e2fa25ab}{}\label{classGeometry_1_1Rectangle_a8deb4fa571eaa05911456c14e2fa25ab}
+
+
+Get xmin. 
+
+\begin{DoxyReturn}{Returns}
+xmin 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Ymax@{get\+Ymax}}
 \index{get\+Ymax@{get\+Ymax}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{get\+Ymax}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Rectangle\+::get\+Ymax (
+\subsubsection[{\texorpdfstring{get\+Ymax() const }{getYmax() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Rectangle\+::get\+Ymax (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_a6d45059acd2577de8c7ba4931fe7d161}
-\hypertarget{classGeometry_1_1Rectangle_a10dd3e13fd427e5b5b8f587b07c7d5a0}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Ymin@{get\+Ymin}}
+) const}\hypertarget{classGeometry_1_1Rectangle_aebea5b9d1990639bac462fa00714d4a1}{}\label{classGeometry_1_1Rectangle_aebea5b9d1990639bac462fa00714d4a1}
+
+
+Get ymax. 
+
+\begin{DoxyReturn}{Returns}
+ymax 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!get\+Ymin@{get\+Ymin}}
 \index{get\+Ymin@{get\+Ymin}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{get\+Ymin}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Rectangle\+::get\+Ymin (
+\subsubsection[{\texorpdfstring{get\+Ymin() const }{getYmin() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Rectangle\+::get\+Ymin (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_a10dd3e13fd427e5b5b8f587b07c7d5a0}
-\hypertarget{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!has\+\_\+inside@{has\+\_\+inside}}
+) const}\hypertarget{classGeometry_1_1Rectangle_a4fd564dbf894c57e3b04c5f1d9f139cd}{}\label{classGeometry_1_1Rectangle_a4fd564dbf894c57e3b04c5f1d9f139cd}
+
+
+Get ymin. 
+
+\begin{DoxyReturn}{Returns}
+ymin 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!has\+\_\+inside@{has\+\_\+inside}}
 \index{has\+\_\+inside@{has\+\_\+inside}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{has\+\_\+inside}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Rectangle\+::has\+\_\+inside (
+\subsubsection[{\texorpdfstring{has\+\_\+inside(\+Point2\+D p) const override}{has_inside(Point2D p) const override}}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Rectangle\+::has\+\_\+inside (
 \begin{DoxyParamCaption}
-\item[{{\bf Point2\+D}}]{p}
+\item[{{\bf Point2D}}]{p}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}{}\label{classGeometry_1_1Rectangle_ab186008b8f7c4b99fec564021c40e3eb}
+
+
+Check if the point is inside the current shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Test point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if p is inside the shape. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}{Geometry\+::\+Shape}.
 
-\hypertarget{classGeometry_1_1Rectangle_afd899e69807bf618719805dff42f574d}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!intersect@{intersect}}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!intersect@{intersect}}
 \index{intersect@{intersect}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} Geometry\+::\+Rectangle\+::intersect (
+\subsubsection[{\texorpdfstring{intersect(const Rectangle \&other) const }{intersect(const Rectangle &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} Geometry\+::\+Rectangle\+::intersect (
 \begin{DoxyParamCaption}
 \item[{const {\bf Rectangle} \&}]{other}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1Rectangle_afd899e69807bf618719805dff42f574d}
-\hypertarget{classGeometry_1_1Rectangle_a3c1f74aca050c86f7e7af099ae39a247}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Xmax@{set\+Xmax}}
+) const}\hypertarget{classGeometry_1_1Rectangle_afd899e69807bf618719805dff42f574d}{}\label{classGeometry_1_1Rectangle_afd899e69807bf618719805dff42f574d}
+
+
+Intersect a \hyperlink{classGeometry_1_1Rectangle}{Rectangle} with another one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & other \hyperlink{classGeometry_1_1Rectangle}{Rectangle}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting intersection \hyperlink{classGeometry_1_1Rectangle}{Rectangle}. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Xmax@{set\+Xmax}}
 \index{set\+Xmax@{set\+Xmax}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{set\+Xmax}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Xmax (
+\subsubsection[{\texorpdfstring{set\+Xmax(long xmax)}{setXmax(long xmax)}}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Xmax (
 \begin{DoxyParamCaption}
-\item[{int}]{xmax}
+\item[{long}]{xmax}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_a3c1f74aca050c86f7e7af099ae39a247}
-\hypertarget{classGeometry_1_1Rectangle_a6792f5cf3952460ecf56d930ea63cd05}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Xmin@{set\+Xmin}}
+)}\hypertarget{classGeometry_1_1Rectangle_af4a0d6ea20241c23ace59d198fd5de3c}{}\label{classGeometry_1_1Rectangle_af4a0d6ea20241c23ace59d198fd5de3c}
+
+
+Set xmax. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xmax} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Xmin@{set\+Xmin}}
 \index{set\+Xmin@{set\+Xmin}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{set\+Xmin}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Xmin (
+\subsubsection[{\texorpdfstring{set\+Xmin(long xmin)}{setXmin(long xmin)}}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Xmin (
 \begin{DoxyParamCaption}
-\item[{int}]{xmin}
+\item[{long}]{xmin}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_a6792f5cf3952460ecf56d930ea63cd05}
-\hypertarget{classGeometry_1_1Rectangle_abe9028949408a6d59a0df398e2a28d1c}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Ymax@{set\+Ymax}}
+)}\hypertarget{classGeometry_1_1Rectangle_a9429d96831fcf302b35306187a1a5c87}{}\label{classGeometry_1_1Rectangle_a9429d96831fcf302b35306187a1a5c87}
+
+
+Set xmin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xmin} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Ymax@{set\+Ymax}}
 \index{set\+Ymax@{set\+Ymax}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{set\+Ymax}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Ymax (
+\subsubsection[{\texorpdfstring{set\+Ymax(long ymax)}{setYmax(long ymax)}}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Ymax (
 \begin{DoxyParamCaption}
-\item[{int}]{ymax}
+\item[{long}]{ymax}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_abe9028949408a6d59a0df398e2a28d1c}
-\hypertarget{classGeometry_1_1Rectangle_a3d2b1d2680db2a0ca90011581a1f49f1}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Ymin@{set\+Ymin}}
+)}\hypertarget{classGeometry_1_1Rectangle_abc92fe5c878653505e409686aeb614f8}{}\label{classGeometry_1_1Rectangle_abc92fe5c878653505e409686aeb614f8}
+
+
+Set ymax. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ymax} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!set\+Ymin@{set\+Ymin}}
 \index{set\+Ymin@{set\+Ymin}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{set\+Ymin}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Ymin (
+\subsubsection[{\texorpdfstring{set\+Ymin(long ymin)}{setYmin(long ymin)}}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\+::\+Rectangle\+::set\+Ymin (
 \begin{DoxyParamCaption}
-\item[{int}]{ymin}
+\item[{long}]{ymin}
 \end{DoxyParamCaption}
-)}\label{classGeometry_1_1Rectangle_a3d2b1d2680db2a0ca90011581a1f49f1}
+)}\hypertarget{classGeometry_1_1Rectangle_a9cd50d8752fbf874d9979cf7189963f4}{}\label{classGeometry_1_1Rectangle_a9cd50d8752fbf874d9979cf7189963f4}
+
+
+Set ymin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ymin} & \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Friends And Related Function Documentation}
-\hypertarget{classGeometry_1_1Rectangle_a6928c586de0f57714ed6e389186c94c2}{}\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!operator$<$$<$@{operator$<$$<$}}
+\index{Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!Geometry\+::\+Rectangle@{Geometry\+::\+Rectangle}}
-\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
 \begin{DoxyParamCaption}
 \item[{std\+::ostream \&}]{os, }
 \item[{const {\bf Rectangle} \&}]{rectangle}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [friend]}}\label{classGeometry_1_1Rectangle_a6928c586de0f57714ed6e389186c94c2}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classGeometry_1_1Rectangle_a6928c586de0f57714ed6e389186c94c2}{}\label{classGeometry_1_1Rectangle_a6928c586de0f57714ed6e389186c94c2}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

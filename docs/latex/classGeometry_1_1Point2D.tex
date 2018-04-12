@@ -1,12 +1,17 @@
-\hypertarget{classGeometry_1_1Point2D}{}\section{Geometry\+:\+:Point2\+D Class Reference}
-\label{classGeometry_1_1Point2D}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
+\hypertarget{classGeometry_1_1Point2D}{}\section{Geometry\+:\+:Point2D Class Reference}
+\label{classGeometry_1_1Point2D}\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+
+
+2D point in integer coordinates.  
+
+
 
 
 {\ttfamily \#include $<$Point2\+D.\+h$>$}
 
 
 
-Collaboration diagram for Geometry\+:\+:Point2\+D\+:\nopagebreak
+Collaboration diagram for Geometry\+:\+:Point2D\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,83 +21,165 @@ Collaboration diagram for Geometry\+:\+:Point2\+D\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classGeometry_1_1Point2D_a42092d242b11d790d973712bacd02b72}{Point2\+D} (int x=0, int y=0)
+\hyperlink{classGeometry_1_1Point2D_a873dc5d6e2f707d70b74e88265a595f6}{Point2D} (long x=0, long y=0)
+\begin{DoxyCompactList}\small\item\em Construcor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}{$\sim$\+Point2D} ()=default
 \item 
-virtual \hyperlink{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}{$\sim$\+Point2\+D} ()=default
+long \hyperlink{classGeometry_1_1Point2D_adba56a7597877f2857f019b619c1b31c}{X} () const 
+\begin{DoxyCompactList}\small\item\em Get x. \end{DoxyCompactList}\item 
+long \hyperlink{classGeometry_1_1Point2D_a766b1824c060c5e625903e6910842f46}{Y} () const 
+\begin{DoxyCompactList}\small\item\em Get y. \end{DoxyCompactList}\item 
+bool \hyperlink{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}{operator==} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs) const 
 \item 
-int \hyperlink{classGeometry_1_1Point2D_a611f7bf916d94767b61b0c8c9fbeae55}{X} () const 
+bool \hyperlink{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}{operator!=} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs) const 
 \item 
-int \hyperlink{classGeometry_1_1Point2D_a078150b19312c0a7f466021b7c7ff320}{Y} () const 
+\hyperlink{classGeometry_1_1Point2D}{Point2D} \hyperlink{classGeometry_1_1Point2D_a6c759799b1a736881db4bfe7cbed3ece}{operator+} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs) const 
 \item 
-bool \hyperlink{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}{operator==} (const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&rhs) const 
+\hyperlink{classGeometry_1_1Point2D}{Point2D} \& \hyperlink{classGeometry_1_1Point2D_afae0ca03e239fbfbbca63ab76ffdc048}{operator+=} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs)
 \item 
-bool \hyperlink{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}{operator!=} (const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&rhs) const 
+\hyperlink{classGeometry_1_1Point2D}{Point2D} \hyperlink{classGeometry_1_1Point2D_afb1f91842fd1d67fc404570512ccb03f}{operator-\/} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs) const 
+\item 
+\hyperlink{classGeometry_1_1Point2D}{Point2D} \& \hyperlink{classGeometry_1_1Point2D_aa1993e7157ec63caf7ec10217daafdaf}{operator-\/=} (const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&rhs)
+\item 
+double \hyperlink{classGeometry_1_1Point2D_a27ecff835c81977e9c2dfcabe34a0e29}{norm} () const 
+\item 
+size\+\_\+t \hyperlink{classGeometry_1_1Point2D_a45a03b466fadbd77c00480017278519b}{hash} () const 
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \hyperlink{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classGeometry_1_1Point2D}{Point2\+D} \&d)
+std\+::ostream \& \hyperlink{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classGeometry_1_1Point2D}{Point2D} \&d)
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+2D point in integer coordinates. 
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classGeometry_1_1Point2D_a42092d242b11d790d973712bacd02b72}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!Point2\+D@{Point2\+D}}
-\index{Point2\+D@{Point2\+D}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{Point2\+D}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Point2\+D\+::\+Point2\+D (
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!Point2D@{Point2D}}
+\index{Point2D@{Point2D}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{Point2\+D(long x=0, long y=0)}{Point2D(long x=0, long y=0)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Point2\+D\+::\+Point2D (
 \begin{DoxyParamCaption}
-\item[{int}]{x = {\ttfamily 0}, }
-\item[{int}]{y = {\ttfamily 0}}
+\item[{long}]{x = {\ttfamily 0}, }
+\item[{long}]{y = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}\label{classGeometry_1_1Point2D_a42092d242b11d790d973712bacd02b72}
-\hypertarget{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!````~Point2\+D@{$\sim$\+Point2\+D}}
-\index{````~Point2\+D@{$\sim$\+Point2\+D}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{$\sim$\+Point2\+D}]{\setlength{\rightskip}{0pt plus 5cm}virtual Geometry\+::\+Point2\+D\+::$\sim$\+Point2\+D (
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}\hypertarget{classGeometry_1_1Point2D_a873dc5d6e2f707d70b74e88265a595f6}{}\label{classGeometry_1_1Point2D_a873dc5d6e2f707d70b74e88265a595f6}
+
+
+Construcor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!````~Point2D@{$\sim$\+Point2D}}
+\index{````~Point2D@{$\sim$\+Point2D}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{$\sim$\+Point2\+D()=default}{~Point2D()=default}}]{\setlength{\rightskip}{0pt plus 5cm}virtual Geometry\+::\+Point2\+D\+::$\sim$\+Point2D (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\label{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\hypertarget{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}{}\label{classGeometry_1_1Point2D_a2347379e70ce2907fc497557217e10a3}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!operator"!=@{operator"!=}}
-\index{operator"!=@{operator"!=}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Point2\+D\+::operator!= (
-\begin{DoxyParamCaption}
-\item[{const {\bf Point2\+D} \&}]{rhs}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}
-\hypertarget{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!operator==@{operator==}}
-\index{operator==@{operator==}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Point2\+D\+::operator== (
-\begin{DoxyParamCaption}
-\item[{const {\bf Point2\+D} \&}]{rhs}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}
-\hypertarget{classGeometry_1_1Point2D_a611f7bf916d94767b61b0c8c9fbeae55}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!X@{X}}
-\index{X@{X}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{X}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Point2\+D\+::\+X (
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!hash@{hash}}
+\index{hash@{hash}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{hash() const }{hash() const }}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Geometry\+::\+Point2\+D\+::hash (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Point2D_a611f7bf916d94767b61b0c8c9fbeae55}
-\hypertarget{classGeometry_1_1Point2D_a078150b19312c0a7f466021b7c7ff320}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!Y@{Y}}
-\index{Y@{Y}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{Y}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\+::\+Point2\+D\+::\+Y (
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_a45a03b466fadbd77c00480017278519b}{}\label{classGeometry_1_1Point2D_a45a03b466fadbd77c00480017278519b}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!norm@{norm}}
+\index{norm@{norm}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{norm() const }{norm() const }}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Point2\+D\+::norm (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classGeometry_1_1Point2D_a078150b19312c0a7f466021b7c7ff320}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_a27ecff835c81977e9c2dfcabe34a0e29}{}\label{classGeometry_1_1Point2D_a27ecff835c81977e9c2dfcabe34a0e29}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator"!=(const Point2\+D \&rhs) const }{operator!=(const Point2D &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Point2\+D\+::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}{}\label{classGeometry_1_1Point2D_ad97232d7ab2ef71fd78c80796b1654b8}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator+@{operator+}}
+\index{operator+@{operator+}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator+(const Point2\+D \&rhs) const }{operator+(const Point2D &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Point2D} Geometry\+::\+Point2\+D\+::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_a6c759799b1a736881db4bfe7cbed3ece}{}\label{classGeometry_1_1Point2D_a6c759799b1a736881db4bfe7cbed3ece}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator+=(const Point2\+D \&rhs)}{operator+=(const Point2D &rhs)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Point2D}\& Geometry\+::\+Point2\+D\+::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_afae0ca03e239fbfbbca63ab76ffdc048}{}\label{classGeometry_1_1Point2D_afae0ca03e239fbfbbca63ab76ffdc048}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator-\/(const Point2\+D \&rhs) const }{operator-(const Point2D &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Point2D} Geometry\+::\+Point2\+D\+::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_afb1f91842fd1d67fc404570512ccb03f}{}\label{classGeometry_1_1Point2D_afb1f91842fd1d67fc404570512ccb03f}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator-\/=(const Point2\+D \&rhs)}{operator-=(const Point2D &rhs)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Point2D}\& Geometry\+::\+Point2\+D\+::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_aa1993e7157ec63caf7ec10217daafdaf}{}\label{classGeometry_1_1Point2D_aa1993e7157ec63caf7ec10217daafdaf}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator==@{operator==}}
+\index{operator==@{operator==}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator==(const Point2\+D \&rhs) const }{operator==(const Point2D &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Point2\+D\+::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Point2D} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}{}\label{classGeometry_1_1Point2D_a7ce87ad250d9a716df2d293f8af2accf}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!X@{X}}
+\index{X@{X}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{X() const }{X() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Point2\+D\+::X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_adba56a7597877f2857f019b619c1b31c}{}\label{classGeometry_1_1Point2D_adba56a7597877f2857f019b619c1b31c}
+
+
+Get x. 
+
+\begin{DoxyReturn}{Returns}
+x. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!Y@{Y}}
+\index{Y@{Y}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{Y() const }{Y() const }}]{\setlength{\rightskip}{0pt plus 5cm}long Geometry\+::\+Point2\+D\+::Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classGeometry_1_1Point2D_a766b1824c060c5e625903e6910842f46}{}\label{classGeometry_1_1Point2D_a766b1824c060c5e625903e6910842f46}
+
+
+Get y. 
+
+\begin{DoxyReturn}{Returns}
+y. 
+\end{DoxyReturn}
 
 
 \subsection{Friends And Related Function Documentation}
-\hypertarget{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}{}\index{Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!Geometry\+::\+Point2\+D@{Geometry\+::\+Point2\+D}}
-\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\index{Geometry\+::\+Point2D@{Geometry\+::\+Point2D}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Geometry\+::\+Point2D@{Geometry\+::\+Point2D}}
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
 \begin{DoxyParamCaption}
 \item[{std\+::ostream \&}]{os, }
-\item[{const {\bf Point2\+D} \&}]{d}
+\item[{const {\bf Point2D} \&}]{d}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [friend]}}\label{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}{}\label{classGeometry_1_1Point2D_a2ec03e8e9f734d37ee69c16cb02d69de}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

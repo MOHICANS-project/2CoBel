@@ -1,12 +1,17 @@
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement}{}\section{Eigen\+F\+E\+:\+:Eigen\+Mat2\+D\+Focal\+Element Class Reference}
+\hypertarget{classEigenFE_1_1EigenMat2DFocalElement}{}\section{Eigen\+FE\+:\+:Eigen\+Mat2\+D\+Focal\+Element Class Reference}
 \label{classEigenFE_1_1EigenMat2DFocalElement}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
+
+
+2D \hyperlink{classFocalElement}{Focal\+Element} using a matrix of booleans.  
+
+
 
 
 {\ttfamily \#include $<$Eigen\+Mat2\+D\+Focal\+Element.\+h$>$}
 
 
 
-Inheritance diagram for Eigen\+F\+E\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nopagebreak
+Inheritance diagram for Eigen\+FE\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +20,7 @@ Inheritance diagram for Eigen\+F\+E\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nopag
 \end{figure}
 
 
-Collaboration diagram for Eigen\+F\+E\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nopagebreak
+Collaboration diagram for Eigen\+FE\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,109 +31,174 @@ Collaboration diagram for Eigen\+F\+E\+:\+:Eigen\+Mat2\+D\+Focal\+Element\+:\nop
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ab1e04c916b081d4ac8f65c071619f2ae}{Eigen\+Mat2\+D\+Focal\+Element} (const \hyperlink{classGeometry_1_1Rectangle}{Geometry\+::\+Rectangle} \&bounding\+\_\+box, const \hyperlink{namespaceEigenFE_a478c1c0c93aef88b798e7c38a9c65d59}{Matrix\+Xb} \&image)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a8d16fd73bfb48a9cce07e6e8ea5cb83d}{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element} () override=default
 \item 
 double \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{cardinality} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Evaluate the cardinality of the focal element. \end{DoxyCompactList}\item 
 const \hyperlink{classGeometry_1_1Rectangle}{Geometry\+::\+Rectangle} \& \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a87b3b927b9b669c4120efb6c271a14d6}{get\+Bounding\+\_\+box} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Get the bounding box. \end{DoxyCompactList}\item 
 const \hyperlink{namespaceEigenFE_a478c1c0c93aef88b798e7c38a9c65d59}{Matrix\+Xb} \& \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a50caa5018108e7c376c313c8c301165d}{get\+Image} () const 
-\item 
-std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{get\+Inner\+Singletons} (int step\+\_\+size=1) const override
-\item 
+\begin{DoxyCompactList}\small\item\em Get the image. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{get\+Inner\+Singletons} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} step\+\_\+size=1) const override
+\begin{DoxyCompactList}\small\item\em Extract the singleton Focal\+Elements included in the current one. \end{DoxyCompactList}\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}{clone} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Clone method. \end{DoxyCompactList}\item 
 bool \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}{is\+Empty} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. \end{DoxyCompactList}\item 
 void \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}{clear} () override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+2D \hyperlink{classFocalElement}{Focal\+Element} using a matrix of booleans. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_ab1e04c916b081d4ac8f65c071619f2ae}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+Mat2\+D\+Focal\+Element}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+Mat2\+D\+Focal\+Element}}
 \index{Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+Mat2\+D\+Focal\+Element}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{Eigen\+Mat2\+D\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::\+Eigen\+Mat2\+D\+Focal\+Element (
+\subsubsection[{\texorpdfstring{Eigen\+Mat2\+D\+Focal\+Element(const Geometry\+::\+Rectangle \&bounding\+\_\+box, const Matrix\+Xb \&image)}{EigenMat2DFocalElement(const Geometry::Rectangle &bounding_box, const MatrixXb &image)}}]{\setlength{\rightskip}{0pt plus 5cm}Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::\+Eigen\+Mat2\+D\+Focal\+Element (
 \begin{DoxyParamCaption}
 \item[{const {\bf Geometry\+::\+Rectangle} \&}]{bounding\+\_\+box, }
 \item[{const {\bf Matrix\+Xb} \&}]{image}
 \end{DoxyParamCaption}
-)}\label{classEigenFE_1_1EigenMat2DFocalElement_ab1e04c916b081d4ac8f65c071619f2ae}
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a8d16fd73bfb48a9cce07e6e8ea5cb83d}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!````~Eigen\+Mat2\+D\+Focal\+Element@{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element}}
+)}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_ab1e04c916b081d4ac8f65c071619f2ae}{}\label{classEigenFE_1_1EigenMat2DFocalElement_ab1e04c916b081d4ac8f65c071619f2ae}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bounding\+\_\+box} & Bounding box in the discernment frame coordinates. \\
+\hline
+{\em image} & Matrix of booleans. \\
+\hline
+\end{DoxyParams}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!````~Eigen\+Mat2\+D\+Focal\+Element@{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element}}
 \index{````~Eigen\+Mat2\+D\+Focal\+Element@{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::$\sim$\+Eigen\+Mat2\+D\+Focal\+Element (
+\subsubsection[{\texorpdfstring{$\sim$\+Eigen\+Mat2\+D\+Focal\+Element() override=default}{~EigenMat2DFocalElement() override=default}}]{\setlength{\rightskip}{0pt plus 5cm}Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::$\sim$\+Eigen\+Mat2\+D\+Focal\+Element (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classEigenFE_1_1EigenMat2DFocalElement_a8d16fd73bfb48a9cce07e6e8ea5cb83d}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a8d16fd73bfb48a9cce07e6e8ea5cb83d}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a8d16fd73bfb48a9cce07e6e8ea5cb83d}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!cardinality@{cardinality}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!cardinality@{cardinality}}
 \index{cardinality@{cardinality}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{cardinality}]{\setlength{\rightskip}{0pt plus 5cm}double Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::cardinality (
+\subsubsection[{\texorpdfstring{cardinality() const override}{cardinality() const override}}]{\setlength{\rightskip}{0pt plus 5cm}double Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::cardinality (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{}\label{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}
+
+
+Evaluate the cardinality of the focal element. 
+
+\begin{DoxyReturn}{Returns}
+Cardinality of the set. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{Focal\+Element}.
 
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!clear@{clear}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!clear@{clear}}
 \index{clear@{clear}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::clear (
+\subsubsection[{\texorpdfstring{clear() override}{clear() override}}]{\setlength{\rightskip}{0pt plus 5cm}void Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}
+
+
+Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. 
+
 
 
 Implements \hyperlink{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{Focal\+Element}.
 
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!clone@{clone}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!clone@{clone}}
 \index{clone@{clone}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::clone (
+\subsubsection[{\texorpdfstring{clone() const override}{clone() const override}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::clone (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}
+
+
+Clone method. 
+
+\begin{DoxyReturn}{Returns}
+A copy of the current \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{Focal\+Element}.
 
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a87b3b927b9b669c4120efb6c271a14d6}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}}
 \index{get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{get\+Bounding\+\_\+box}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Geometry\+::\+Rectangle} \& Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Bounding\+\_\+box (
+\subsubsection[{\texorpdfstring{get\+Bounding\+\_\+box() const }{getBounding_box() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Geometry\+::\+Rectangle} \& Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Bounding\+\_\+box (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classEigenFE_1_1EigenMat2DFocalElement_a87b3b927b9b669c4120efb6c271a14d6}
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a50caa5018108e7c376c313c8c301165d}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Image@{get\+Image}}
+) const}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a87b3b927b9b669c4120efb6c271a14d6}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a87b3b927b9b669c4120efb6c271a14d6}
+
+
+Get the bounding box. 
+
+\begin{DoxyReturn}{Returns}
+Bounding box rectangle. 
+\end{DoxyReturn}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Image@{get\+Image}}
 \index{get\+Image@{get\+Image}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{get\+Image}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Matrix\+Xb} \& Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Image (
+\subsubsection[{\texorpdfstring{get\+Image() const }{getImage() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Matrix\+Xb} \& Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Image (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classEigenFE_1_1EigenMat2DFocalElement_a50caa5018108e7c376c313c8c301165d}
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
+) const}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a50caa5018108e7c376c313c8c301165d}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a50caa5018108e7c376c313c8c301165d}
+
+
+Get the image. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of booleans. 
+\end{DoxyReturn}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
 \index{get\+Inner\+Singletons@{get\+Inner\+Singletons}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{get\+Inner\+Singletons}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Inner\+Singletons (
+\subsubsection[{\texorpdfstring{get\+Inner\+Singletons(int step\+\_\+size=1) const override}{getInnerSingletons(int step_size=1) const override}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::get\+Inner\+Singletons (
 \begin{DoxyParamCaption}
-\item[{int}]{step\+\_\+size = {\ttfamily 1}}
+\item[{{\bf int}}]{step\+\_\+size = {\ttfamily 1}}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{}\label{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}
+
+
+Extract the singleton Focal\+Elements included in the current one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em step\+\_\+size} & The sampling resulution. Step\+\_\+size=1 means that all the singletons are retrieved. Step\+\_\+size $>$ 1 means that singletons are sampled for performance reason. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of singleton Focal\+Elements. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{Focal\+Element}.
 
-\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}{}\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!is\+Empty@{is\+Empty}}
+\index{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}!is\+Empty@{is\+Empty}}
 \index{is\+Empty@{is\+Empty}!Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element@{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}}
-\subsubsection[{is\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::is\+Empty (
+\subsubsection[{\texorpdfstring{is\+Empty() const override}{isEmpty() const override}}]{\setlength{\rightskip}{0pt plus 5cm}bool Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element\+::is\+Empty (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}{}\label{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}
+
+
+Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. 
+
+\begin{DoxyReturn}{Returns}
+True if the object is the empty set. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{Focal\+Element}.

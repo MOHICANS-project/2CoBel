@@ -2,12 +2,16 @@
 \label{classFocalElement}\index{Focal\+Element@{Focal\+Element}}
 
 
+Interface for a focal element set.  
+
+
+
+
 {\ttfamily \#include $<$Focal\+Element.\+h$>$}
 
 
 
-Inheritance diagram for Focal\+Element\+:
-\nopagebreak
+Inheritance diagram for Focal\+Element\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,27 +33,27 @@ Collaboration diagram for Focal\+Element\+:\nopagebreak
 virtual \hyperlink{classFocalElement_a782f3f830a5cfa7242d519b8be3b4346}{$\sim$\+Focal\+Element} ()=default
 \item 
 virtual double \hyperlink{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{cardinality} () const =0
+\begin{DoxyCompactList}\small\item\em Evaluate the cardinality of the focal element. \end{DoxyCompactList}\item 
+bool \hyperlink{classFocalElement_a5bb5efd8bcd128ba471f6b31aaa43865}{operator==} (const \hyperlink{classFocalElement}{Focal\+Element} \&rhs) const 
 \item 
-bool \hyperlink{classFocalElement_a431d66c098737bd6a64286a492b5ac65}{operator==} (const \hyperlink{classFocalElement}{Focal\+Element} \&rhs)
-\item 
-bool \hyperlink{classFocalElement_afde90486f09003215b51211c6546a9d3}{operator!=} (const \hyperlink{classFocalElement}{Focal\+Element} \&rhs)
+bool \hyperlink{classFocalElement_a9071b764cf8860010a0adf4655743c6e}{operator!=} (const \hyperlink{classFocalElement}{Focal\+Element} \&rhs) const 
 \item 
 bool \hyperlink{classFocalElement_aa1487ed49e7d203636edc8237322ed8b}{inside} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Checks whether the \hyperlink{classFocalElement}{Focal\+Element} is inside another. \end{DoxyCompactList}\item 
 bool \hyperlink{classFocalElement_acd424124e2ecff4b8c959d4874b89739}{contains} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Checks whether the \hyperlink{classFocalElement}{Focal\+Element} contains another. \end{DoxyCompactList}\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a2bb276626cceeca8f8ca46eafc923a04}{intersect} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the intersection with another \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}{unite} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
-\item 
-virtual std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{get\+Inner\+Singletons} (int step\+\_\+size) const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Compute the union with another \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{get\+Inner\+Singletons} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} step\+\_\+size) const =0
+\begin{DoxyCompactList}\small\item\em Extract the singleton Focal\+Elements included in the current one. \end{DoxyCompactList}\item 
 virtual std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{clone} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Clone method. \end{DoxyCompactList}\item 
 virtual bool \hyperlink{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{is\+Empty} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{clear} ()=0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -57,125 +61,213 @@ std\+::ostream \& \hyperlink{classFocalElement_a437885090fd5a00881653a501a4c70f1
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Interface for a focal element set. 
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classFocalElement_a782f3f830a5cfa7242d519b8be3b4346}{}\index{Focal\+Element@{Focal\+Element}!````~Focal\+Element@{$\sim$\+Focal\+Element}}
+\index{Focal\+Element@{Focal\+Element}!````~Focal\+Element@{$\sim$\+Focal\+Element}}
 \index{````~Focal\+Element@{$\sim$\+Focal\+Element}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{$\sim$\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}virtual Focal\+Element\+::$\sim$\+Focal\+Element (
+\subsubsection[{\texorpdfstring{$\sim$\+Focal\+Element()=default}{~FocalElement()=default}}]{\setlength{\rightskip}{0pt plus 5cm}virtual Focal\+Element\+::$\sim$\+Focal\+Element (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\label{classFocalElement_a782f3f830a5cfa7242d519b8be3b4346}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}\hypertarget{classFocalElement_a782f3f830a5cfa7242d519b8be3b4346}{}\label{classFocalElement_a782f3f830a5cfa7242d519b8be3b4346}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{}\index{Focal\+Element@{Focal\+Element}!cardinality@{cardinality}}
+\index{Focal\+Element@{Focal\+Element}!cardinality@{cardinality}}
 \index{cardinality@{cardinality}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{cardinality}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Focal\+Element\+::cardinality (
+\subsubsection[{\texorpdfstring{cardinality() const =0}{cardinality() const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual double Focal\+Element\+::cardinality (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{}\label{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}
 
 
-Implemented in \hyperlink{classCompositeFocalElement_a18a671ee1759b5df42770384ace275fd}{Composite\+Focal\+Element}, \hyperlink{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classClipper2DFocalElement_a8eabcd9808b5b6bb7ec2f26eb89b5cd9}{Clipper2\+D\+Focal\+Element}, and \hyperlink{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{Unidimensional\+Focal\+Element}.
+Evaluate the cardinality of the focal element. 
 
-\hypertarget{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{}\index{Focal\+Element@{Focal\+Element}!clear@{clear}}
+\begin{DoxyReturn}{Returns}
+Cardinality of the set. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classClipper2DFocalElement_a8eabcd9808b5b6bb7ec2f26eb89b5cd9}{Clipper2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a18a671ee1759b5df42770384ace275fd}{Composite\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{Unidimensional\+Focal\+Element}, and \hyperlink{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{Box\+Set2\+D\+Focal\+Element}.
+
+\index{Focal\+Element@{Focal\+Element}!clear@{clear}}
 \index{clear@{clear}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+::clear (
+\subsubsection[{\texorpdfstring{clear()=0}{clear()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Focal\+Element\+::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{}\label{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}
 
 
-Implemented in \hyperlink{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a010c40507f9c45da7327f0418ea32b53}{Composite\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a1bd0c21e3e7e5a3ef78f4b47b98b6202}{Unidimensional\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_aa1110dabb3e01c681826374d1a485670}{Clipper2\+D\+Focal\+Element}.
+Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. 
 
-\hypertarget{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{}\index{Focal\+Element@{Focal\+Element}!clone@{clone}}
+
+
+Implemented in \hyperlink{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a32f67417ea35cb7d330d8ca27472c863}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a1bd0c21e3e7e5a3ef78f4b47b98b6202}{Unidimensional\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a010c40507f9c45da7327f0418ea32b53}{Composite\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_aa1110dabb3e01c681826374d1a485670}{Clipper2\+D\+Focal\+Element}.
+
+\index{Focal\+Element@{Focal\+Element}!clone@{clone}}
 \index{clone@{clone}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::clone (
+\subsubsection[{\texorpdfstring{clone() const =0}{clone() const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::clone (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{}\label{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}
 
 
-Implemented in \hyperlink{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a3ae99f9c094419664e443d650560baf4}{Composite\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_aa06e27bc6c262783704883477d630d60}{Unidimensional\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_a43aa82869ed3bf22682907ec9c475930}{Clipper2\+D\+Focal\+Element}.
+Clone method. 
 
-\hypertarget{classFocalElement_acd424124e2ecff4b8c959d4874b89739}{}\index{Focal\+Element@{Focal\+Element}!contains@{contains}}
+\begin{DoxyReturn}{Returns}
+A copy of the current \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a7b11a9c1a340338ddc0502c04c3ebb50}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a3ae99f9c094419664e443d650560baf4}{Composite\+Focal\+Element}, \hyperlink{classClipper2DFocalElement_a43aa82869ed3bf22682907ec9c475930}{Clipper2\+D\+Focal\+Element}, and \hyperlink{classUnidimensionalFocalElement_aa06e27bc6c262783704883477d630d60}{Unidimensional\+Focal\+Element}.
+
+\index{Focal\+Element@{Focal\+Element}!contains@{contains}}
 \index{contains@{contains}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{contains}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::contains (
+\subsubsection[{\texorpdfstring{contains(const Focal\+Element \&other) const }{contains(const FocalElement &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::contains (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{other}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_acd424124e2ecff4b8c959d4874b89739}
-\hypertarget{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{}\index{Focal\+Element@{Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_acd424124e2ecff4b8c959d4874b89739}{}\label{classFocalElement_acd424124e2ecff4b8c959d4874b89739}
+
+
+Checks whether the \hyperlink{classFocalElement}{Focal\+Element} contains another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other Focal\+Elment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the current \hyperlink{classFocalElement}{Focal\+Element} contains the other. 
+\end{DoxyReturn}
+\index{Focal\+Element@{Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
 \index{get\+Inner\+Singletons@{get\+Inner\+Singletons}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{get\+Inner\+Singletons}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ $>$ Focal\+Element\+::get\+Inner\+Singletons (
+\subsubsection[{\texorpdfstring{get\+Inner\+Singletons(int step\+\_\+size) const =0}{getInnerSingletons(int step_size) const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ $>$ Focal\+Element\+::get\+Inner\+Singletons (
 \begin{DoxyParamCaption}
-\item[{int}]{step\+\_\+size}
+\item[{{\bf int}}]{step\+\_\+size}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{}\label{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}
 
 
-Implemented in \hyperlink{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_aae945111cdffaaa5dc3216e439ac6ad2}{Composite\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_ad37dc12733140cfd631d451ebfefcaf7}{Unidimensional\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_a2455cb3cc5940ecee3e012bcdcc25f44}{Clipper2\+D\+Focal\+Element}.
+Extract the singleton Focal\+Elements included in the current one. 
 
-\hypertarget{classFocalElement_aa1487ed49e7d203636edc8237322ed8b}{}\index{Focal\+Element@{Focal\+Element}!inside@{inside}}
+
+\begin{DoxyParams}{Parameters}
+{\em step\+\_\+size} & The sampling resulution. Step\+\_\+size=1 means that all the singletons are retrieved. Step\+\_\+size $>$ 1 means that singletons are sampled for performance reason. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of singleton Focal\+Elements. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_a02348604649107935c95106b1fb18a06}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_aae945111cdffaaa5dc3216e439ac6ad2}{Composite\+Focal\+Element}, \hyperlink{classClipper2DFocalElement_a2455cb3cc5940ecee3e012bcdcc25f44}{Clipper2\+D\+Focal\+Element}, and \hyperlink{classUnidimensionalFocalElement_ad37dc12733140cfd631d451ebfefcaf7}{Unidimensional\+Focal\+Element}.
+
+\index{Focal\+Element@{Focal\+Element}!inside@{inside}}
 \index{inside@{inside}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{inside}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::inside (
+\subsubsection[{\texorpdfstring{inside(const Focal\+Element \&other) const }{inside(const FocalElement &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::inside (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{other}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_aa1487ed49e7d203636edc8237322ed8b}
-\hypertarget{classFocalElement_a2bb276626cceeca8f8ca46eafc923a04}{}\index{Focal\+Element@{Focal\+Element}!intersect@{intersect}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_aa1487ed49e7d203636edc8237322ed8b}{}\label{classFocalElement_aa1487ed49e7d203636edc8237322ed8b}
+
+
+Checks whether the \hyperlink{classFocalElement}{Focal\+Element} is inside another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other Focal\+Elment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the current \hyperlink{classFocalElement}{Focal\+Element} is inside the other. 
+\end{DoxyReturn}
+\index{Focal\+Element@{Focal\+Element}!intersect@{intersect}}
 \index{intersect@{intersect}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::intersect (
+\subsubsection[{\texorpdfstring{intersect(const Focal\+Element \&other) const }{intersect(const FocalElement &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::intersect (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{other}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_a2bb276626cceeca8f8ca46eafc923a04}
-\hypertarget{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{}\index{Focal\+Element@{Focal\+Element}!is\+Empty@{is\+Empty}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_a2bb276626cceeca8f8ca46eafc923a04}{}\label{classFocalElement_a2bb276626cceeca8f8ca46eafc923a04}
+
+
+Compute the intersection with another \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{classFocalElement}{Focal\+Element} to intersect with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting intersection \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
+\index{Focal\+Element@{Focal\+Element}!is\+Empty@{is\+Empty}}
 \index{is\+Empty@{is\+Empty}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{is\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Focal\+Element\+::is\+Empty (
+\subsubsection[{\texorpdfstring{is\+Empty() const =0}{isEmpty() const =0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Focal\+Element\+::is\+Empty (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{}\label{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}
 
 
-Implemented in \hyperlink{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a015e5fa735f796d4ac38aec2e332b49a}{Composite\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a836c8a041ffba3e3e2ff7e584469a650}{Unidimensional\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_ae79aa59bb6a1109d729a32240631d573}{Clipper2\+D\+Focal\+Element}.
+Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. 
 
-\hypertarget{classFocalElement_afde90486f09003215b51211c6546a9d3}{}\index{Focal\+Element@{Focal\+Element}!operator"!=@{operator"!=}}
+\begin{DoxyReturn}{Returns}
+True if the object is the empty set. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}{Box\+Set2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_af0b7bcf11590355059f49c59c51aea3f}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a836c8a041ffba3e3e2ff7e584469a650}{Unidimensional\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a015e5fa735f796d4ac38aec2e332b49a}{Composite\+Focal\+Element}, and \hyperlink{classClipper2DFocalElement_ae79aa59bb6a1109d729a32240631d573}{Clipper2\+D\+Focal\+Element}.
+
+\index{Focal\+Element@{Focal\+Element}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::operator!= (
+\subsubsection[{\texorpdfstring{operator"!=(const Focal\+Element \&rhs) const }{operator!=(const FocalElement &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::operator!= (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{rhs}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_afde90486f09003215b51211c6546a9d3}
-\hypertarget{classFocalElement_a431d66c098737bd6a64286a492b5ac65}{}\index{Focal\+Element@{Focal\+Element}!operator==@{operator==}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_a9071b764cf8860010a0adf4655743c6e}{}\label{classFocalElement_a9071b764cf8860010a0adf4655743c6e}
+\index{Focal\+Element@{Focal\+Element}!operator==@{operator==}}
 \index{operator==@{operator==}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::operator== (
+\subsubsection[{\texorpdfstring{operator==(const Focal\+Element \&rhs) const }{operator==(const FocalElement &rhs) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Focal\+Element\+::operator== (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{rhs}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_a431d66c098737bd6a64286a492b5ac65}
-\hypertarget{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}{}\index{Focal\+Element@{Focal\+Element}!unite@{unite}}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_a5bb5efd8bcd128ba471f6b31aaa43865}{}\label{classFocalElement_a5bb5efd8bcd128ba471f6b31aaa43865}
+\index{Focal\+Element@{Focal\+Element}!unite@{unite}}
 \index{unite@{unite}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{unite}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::unite (
+\subsubsection[{\texorpdfstring{unite(const Focal\+Element \&other) const }{unite(const FocalElement &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::unite (
 \begin{DoxyParamCaption}
 \item[{const {\bf Focal\+Element} \&}]{other}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}{}\label{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}
+
+
+Compute the union with another \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{classFocalElement}{Focal\+Element} to unite with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting union \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
 
 
 \subsection{Friends And Related Function Documentation}
-\hypertarget{classFocalElement_a437885090fd5a00881653a501a4c70f1}{}\index{Focal\+Element@{Focal\+Element}!operator$<$$<$@{operator$<$$<$}}
+\index{Focal\+Element@{Focal\+Element}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!Focal\+Element@{Focal\+Element}}
-\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
 \begin{DoxyParamCaption}
 \item[{std\+::ostream \&}]{os, }
 \item[{const {\bf Focal\+Element} \&}]{element}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [friend]}}\label{classFocalElement_a437885090fd5a00881653a501a4c70f1}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classFocalElement_a437885090fd5a00881653a501a4c70f1}{}\label{classFocalElement_a437885090fd5a00881653a501a4c70f1}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

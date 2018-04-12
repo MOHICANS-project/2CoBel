@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['unidimensionalfocalelement', ['UnidimensionalFocalElement', ['../classUnidimensionalFocalElement.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['unidimensionalfocalelement',['UnidimensionalFocalElement',['../classUnidimensionalFocalElement.html',1,'']]]
+];

@@ -1,11 +1,15 @@
-var searchData =
-    [
-        ['has_5finside', ['has_inside', ['../classGeometry_1_1ClipperPolygon.html#a8e863b1d54c4ccc8c9d84bcccbbb137f', 1, 'Geometry::ClipperPolygon::has_inside()'], ['../classGeometry_1_1Rectangle.html#ab186008b8f7c4b99fec564021c40e3eb', 1, 'Geometry::Rectangle::has_inside()'], ['../classGeometry_1_1Shape.html#a2e1341ab60671a72a96bca2238cd38f0', 1, 'Geometry::Shape::has_inside()']]],
-        ['hash', ['hash', ['../classHashableFocalElement.html#a8b7bfbf1e107fa5a6cfc5033db196c63', 1, 'HashableFocalElement::hash()'], ['../classUnidimensionalFocalElement.html#a073ce6e51cb7fff32b53e5f7b1d729c7', 1, 'UnidimensionalFocalElement::hash()']]],
-        ['hash_3c_20std_3a_3aunique_5fptr_3c_20hashablefocalelement_20_3e_20_3e', ['hash&lt; std::unique_ptr&lt; HashableFocalElement &gt; &gt;', ['../classstd_1_1hash_3_01std_1_1unique__ptr_3_01HashableFocalElement_01_4_01_4.html', 1, 'std']]],
-        ['hashablefocalelement', ['HashableFocalElement', ['../classHashableFocalElement.html', 1, '']]],
-        ['hashablefocalelement_2eh', ['HashableFocalElement.h', ['../HashableFocalElement_8h.html', 1, '']]],
-        ['hashablefocalelementcontainer', ['HashableFocalElementContainer', ['../classHashableFocalElementContainer.html', 1, 'HashableFocalElementContainer'], ['../classHashableFocalElementContainer.html#a59ef0e4b071a31c9ec4d12b265966459', 1, 'HashableFocalElementContainer::HashableFocalElementContainer()=default'], ['../classHashableFocalElementContainer.html#a45b0628e9bd91e6f2bd0c574e7958579', 1, 'HashableFocalElementContainer::HashableFocalElementContainer(const HashableFocalElementContainer &amp;other)=delete'], ['../classHashableFocalElementContainer.html#acbb66df9fd4caec000da0d07957192dc', 1, 'HashableFocalElementContainer::HashableFocalElementContainer(HashableFocalElementContainer &amp;&amp;other)=default']]],
-        ['hashablefocalelementcontainer_2ecpp', ['HashableFocalElementContainer.cpp', ['../HashableFocalElementContainer_8cpp.html', 1, '']]],
-        ['hashablefocalelementcontainer_2eh', ['HashableFocalElementContainer.h', ['../HashableFocalElementContainer_8h.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['feature_5ftests_2ec',['feature_tests.c',['../feature__tests_8c.html',1,'']]],
+  ['feature_5ftests_2ecxx',['feature_tests.cxx',['../feature__tests_8cxx.html',1,'']]],
+  ['features',['features',['../feature__tests_8c.html#a1582568e32f689337602a16bf8a5bff0',1,'features():&#160;feature_tests.c'],['../feature__tests_8cxx.html#a1582568e32f689337602a16bf8a5bff0',1,'features():&#160;feature_tests.cxx']]],
+  ['fee',['fee',['../LICENSE_8txt.html#ab87e69617b037d0f8e590245149717f9',1,'LICENSE.txt']]],
+  ['fixed',['fixed',['../CMakeCache_8txt.html#a4a461500e9bc62f37d07d326b178ef08',1,'CMakeCache.txt']]],
+  ['focalelement',['FocalElement',['../classFocalElement.html',1,'']]],
+  ['focalelement_2eh',['FocalElement.h',['../FocalElement_8h.html',1,'']]],
+  ['focalelementcontainer',['FocalElementContainer',['../classFocalElementContainer.html',1,'']]],
+  ['focalelementcontainer_2eh',['FocalElementContainer.h',['../FocalElementContainer_8h.html',1,'']]],
+  ['focalelementcontainerdispatcher',['FocalElementContainerDispatcher',['../classFocalElementContainerDispatcher.html',1,'']]],
+  ['focalelementcontainerdispatcher_2eh',['FocalElementContainerDispatcher.h',['../FocalElementContainerDispatcher_8h.html',1,'']]],
+  ['forms',['forms',['../LICENSE_8txt.html#ab13e2a61228c23debeaf2c63c3cd5013',1,'LICENSE.txt']]]
+];

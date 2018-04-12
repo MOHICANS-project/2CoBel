@@ -28,7 +28,6 @@ class Evidence {
 
 protected:
 
-
     void extendPath(unsigned long long &path, size_t pos) const;
 
     void extendPath(boost::dynamic_bitset<> &path, size_t pos) const;

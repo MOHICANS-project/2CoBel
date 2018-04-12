@@ -2,7 +2,7 @@
 \label{classBoxSet2DFocalElement}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
 
 
-2\+D \hyperlink{classFocalElement}{Focal\+Element} expressed as a set of rectangles.  
+2D \hyperlink{classFocalElement}{Focal\+Element} expressed as a set of rectangles.  
 
 
 
@@ -31,11 +31,11 @@ Collaboration diagram for Box\+Set2\+D\+Focal\+Element\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classBoxSet2DFocalElement_a8215ede5350376e541893ce73d8e5a05}{Box\+Set2\+D\+Focal\+Element} (const std\+::vector$<$ \hyperlink{classGeometry_1_1Rectangle}{Geometry\+::\+Rectangle} $>$ \&boxes)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classBoxSet2DFocalElement_aca7b4a88ffdd6b3d1e8b688c4f2e13ba}{$\sim$\+Box\+Set2\+D\+Focal\+Element} () override=default
 \item 
 double \hyperlink{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{cardinality} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Evaluate the cardinality of the focal element. \end{DoxyCompactList}\item 
 const std\+::vector$<$ \hyperlink{classGeometry_1_1Rectangle}{Geometry\+::\+Rectangle} $>$ \& \hyperlink{classBoxSet2DFocalElement_a21707f3b23e1d1b72db05ccfae023634}{get\+Boxes} () const 
 \begin{DoxyCompactList}\small\item\em Get the boxes. \end{DoxyCompactList}\item 
 const \hyperlink{classGeometry_1_1Rectangle}{Geometry\+::\+Rectangle} \& \hyperlink{classBoxSet2DFocalElement_a431361485288f14e2770aab9d12a1320}{get\+Bounding\+\_\+box} () const 
@@ -46,77 +46,104 @@ void \hyperlink{classBoxSet2DFocalElement_a48eaa6fae893da98034ea1359bb6a6da}{sim
 \begin{DoxyCompactList}\small\item\em Simplify representation fusing contigous rectangles. \end{DoxyCompactList}\item 
 void \hyperlink{classBoxSet2DFocalElement_a8e80a0fb79597dfa97e7d2d4ef49623d}{simplify\+\_\+included} ()
 \begin{DoxyCompactList}\small\item\em Simplify representation with inclusion test. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{get\+Inner\+Singletons} (int step\+\_\+size=1) const override
-\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{get\+Inner\+Singletons} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} step\+\_\+size=1) const override
+\begin{DoxyCompactList}\small\item\em Extract the singleton Focal\+Elements included in the current one. \end{DoxyCompactList}\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}{clone} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Clone method. \end{DoxyCompactList}\item 
 bool \hyperlink{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}{is\+Empty} () const override
-\item 
+\begin{DoxyCompactList}\small\item\em Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. \end{DoxyCompactList}\item 
 void \hyperlink{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}{clear} () override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-2\+D \hyperlink{classFocalElement}{Focal\+Element} expressed as a set of rectangles. 
+2D \hyperlink{classFocalElement}{Focal\+Element} expressed as a set of rectangles. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classBoxSet2DFocalElement_a8215ede5350376e541893ce73d8e5a05}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
 \index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{Box\+Set2\+D\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Box\+Set2\+D\+Focal\+Element\+::\+Box\+Set2\+D\+Focal\+Element (
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
+\subsubsection[{\texorpdfstring{Box\+Set2\+D\+Focal\+Element(const std\+::vector$<$ Geometry\+::\+Rectangle $>$ \&boxes)}{BoxSet2DFocalElement(const std::vector< Geometry::Rectangle > &boxes)}}]{\setlength{\rightskip}{0pt plus 5cm}Box\+Set2\+D\+Focal\+Element\+::\+Box\+Set2\+D\+Focal\+Element (
 \begin{DoxyParamCaption}
 \item[{const std\+::vector$<$ {\bf Geometry\+::\+Rectangle} $>$ \&}]{boxes}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classBoxSet2DFocalElement_a8215ede5350376e541893ce73d8e5a05}
-\hypertarget{classBoxSet2DFocalElement_aca7b4a88ffdd6b3d1e8b688c4f2e13ba}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!````~Box\+Set2\+D\+Focal\+Element@{$\sim$\+Box\+Set2\+D\+Focal\+Element}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classBoxSet2DFocalElement_a8215ede5350376e541893ce73d8e5a05}{}\label{classBoxSet2DFocalElement_a8215ede5350376e541893ce73d8e5a05}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em boxes} & Array of boxes. \\
+\hline
+\end{DoxyParams}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!````~Box\+Set2\+D\+Focal\+Element@{$\sim$\+Box\+Set2\+D\+Focal\+Element}}
 \index{````~Box\+Set2\+D\+Focal\+Element@{$\sim$\+Box\+Set2\+D\+Focal\+Element}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{$\sim$\+Box\+Set2\+D\+Focal\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Box\+Set2\+D\+Focal\+Element\+::$\sim$\+Box\+Set2\+D\+Focal\+Element (
+\subsubsection[{\texorpdfstring{$\sim$\+Box\+Set2\+D\+Focal\+Element() override=default}{~BoxSet2DFocalElement() override=default}}]{\setlength{\rightskip}{0pt plus 5cm}Box\+Set2\+D\+Focal\+Element\+::$\sim$\+Box\+Set2\+D\+Focal\+Element (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classBoxSet2DFocalElement_aca7b4a88ffdd6b3d1e8b688c4f2e13ba}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\hypertarget{classBoxSet2DFocalElement_aca7b4a88ffdd6b3d1e8b688c4f2e13ba}{}\label{classBoxSet2DFocalElement_aca7b4a88ffdd6b3d1e8b688c4f2e13ba}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!cardinality@{cardinality}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!cardinality@{cardinality}}
 \index{cardinality@{cardinality}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{cardinality}]{\setlength{\rightskip}{0pt plus 5cm}double Box\+Set2\+D\+Focal\+Element\+::cardinality (
+\subsubsection[{\texorpdfstring{cardinality() const override}{cardinality() const override}}]{\setlength{\rightskip}{0pt plus 5cm}double Box\+Set2\+D\+Focal\+Element\+::cardinality (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{}\label{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}
+
+
+Evaluate the cardinality of the focal element. 
+
+\begin{DoxyReturn}{Returns}
+Cardinality of the set. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_a4ab1bbd0875e6e7ce2d7fe152e6a1639}{Focal\+Element}.
 
-\hypertarget{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!clear@{clear}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!clear@{clear}}
 \index{clear@{clear}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::clear (
+\subsubsection[{\texorpdfstring{clear() override}{clear() override}}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::clear (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}{}\label{classBoxSet2DFocalElement_a9b09d64e1511def1a20898c7e3ac7390}
+
+
+Clear the \hyperlink{classFocalElement}{Focal\+Element}, resulting into the empty set. 
+
 
 
 Implements \hyperlink{classFocalElement_a635cb4afffa2dc69cf9fc9ff94a6d90f}{Focal\+Element}.
 
-\hypertarget{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!clone@{clone}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!clone@{clone}}
 \index{clone@{clone}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Box\+Set2\+D\+Focal\+Element\+::clone (
+\subsubsection[{\texorpdfstring{clone() const override}{clone() const override}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ Box\+Set2\+D\+Focal\+Element\+::clone (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}{}\label{classBoxSet2DFocalElement_a0e325a4cad33db05c423f46eb1f346c9}
+
+
+Clone method. 
+
+\begin{DoxyReturn}{Returns}
+A copy of the current \hyperlink{classFocalElement}{Focal\+Element}. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{Focal\+Element}.
 
-\hypertarget{classBoxSet2DFocalElement_a431361485288f14e2770aab9d12a1320}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}}
 \index{get\+Bounding\+\_\+box@{get\+Bounding\+\_\+box}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{get\+Bounding\+\_\+box}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Geometry\+::\+Rectangle} \& Box\+Set2\+D\+Focal\+Element\+::get\+Bounding\+\_\+box (
+\subsubsection[{\texorpdfstring{get\+Bounding\+\_\+box() const }{getBounding_box() const }}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Geometry\+::\+Rectangle} \& Box\+Set2\+D\+Focal\+Element\+::get\+Bounding\+\_\+box (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classBoxSet2DFocalElement_a431361485288f14e2770aab9d12a1320}
+) const}\hypertarget{classBoxSet2DFocalElement_a431361485288f14e2770aab9d12a1320}{}\label{classBoxSet2DFocalElement_a431361485288f14e2770aab9d12a1320}
 
 
 Get the bounding box. 
@@ -124,13 +151,13 @@ Get the bounding box.
 The bounding box is the smallest rectangle containing all the boxes. \begin{DoxyReturn}{Returns}
 The bounding box. 
 \end{DoxyReturn}
-\hypertarget{classBoxSet2DFocalElement_a21707f3b23e1d1b72db05ccfae023634}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Boxes@{get\+Boxes}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Boxes@{get\+Boxes}}
 \index{get\+Boxes@{get\+Boxes}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{get\+Boxes}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf Geometry\+::\+Rectangle} $>$ \& Box\+Set2\+D\+Focal\+Element\+::get\+Boxes (
+\subsubsection[{\texorpdfstring{get\+Boxes() const }{getBoxes() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf Geometry\+::\+Rectangle} $>$ \& Box\+Set2\+D\+Focal\+Element\+::get\+Boxes (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classBoxSet2DFocalElement_a21707f3b23e1d1b72db05ccfae023634}
+) const}\hypertarget{classBoxSet2DFocalElement_a21707f3b23e1d1b72db05ccfae023634}{}\label{classBoxSet2DFocalElement_a21707f3b23e1d1b72db05ccfae023634}
 
 
 Get the boxes. 
@@ -138,24 +165,36 @@ Get the boxes.
 \begin{DoxyReturn}{Returns}
 Array of rectangles. 
 \end{DoxyReturn}
-\hypertarget{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
 \index{get\+Inner\+Singletons@{get\+Inner\+Singletons}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{get\+Inner\+Singletons}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ Box\+Set2\+D\+Focal\+Element\+::get\+Inner\+Singletons (
+\subsubsection[{\texorpdfstring{get\+Inner\+Singletons(int step\+\_\+size=1) const override}{getInnerSingletons(int step_size=1) const override}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ Box\+Set2\+D\+Focal\+Element\+::get\+Inner\+Singletons (
 \begin{DoxyParamCaption}
-\item[{int}]{step\+\_\+size = {\ttfamily 1}}
+\item[{{\bf int}}]{step\+\_\+size = {\ttfamily 1}}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}{}\label{classBoxSet2DFocalElement_afdd0db628fc45a5865c72d9f1fb3fcce}
+
+
+Extract the singleton Focal\+Elements included in the current one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em step\+\_\+size} & The sampling resulution. Step\+\_\+size=1 means that all the singletons are retrieved. Step\+\_\+size $>$ 1 means that singletons are sampled for performance reason. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of singleton Focal\+Elements. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{Focal\+Element}.
 
-\hypertarget{classBoxSet2DFocalElement_aea0ef3a8e8f6e64e1305400771590749}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Num\+Boxes@{get\+Num\+Boxes}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!get\+Num\+Boxes@{get\+Num\+Boxes}}
 \index{get\+Num\+Boxes@{get\+Num\+Boxes}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{get\+Num\+Boxes}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Box\+Set2\+D\+Focal\+Element\+::get\+Num\+Boxes (
+\subsubsection[{\texorpdfstring{get\+Num\+Boxes()}{getNumBoxes()}}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Box\+Set2\+D\+Focal\+Element\+::get\+Num\+Boxes (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{classBoxSet2DFocalElement_aea0ef3a8e8f6e64e1305400771590749}
+)}\hypertarget{classBoxSet2DFocalElement_aea0ef3a8e8f6e64e1305400771590749}{}\label{classBoxSet2DFocalElement_aea0ef3a8e8f6e64e1305400771590749}
 
 
 Get the number of boxes. 
@@ -163,35 +202,42 @@ Get the number of boxes.
 \begin{DoxyReturn}{Returns}
 Size of the boxes array. 
 \end{DoxyReturn}
-\hypertarget{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!is\+Empty@{is\+Empty}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!is\+Empty@{is\+Empty}}
 \index{is\+Empty@{is\+Empty}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{is\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool Box\+Set2\+D\+Focal\+Element\+::is\+Empty (
+\subsubsection[{\texorpdfstring{is\+Empty() const override}{isEmpty() const override}}]{\setlength{\rightskip}{0pt plus 5cm}bool Box\+Set2\+D\+Focal\+Element\+::is\+Empty (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}{}\label{classBoxSet2DFocalElement_a7512305b698f37aa77f3acacd0626f77}
+
+
+Check whether the current \hyperlink{classFocalElement}{Focal\+Element} is the empty set. 
+
+\begin{DoxyReturn}{Returns}
+True if the object is the empty set. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classFocalElement_aed131a65fdfc885019f9bf8f1d454508}{Focal\+Element}.
 
-\hypertarget{classBoxSet2DFocalElement_a48eaa6fae893da98034ea1359bb6a6da}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!simplify\+\_\+contigous@{simplify\+\_\+contigous}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!simplify\+\_\+contigous@{simplify\+\_\+contigous}}
 \index{simplify\+\_\+contigous@{simplify\+\_\+contigous}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{simplify\+\_\+contigous}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::simplify\+\_\+contigous (
+\subsubsection[{\texorpdfstring{simplify\+\_\+contigous()}{simplify_contigous()}}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::simplify\+\_\+contigous (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{classBoxSet2DFocalElement_a48eaa6fae893da98034ea1359bb6a6da}
+)}\hypertarget{classBoxSet2DFocalElement_a48eaa6fae893da98034ea1359bb6a6da}{}\label{classBoxSet2DFocalElement_a48eaa6fae893da98034ea1359bb6a6da}
 
 
 Simplify representation fusing contigous rectangles. 
 
-\hypertarget{classBoxSet2DFocalElement_a8e80a0fb79597dfa97e7d2d4ef49623d}{}\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!simplify\+\_\+included@{simplify\+\_\+included}}
+\index{Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}!simplify\+\_\+included@{simplify\+\_\+included}}
 \index{simplify\+\_\+included@{simplify\+\_\+included}!Box\+Set2\+D\+Focal\+Element@{Box\+Set2\+D\+Focal\+Element}}
-\subsubsection[{simplify\+\_\+included}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::simplify\+\_\+included (
+\subsubsection[{\texorpdfstring{simplify\+\_\+included()}{simplify_included()}}]{\setlength{\rightskip}{0pt plus 5cm}void Box\+Set2\+D\+Focal\+Element\+::simplify\+\_\+included (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{classBoxSet2DFocalElement_a8e80a0fb79597dfa97e7d2d4ef49623d}
+)}\hypertarget{classBoxSet2DFocalElement_a8e80a0fb79597dfa97e7d2d4ef49623d}{}\label{classBoxSet2DFocalElement_a8e80a0fb79597dfa97e7d2d4ef49623d}
 
 
 Simplify representation with inclusion test. 

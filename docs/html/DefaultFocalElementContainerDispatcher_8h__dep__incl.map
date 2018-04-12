@@ -1,5 +1,7 @@
-<map id="builders/DefaultFocalElementContainerDispatcher.h" name="builders/DefaultFocalElementContainerDispatcher.h">
-<area shape="rect" id="node2" href="$DefaultFocalElementContainerDispatcher_8cpp.html" title="builders/DefaultFocalElement\lContainerDispatcher.cpp" alt="" coords="5,95,199,136"/>
-<area shape="rect" id="node3" href="$Evidence_8h.html" title="Evidence.h" alt="" coords="223,102,309,129"/>
-<area shape="rect" id="node4" href="$Evidence_8cpp.html" title="Evidence.cpp" alt="" coords="215,184,317,211"/>
+<map id="containers/DefaultFocalElementContainerDispatcher.h" name="containers/DefaultFocalElementContainerDispatcher.h">
+<area shape="rect" id="node2" href="$DefaultFocalElementContainerDispatcher_8cpp.html" title="containers/DefaultFocalElement\lContainerDispatcher.cpp" alt="" coords="5,95,213,136"/>
+<area shape="rect" id="node3" href="$Evidence_8h.html" title="Evidence.h" alt="" coords="238,102,325,129"/>
+<area shape="rect" id="node4" href="$clipper__demo_8cpp.html" title="demos/clipper_demo.cpp" alt="" coords="15,191,182,218"/>
+<area shape="rect" id="node5" href="$unidimensional__demo_8cpp.html" title="demos/unidimensional\l_demo.cpp" alt="" coords="206,184,357,225"/>
+<area shape="rect" id="node6" href="$Evidence_8cpp.html" title="Evidence.cpp" alt="" coords="381,191,483,218"/>
 </map>

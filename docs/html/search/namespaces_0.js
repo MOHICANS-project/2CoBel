@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['eigenfe', ['EigenFE', ['../namespaceEigenFE.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['eigenfe',['EigenFE',['../namespaceEigenFE.html',1,'']]]
+];

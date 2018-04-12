@@ -1,3 +1,4 @@
 <map id="Clipper2DFocalElement" name="Clipper2DFocalElement">
-<area shape="rect" id="node2" href="$classFocalElement.html" title="{FocalElement\n||+ ~FocalElement()\l+ cardinality()\l+ operator==()\l+ operator!=()\l+ inside()\l+ contains()\l+ intersect()\l+ unite()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="24,5,175,244"/>
+<area shape="rect" id="node2" href="$classHashableFocalElement.html" title="FocalElement for which an hash function for fast retrieval can be defined. " alt="" coords="21,292,178,369"/>
+<area shape="rect" id="node3" href="$classFocalElement.html" title="Interface for a focal element set. " alt="" coords="24,5,175,244"/>
 </map>
