@@ -1,7 +1,10 @@
-var searchData =
-    [
-        ['eigenmat2dfocalelement', ['EigenMat2DFocalElement', ['../classEigenFE_1_1EigenMat2DFocalElement.html#ab1e04c916b081d4ac8f65c071619f2ae', 1, 'EigenFE::EigenMat2DFocalElement']]],
-        ['erase', ['erase', ['../classFocalElementContainer.html#aaf91ad85eeb5b218171a142d7c3e1116', 1, 'FocalElementContainer::erase(int index)=0'], ['../classFocalElementContainer.html#af20780adab46a8d4e5b42c8b1934ea86', 1, 'FocalElementContainer::erase(const FocalElement &amp;fe)=0'], ['../classGenericFocalElementContainer.html#a123f043d029c636824e4ca8153cd6aea', 1, 'GenericFocalElementContainer::erase(int index) override'], ['../classGenericFocalElementContainer.html#a5bef7f21bc02455dd0cde6dbef69541a', 1, 'GenericFocalElementContainer::erase(const FocalElement &amp;fe) override'], ['../classHashableFocalElementContainer.html#a06450d7d5174bdeecd2238570143e2b3', 1, 'HashableFocalElementContainer::erase(int index) override'], ['../classHashableFocalElementContainer.html#a8d072157c5715b764e3158427157a242', 1, 'HashableFocalElementContainer::erase(const FocalElement &amp;fe) override']]],
-        ['evidence', ['Evidence', ['../classEvidence.html#a8136cd1d58c59e4b6a5088e9ac581797', 1, 'Evidence::Evidence(std::unique_ptr&lt; FocalElementContainerDispatcher &gt; dispatcher, std::unique_ptr&lt; FocalElementContainer &gt; &amp;&amp;fecontainer, std::unique_ptr&lt; FocalElement &gt; discernment_frame, double _ignorance=0)'], ['../classEvidence.html#a85bcdfc070d0885b2c49c6930fe5a30f', 1, 'Evidence::Evidence(std::unique_ptr&lt; FocalElement &gt; discernment_frame, double _ignorance=0)'], ['../classEvidence.html#a0e7f11da2d686f8a33e3e59937b543d5', 1, 'Evidence::Evidence(std::unique_ptr&lt; FocalElementContainerDispatcher &gt; dispatcher, std::unique_ptr&lt; FocalElement &gt; discernment_frame, double _ignorance=0)'], ['../classEvidence.html#a5e0b5cb75efbbcff102602ab07ed0ce5', 1, 'Evidence::Evidence(const Evidence &amp;other)'], ['../classEvidence.html#a749172343fd62d98eb6c42636b5b61a4', 1, 'Evidence::Evidence(Evidence &amp;&amp;other)=default']]],
-        ['extendpath', ['extendPath', ['../classEvidence.html#a5396b2087d6353fb4b2bc2976db93174', 1, 'Evidence::extendPath(unsigned long long &amp;path, size_t pos)'], ['../classEvidence.html#aa3d0e63bb1be45a646f6443186298ed7', 1, 'Evidence::extendPath(boost::dynamic_bitset&lt;&gt; &amp;path, size_t pos)']]]
-    ];
+var searchData=
+[
+  ['damages',['DAMAGES',['../LICENSE_8txt.html#ab8a5152ff940e7a8c1972aac4ac2fb78',1,'LICENSE.txt']]],
+  ['deletefocalelement',['deleteFocalElement',['../classEvidence.html#a852aee625445547abfb4bb9a2031c10e',1,'Evidence::deleteFocalElement(int index)'],['../classEvidence.html#a1ebefa9999ec36cfd2fb782e6895e54c',1,'Evidence::deleteFocalElement(const FocalElement &amp;fe)']]],
+  ['dfs',['dfs',['../classEvidence.html#aaf90200d5b72268052a4c3df429b1932',1,'Evidence']]],
+  ['difference',['difference',['../classGeometry_1_1Rectangle.html#ac803730dcde1c4e059abd1dc962b6314',1,'Geometry::Rectangle']]],
+  ['dilate',['dilate',['../classClipper2DFocalElement.html#a23fd6a49f14917ec9a539562c129d945',1,'Clipper2DFocalElement']]],
+  ['discount',['discount',['../classEvidence.html#afaa46e0ce034a05c4749c7021430d60a',1,'Evidence']]],
+  ['disjunctive_5frule',['disjunctive_rule',['../classEvidence.html#af3739ab4923660f2a4ab00d118595781',1,'Evidence']]]
+];

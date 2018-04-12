@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['geometry', ['Geometry', ['../namespaceGeometry.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['geometry',['Geometry',['../namespaceGeometry.html',1,'']]]
+];

@@ -1,4 +1,5 @@
 <map id="HashableFocalElement" name="HashableFocalElement">
-<area shape="rect" id="node3" href="$classUnidimensionalFocalElement.html" title="{UnidimensionalFocalElement\n||+ UnidimensionalFocalElement()\l+ ~UnidimensionalFocalElement()\l+ cardinality()\l+ getKey()\l+ hash()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l+ createDiscernmentFrame()\l+ createSingletonHypotesis()\l}" alt="" coords="5,417,224,641"/>
-<area shape="rect" id="node2" href="$classFocalElement.html" title="{FocalElement\n||+ ~FocalElement()\l+ cardinality()\l+ operator==()\l+ operator!=()\l+ inside()\l+ contains()\l+ intersect()\l+ unite()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="39,5,190,244"/>
+<area shape="rect" id="node3" href="$classClipper2DFocalElement.html" title="2D FocalElement using the Clipper library " alt="" coords="5,417,193,641"/>
+<area shape="rect" id="node4" href="$classUnidimensionalFocalElement.html" title="1D FocalElement using an integer ID as source of information. " alt="" coords="218,417,437,641"/>
+<area shape="rect" id="node2" href="$classFocalElement.html" title="Interface for a focal element set. " alt="" coords="137,5,288,244"/>
 </map>

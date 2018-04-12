@@ -1,5 +1,4 @@
-var searchData =
-    [
-        ['vacuous_5fextension', ['vacuous_extension', ['../classEvidence.html#a17f68e6fd02cff470d046f89024dee64', 1, 'Evidence']]],
-        ['vacuous_5fextension_5fand_5fconjuction', ['vacuous_extension_and_conjuction', ['../classEvidence.html#a10ac437fdfbdba9c819ef913cdca9178', 1, 'Evidence']]]
-    ];
+var searchData=
+[
+  ['tort',['TORT',['../LICENSE_8txt.html#a766bd205c46fa0c4f85e59de7a2c24b4',1,'LICENSE.txt']]]
+];

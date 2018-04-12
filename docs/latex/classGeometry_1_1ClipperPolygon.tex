@@ -2,6 +2,11 @@
 \label{classGeometry_1_1ClipperPolygon}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
 
 
+Simple polygon representation using the \href{http://www.angusj.com/delphi/clipper.php}{\tt Clipper library}  
+
+
+
+
 {\ttfamily \#include $<$Clipper\+Polygon.\+h$>$}
 
 
@@ -25,18 +30,27 @@ Collaboration diagram for Geometry\+:\+:Clipper\+Polygon\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{Clipper\+Polygon} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2\+D} $>$ \&vertices)
-\item 
+\hyperlink{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{Clipper\+Polygon} (std\+::vector$<$ \hyperlink{classGeometry_1_1Point2D}{Point2D} $>$ \&vertices)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}{Clipper\+Polygon} (Clipper\+Lib\+::\+Path polygon)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}{$\sim$\+Clipper\+Polygon} () override=default
 \item 
 double \hyperlink{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{compute\+Area} () const override
-\item 
-bool \hyperlink{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2\+D} p) const override
+\begin{DoxyCompactList}\small\item\em Get the area of the shape. \end{DoxyCompactList}\item 
+bool \hyperlink{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{has\+\_\+inside} (\hyperlink{classGeometry_1_1Point2D}{Point2D} p) const override
+\begin{DoxyCompactList}\small\item\em Check if the point is inside the current shape. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classGeometry_1_1ClipperPolygon_a9d114ece2df3519162d0018c164187a4}{hash} () const 
 \item 
 const Clipper\+Lib\+::\+Path \& \hyperlink{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}{get\+Polygon} () const 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the polygon. \end{DoxyCompactList}\item 
+\hyperlink{classGeometry_1_1Point2D}{Point2D} \hyperlink{classGeometry_1_1ClipperPolygon_a62c9a314154ba6af98a142378134578e}{get\+Barycenter} () const 
+\begin{DoxyCompactList}\small\item\em Get the polygon\textquotesingle{}s barycenter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classGeometry_1_1ClipperPolygon}{Clipper\+Polygon} \hyperlink{classGeometry_1_1ClipperPolygon_ab2b3d7060621f24a32bfafd08eb66c2b}{approximate\+Disk} (\hyperlink{classGeometry_1_1Point2D}{Point2D} center, unsigned long radius, unsigned \hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} num\+\_\+vertices)
+\begin{DoxyCompactList}\small\item\em Build the approximation of a disk by a regular polygon. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -44,71 +58,164 @@ std\+::ostream \& \hyperlink{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Simple polygon representation using the \href{http://www.angusj.com/delphi/clipper.php}{\tt Clipper library} 
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
 \index{Clipper\+Polygon@{Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
+\subsubsection[{\texorpdfstring{Clipper\+Polygon(std\+::vector$<$ Point2\+D $>$ \&vertices)}{ClipperPolygon(std::vector< Point2D > &vertices)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
 \begin{DoxyParamCaption}
-\item[{std\+::vector$<$ {\bf Point2\+D} $>$ \&}]{vertices}
+\item[{std\+::vector$<$ {\bf Point2D} $>$ \&}]{vertices}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}
-\hypertarget{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}{}\label{classGeometry_1_1ClipperPolygon_a8bb6fe04895b246e3acd28aa41158f09}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & Array of ordered \hyperlink{classGeometry_1_1Point2D}{Point2D} vertices composing the polygon. For positive areas computation, the order M\+U\+ST be counterclockwise. \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!Clipper\+Polygon@{Clipper\+Polygon}}
 \index{Clipper\+Polygon@{Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
+\subsubsection[{\texorpdfstring{Clipper\+Polygon(\+Clipper\+Lib\+::\+Path polygon)}{ClipperPolygon(ClipperLib::Path polygon)}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::\+Clipper\+Polygon (
 \begin{DoxyParamCaption}
 \item[{Clipper\+Lib\+::\+Path}]{polygon}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}
-\hypertarget{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!````~Clipper\+Polygon@{$\sim$\+Clipper\+Polygon}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}{}\label{classGeometry_1_1ClipperPolygon_a80bebeb5652e9ddd9e6582c1c023b1d6}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em polygon} & The polygon shape. \\
+\hline
+\end{DoxyParams}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!````~Clipper\+Polygon@{$\sim$\+Clipper\+Polygon}}
 \index{````~Clipper\+Polygon@{$\sim$\+Clipper\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{$\sim$\+Clipper\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::$\sim$\+Clipper\+Polygon (
+\subsubsection[{\texorpdfstring{$\sim$\+Clipper\+Polygon() override=default}{~ClipperPolygon() override=default}}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\+::\+Clipper\+Polygon\+::$\sim$\+Clipper\+Polygon (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\label{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}\hypertarget{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}{}\label{classGeometry_1_1ClipperPolygon_a5d266f89ec4621b9e3a4b0ea498da328}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!compute\+Area@{compute\+Area}}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!approximate\+Disk@{approximate\+Disk}}
+\index{approximate\+Disk@{approximate\+Disk}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{\texorpdfstring{approximate\+Disk(\+Point2\+D center, unsigned long radius, unsigned int num\+\_\+vertices)}{approximateDisk(Point2D center, unsigned long radius, unsigned int num_vertices)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Clipper\+Polygon} Geometry\+::\+Clipper\+Polygon\+::approximate\+Disk (
+\begin{DoxyParamCaption}
+\item[{{\bf Point2D}}]{center, }
+\item[{unsigned long}]{radius, }
+\item[{unsigned {\bf int}}]{num\+\_\+vertices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classGeometry_1_1ClipperPolygon_ab2b3d7060621f24a32bfafd08eb66c2b}{}\label{classGeometry_1_1ClipperPolygon_ab2b3d7060621f24a32bfafd08eb66c2b}
+
+
+Build the approximation of a disk by a regular polygon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & Center of the disk. \\
+\hline
+{\em radius} & Radius of the disk. \\
+\hline
+{\em num\+\_\+vertices} & Numebr of vertices of the regular polygon. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The approximated disk. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!compute\+Area@{compute\+Area}}
 \index{compute\+Area@{compute\+Area}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{compute\+Area}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Clipper\+Polygon\+::compute\+Area (
+\subsubsection[{\texorpdfstring{compute\+Area() const override}{computeArea() const override}}]{\setlength{\rightskip}{0pt plus 5cm}double Geometry\+::\+Clipper\+Polygon\+::compute\+Area (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}{}\label{classGeometry_1_1ClipperPolygon_a452292446e85bf39afc64350180a289a}
+
+
+Get the area of the shape. 
+
+\begin{DoxyReturn}{Returns}
+Area. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classGeometry_1_1Shape_ad0fb97e79dc8c171482bc14726ad8ce7}{Geometry\+::\+Shape}.
 
-\hypertarget{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!get\+Polygon@{get\+Polygon}}
-\index{get\+Polygon@{get\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{get\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}const Clipper\+Lib\+::\+Path \& Geometry\+::\+Clipper\+Polygon\+::get\+Polygon (
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!get\+Barycenter@{get\+Barycenter}}
+\index{get\+Barycenter@{get\+Barycenter}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{\texorpdfstring{get\+Barycenter() const }{getBarycenter() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Point2D} Geometry\+::\+Clipper\+Polygon\+::get\+Barycenter (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}
-\hypertarget{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!has\+\_\+inside@{has\+\_\+inside}}
-\index{has\+\_\+inside@{has\+\_\+inside}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{has\+\_\+inside}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Clipper\+Polygon\+::has\+\_\+inside (
+) const}\hypertarget{classGeometry_1_1ClipperPolygon_a62c9a314154ba6af98a142378134578e}{}\label{classGeometry_1_1ClipperPolygon_a62c9a314154ba6af98a142378134578e}
+
+
+Get the polygon\textquotesingle{}s barycenter. 
+
+\begin{DoxyReturn}{Returns}
+Barycenter point. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!get\+Polygon@{get\+Polygon}}
+\index{get\+Polygon@{get\+Polygon}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{\texorpdfstring{get\+Polygon() const }{getPolygon() const }}]{\setlength{\rightskip}{0pt plus 5cm}const Clipper\+Lib\+::\+Path \& Geometry\+::\+Clipper\+Polygon\+::get\+Polygon (
 \begin{DoxyParamCaption}
-\item[{{\bf Point2\+D}}]{p}
+{}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}
+) const}\hypertarget{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}{}\label{classGeometry_1_1ClipperPolygon_ac1528fc32d76cb7a970e3649a53ec5ef}
+
+
+Get the polygon. 
+
+\begin{DoxyReturn}{Returns}
+The polygon. 
+\end{DoxyReturn}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!has\+\_\+inside@{has\+\_\+inside}}
+\index{has\+\_\+inside@{has\+\_\+inside}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{\texorpdfstring{has\+\_\+inside(\+Point2\+D p) const override}{has_inside(Point2D p) const override}}]{\setlength{\rightskip}{0pt plus 5cm}bool Geometry\+::\+Clipper\+Polygon\+::has\+\_\+inside (
+\begin{DoxyParamCaption}
+\item[{{\bf Point2D}}]{p}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}{}\label{classGeometry_1_1ClipperPolygon_a8e863b1d54c4ccc8c9d84bcccbbb137f}
+
+
+Check if the point is inside the current shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Test point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if p is inside the shape. 
+\end{DoxyReturn}
 
 
 Implements \hyperlink{classGeometry_1_1Shape_a2e1341ab60671a72a96bca2238cd38f0}{Geometry\+::\+Shape}.
 
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!hash@{hash}}
+\index{hash@{hash}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
+\subsubsection[{\texorpdfstring{hash() const }{hash() const }}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t Geometry\+::\+Clipper\+Polygon\+::hash (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classGeometry_1_1ClipperPolygon_a9d114ece2df3519162d0018c164187a4}{}\label{classGeometry_1_1ClipperPolygon_a9d114ece2df3519162d0018c164187a4}
 
 
 \subsection{Friends And Related Function Documentation}
-\hypertarget{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}{}\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!operator$<$$<$@{operator$<$$<$}}
+\index{Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!Geometry\+::\+Clipper\+Polygon@{Geometry\+::\+Clipper\+Polygon}}
-\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
 \begin{DoxyParamCaption}
 \item[{std\+::ostream \&}]{os, }
 \item[{const {\bf Clipper\+Polygon} \&}]{polygon}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [friend]}}\label{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}{}\label{classGeometry_1_1ClipperPolygon_a005884b33ba9eeb4cf5d3fd3d02ac4bb}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

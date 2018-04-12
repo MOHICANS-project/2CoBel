@@ -1,4 +1,4 @@
 <map id="UnidimensionalFocalElement" name="UnidimensionalFocalElement">
-<area shape="rect" id="node2" href="$classHashableFocalElement.html" title="{HashableFocalElement\n||+ hash()\l}" alt="" coords="36,292,193,369"/>
-<area shape="rect" id="node3" href="$classFocalElement.html" title="{FocalElement\n||+ ~FocalElement()\l+ cardinality()\l+ operator==()\l+ operator!=()\l+ inside()\l+ contains()\l+ intersect()\l+ unite()\l+ getInnerSingletons()\l+ clone()\l+ isEmpty()\l+ clear()\l}" alt="" coords="39,5,190,244"/>
+<area shape="rect" id="node2" href="$classHashableFocalElement.html" title="FocalElement for which an hash function for fast retrieval can be defined. " alt="" coords="36,292,193,369"/>
+<area shape="rect" id="node3" href="$classFocalElement.html" title="Interface for a focal element set. " alt="" coords="39,5,190,244"/>
 </map>

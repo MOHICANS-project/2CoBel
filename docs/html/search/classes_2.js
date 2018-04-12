@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['defaultfocalelementcontainerdispatcher', ['DefaultFocalElementContainerDispatcher', ['../classDefaultFocalElementContainerDispatcher.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['defaultfocalelementcontainerdispatcher',['DefaultFocalElementContainerDispatcher',['../classDefaultFocalElementContainerDispatcher.html',1,'']]]
+];

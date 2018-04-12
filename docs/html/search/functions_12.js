@@ -1,4 +1,5 @@
-var searchData =
-    [
-        ['y', ['Y', ['../classGeometry_1_1Point2D.html#a078150b19312c0a7f466021b7c7ff320', 1, 'Geometry::Point2D']]]
-    ];
+var searchData=
+[
+  ['vacuous_5fextension',['vacuous_extension',['../classEvidence.html#a20466c8101a61f8a8a716eda3e6b2c4c',1,'Evidence']]],
+  ['vacuous_5fextension_5fand_5fconjuction',['vacuous_extension_and_conjuction',['../classEvidence.html#a209cebbffe359e12ccdd7743350b3ec3',1,'Evidence']]]
+];

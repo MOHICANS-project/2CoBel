@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['genericfocalelementcontainer', ['GenericFocalElementContainer', ['../classGenericFocalElementContainer.html', 1, '']]]
-    ];
+var searchData=
+[
+  ['genericfocalelementcontainer',['GenericFocalElementContainer',['../classGenericFocalElementContainer.html',1,'']]]
+];
