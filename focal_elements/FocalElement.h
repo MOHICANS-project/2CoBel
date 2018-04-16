@@ -91,6 +91,18 @@ public:
     }
 
     /**
+     * Compute the difference with another FocalElement.
+     * @param other The FocalElement to subtract.
+     * @return The resulting difference FocalElement.
+     */
+    std::unique_ptr<FocalElement> difference(const FocalElement &other) const {
+        if (typeid(*this) != typeid(other))
+            throw IncompatibleTypeError("Difference is not supported for focal elements of different type");
+        if (this->isEmpty() || other.isEmpty()) return this->clone();
+        return do_union(other);
+    }
+
+    /**
      * Extract the singleton FocalElements included in the current one.
      * @param step_size The sampling resulution. Step_size=1 means that all the singletons are retrieved. Step_size > 1 means that singletons are sampled for performance reason.
      * @return Array of singleton FocalElements.
@@ -127,6 +139,8 @@ private:
     virtual std::unique_ptr<FocalElement> do_intersection(const FocalElement &other) const =0;
 
     virtual std::unique_ptr<FocalElement> do_union(const FocalElement &other) const =0;
+
+    virtual std::unique_ptr<FocalElement> do_difference(const FocalElement &other) const =0;
 
     virtual void print(std::ostream &os) const =0;
 

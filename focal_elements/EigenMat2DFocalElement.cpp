@@ -150,5 +150,26 @@ namespace EigenFE {
         image(0, 0) = false;
     }
 
+    std::unique_ptr<FocalElement> EigenMat2DFocalElement::do_difference(FocalElement const &rhs) const {
+        auto rhsr = static_cast<const EigenMat2DFocalElement &>(rhs);
+        Geometry::Rectangle new_bounding_box = bounding_box;
+        long x_off2 = rhsr.getBounding_box().getXmin() - new_bounding_box.getXmin();
+        long y_off2 = rhsr.getBounding_box().getYmin() - new_bounding_box.getYmin();
+        long numrows = new_bounding_box.getYmax() - new_bounding_box.getYmin() + 1;
+        long numcols = new_bounding_box.getXmax() - new_bounding_box.getXmin() + 1;
+        MatrixXb new_image(numrows, numcols);
+        for (int i = 0; i < numrows; ++i) {
+            for (int j = 0; j < numcols; ++j) {
+                bool val1 = image(i, j);
+                bool val2 = false;
+                if ((i - y_off2) >= 0 && (i - y_off2) < rhsr.getImage().rows() && (j - x_off2) >= 0 &&
+                    (j - x_off2) < rhsr.getImage().cols())
+                    val2 = rhsr.getImage()(i - y_off2, j - x_off2);
+                new_image(i, j) = val2 ? false : val1;
+            }
+        }
+        return std::unique_ptr<FocalElement>(new EigenMat2DFocalElement(new_bounding_box, new_image));
+    }
+
 
 }

@@ -135,6 +135,43 @@ std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_union(FocalElement const 
 
 }
 
+std::unique_ptr<FocalElement> BoxSet2DFocalElement::do_difference(FocalElement const &rhs) const {
+    auto rhsr = static_cast<const BoxSet2DFocalElement &>(rhs);
+    std::vector<Geometry::Rectangle> new_boxes = boxes;
+    std::vector<bool> to_delete(boxes.size(), false);
+    for (const auto &box : rhsr.getBoxes()) {
+        std::vector<Geometry::Rectangle> to_add;
+        for (int i = 0; i < new_boxes.size(); ++i) {
+            if (!to_delete[i]) {
+
+                const Geometry::Rectangle &box_original = new_boxes[i];
+                if (box_original.intersect(box).computeArea() > 0) {
+                    //delete original box
+                    std::vector<Geometry::Rectangle> diff = box_original.difference(box);
+                    to_delete[i] = true;
+                    for (const auto &item : diff) {
+                        to_add.push_back(item);
+                    }
+                }
+            }
+        }
+        for (auto &add : to_add) {
+            new_boxes.push_back(add);
+            to_delete.push_back(false);
+        }
+    }
+    std::vector<Geometry::Rectangle> real_new_boxes;
+    for (int j = 0; j < new_boxes.size(); ++j) {
+        if (!to_delete[j]) real_new_boxes.push_back(new_boxes[j]);
+    }
+    auto *nn = new BoxSet2DFocalElement(real_new_boxes);
+    nn->simplify_contigous();
+    std::unique_ptr<FocalElement> pp;
+    pp.reset(nn);
+    return std::move(pp);
+}
+
+
 void BoxSet2DFocalElement::simplify_contigous() {
     std::vector<bool> box_valid(boxes.size(), true);
     for (int i = 0; i < boxes.size(); ++i) {
@@ -269,6 +306,7 @@ void BoxSet2DFocalElement::clear() {
     bounding_box = Geometry::Rectangle();
     boxes.clear();
 }
+
 
 
 

@@ -38,7 +38,8 @@ bool Clipper2DFocalElement::is_inside(FocalElement const &rhs) const {
     return cardinality() <= rhs.cardinality() && *intersect(rhs) == *this;
 }
 
-std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElement const &rhs) const {
+std::unique_ptr<FocalElement>
+Clipper2DFocalElement::do_operator(ClipperLib::ClipType type, FocalElement const &rhs) const {
     auto rhsr = static_cast<const Clipper2DFocalElement &>(rhs);
     ClipperLib::Clipper c;
     for (const auto &polygon : polygons) {
@@ -48,34 +49,28 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElemen
         c.AddPath(polygon.getPolygon(), ClipperLib::ptClip, true);
     }
     ClipperLib::Paths solution;
-    c.Execute(ClipperLib::ctIntersection, solution);
+    c.Execute(type, solution);
 
     std::vector<Geometry::ClipperPolygon> outvec;
     for (auto &path : solution) {
         outvec.emplace_back(path);
     }
 
-
     return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
+}
+
+std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElement const &rhs) const {
+    return do_operator(ClipperLib::ctIntersection, rhs);
 }
 
 std::unique_ptr<FocalElement> Clipper2DFocalElement::do_union(FocalElement const &rhs) const {
-    auto rhsr = static_cast<const Clipper2DFocalElement &>(rhs);
-    ClipperLib::Clipper c;
-    for (const auto &polygon : polygons) {
-        c.AddPath(polygon.getPolygon(), ClipperLib::ptSubject, true);
-    }
-    for (const auto &polygon : rhsr.getPolygons()) {
-        c.AddPath(polygon.getPolygon(), ClipperLib::ptClip, true);
-    }
-    ClipperLib::Paths solution;
-    c.Execute(ClipperLib::ctUnion, solution);
-    std::vector<Geometry::ClipperPolygon> outvec;
-    for (auto &path : solution) {
-        outvec.emplace_back(path);
-    }
-    return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
+    return do_operator(ClipperLib::ctUnion, rhs);
 }
+
+std::unique_ptr<FocalElement> Clipper2DFocalElement::do_difference(FocalElement const &rhs) const {
+    return do_operator(ClipperLib::ctDifference, rhs);
+}
+
 
 std::vector<std::unique_ptr<FocalElement>> Clipper2DFocalElement::getInnerSingletons(int step_size) const {
     std::vector<std::unique_ptr<FocalElement>> singletons;
@@ -146,6 +141,9 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::dilate(long delta) {
     }
     return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
 }
+
+
+
 
 
 
