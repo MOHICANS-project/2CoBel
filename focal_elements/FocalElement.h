@@ -99,7 +99,7 @@ public:
         if (typeid(*this) != typeid(other))
             throw IncompatibleTypeError("Difference is not supported for focal elements of different type");
         if (this->isEmpty() || other.isEmpty()) return this->clone();
-        return do_union(other);
+        return do_difference(other);
     }
 
     /**
