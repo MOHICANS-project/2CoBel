@@ -2,6 +2,7 @@
 // Created by nicola on 17/11/17.
 //
 
+#include <algorithm>
 #include "Clipper2DFocalElement.h"
 
 const float EPS = 1e-4;
@@ -120,8 +121,16 @@ size_t Clipper2DFocalElement::hash() const {
         return polygons[0].hash();
     }
     size_t seed = polygons.size();
+
+    std::vector<size_t> hashes(polygons.size());
+
     for (int i = 0; i < polygons.size(); ++i) {
-        seed ^= polygons[i].hash() + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        hashes[i] = polygons[i].hash();
+    }
+
+    std::sort(hashes.begin(), hashes.end());
+    for (auto hash : hashes) {
+        seed ^= hash + 0x9e3779b9 + (seed << 6) + (seed >> 2);
     }
 
     return seed;
