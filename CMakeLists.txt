@@ -62,7 +62,7 @@ ADD_LIBRARY(evidential SHARED
         containers/DefaultFocalElementContainerDispatcher.h
         focal_elements/CompositeFocalElement.cpp
         focal_elements/CompositeFocalElement.h
-        errors/InvalidBBAError.h builders/GraphBuilder.cpp builders/GraphBuilder.h)
+        errors/InvalidBBAError.h builders/GraphBuilder.cpp builders/GraphBuilder.h canonical_decomposition/CanonicalDecompositionDispatcher.h canonical_decomposition/CanonicalDecompositionStrategy.h canonical_decomposition/UnidimensionalCanonicalDecomposition.cpp canonical_decomposition/UnidimensionalCanonicalDecomposition.h canonical_decomposition/GraphBasedCanonicalDecompositon.cpp canonical_decomposition/GraphBasedCanonicalDecompositon.h canonical_decomposition/DefaultCanonicalDecompositionDispatcher.cpp canonical_decomposition/DefaultCanonicalDecompositionDispatcher.h)
 
 ADD_LIBRARY(geometry SHARED
         geometry/Point2D.h
