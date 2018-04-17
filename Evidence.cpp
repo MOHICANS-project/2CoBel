@@ -15,6 +15,49 @@
 const double EPS = 1e-3;
 
 
+void Evidence::buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
+                          std::vector<int> &parents, std::vector<int> &oldest_parents) const {
+
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+
+    //Sort by cardinality
+    for (size_t l = 0; l < focal_elements.size(); ++l) {
+        indices[l] = l;
+        parents[l] = -1;
+        oldest_parents[l] = -1;
+    }
+
+    std::sort(indices.begin(), indices.end(),
+              [&](size_t x, size_t y) { return focal_elements[x]->cardinality() > focal_elements[y]->cardinality(); });
+
+
+    for (size_t i = 0; i < focal_elements.size(); ++i) {
+        const FocalElement &fe1 = *focal_elements[indices[i]];
+        if (fe1.cardinality() == 0.0)continue;
+        adj_list.insert(std::make_pair(i, std::vector<size_t>()));
+        for (size_t j = i + 1; j < focal_elements.size(); ++j) {
+            const FocalElement &fe2 = *focal_elements[indices[j]];
+            std::unique_ptr<FocalElement> interbuf = fe1.intersect(fe2);
+            if (interbuf->cardinality() > 0) {
+                if (fabs(interbuf->cardinality() - fe2.cardinality()) < 1e-4) {
+                    parents[j] = static_cast<int>(i);
+                    if (oldest_parents[j] < 0)oldest_parents[j] = static_cast<int>(i);
+                } else {
+                    adj_list[i].push_back(j);
+                }
+            }
+        }
+    }
+
+
+    for (int m = 0; m < focal_elements.size(); ++m) {
+        if (parents[m] >= 0) {
+            adj_list[parents[m]].insert(std::upper_bound(adj_list[parents[m]].begin(), adj_list[parents[m]].end(), m),
+                                        m);
+        }
+    }
+}
+
 template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
                    std::unique_ptr<FocalElement> current_intersection,
@@ -222,9 +265,10 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_s
     }
     std::vector<std::unique_ptr<FocalElement>> all_singletons;
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
-    for (const auto &fe : focal_elements) {
+    for (int k = 0; k < focal_elements.size(); ++k) {
+        const FocalElement &fe = *focal_elements[k];
         if (all_singletons.size() >= discernment_frame->cardinality())break;
-        std::vector<std::unique_ptr<FocalElement>> singletons = fe->getInnerSingletons(approx_step_size);
+        std::vector<std::unique_ptr<FocalElement>> singletons = fe.getInnerSingletons(approx_step_size);
         for (int i = 0; i < singletons.size(); ++i) {
             const FocalElement &singleton = *singletons[i];
             auto results = std::find_if(
@@ -248,46 +292,12 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() const
 
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
 
-    //Sort by cardinality
     std::vector<size_t> indices(focal_elements.size());
-    for (size_t l = 0; l < focal_elements.size(); ++l) {
-        indices[l] = l;
-    }
-
-    std::sort(indices.begin(), indices.end(),
-              [&](size_t x, size_t y) { return focal_elements[x]->cardinality() > focal_elements[y]->cardinality(); });
-
-
-    std::vector<int> parents(focal_elements.size(), -1);
-    std::vector<int> oldest_parents(focal_elements.size(), -1);
-
+    std::vector<int> parents(focal_elements.size());
+    std::vector<int> oldest_parents(focal_elements.size());
     std::unordered_map<size_t, std::vector<size_t>> adj_list;
 
-    for (size_t i = 0; i < focal_elements.size(); ++i) {
-        const FocalElement &fe1 = *focal_elements[indices[i]];
-        if (fe1.cardinality() == 0.0)continue;
-        adj_list.insert(std::make_pair(i, std::vector<size_t>()));
-        for (size_t j = i + 1; j < focal_elements.size(); ++j) {
-            const FocalElement &fe2 = *focal_elements[indices[j]];
-            std::unique_ptr<FocalElement> interbuf = fe1.intersect(fe2);
-            if (interbuf->cardinality() > 0) {
-                if (fabs(interbuf->cardinality() - fe2.cardinality()) < 1e-4) {
-                    parents[j] = static_cast<int>(i);
-                    if (oldest_parents[j] < 0)oldest_parents[j] = static_cast<int>(i);
-                } else {
-                    adj_list[i].push_back(j);
-                }
-            }
-        }
-    }
-
-
-    for (int m = 0; m < focal_elements.size(); ++m) {
-        if (parents[m] >= 0) {
-            adj_list[parents[m]].insert(std::upper_bound(adj_list[parents[m]].begin(), adj_list[parents[m]].end(), m),
-                                        m);
-        }
-    }
+    buildGraph(adj_list, indices, parents, oldest_parents);
 
     std::vector<std::unique_ptr<FocalElement>> inters;
 
@@ -752,6 +762,8 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
     if (is_decomposed) return canonical_decomposition->getMassArray();
     return std::vector<double>();
 }
+
+
 
 
 
