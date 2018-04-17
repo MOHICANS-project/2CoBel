@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <cfloat>
+#include <builders/GraphBuilder.h>
 #include "focal_elements/CompositeFocalElement.h"
 #include "errors/InvalidBBAError.h"
 #include "Evidence.h"
@@ -15,48 +16,6 @@
 const double EPS = 1e-3;
 
 
-void Evidence::buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
-                          std::vector<int> &parents, std::vector<int> &oldest_parents) const {
-
-    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
-
-    //Sort by cardinality
-    for (size_t l = 0; l < focal_elements.size(); ++l) {
-        indices[l] = l;
-        parents[l] = -1;
-        oldest_parents[l] = -1;
-    }
-
-    std::sort(indices.begin(), indices.end(),
-              [&](size_t x, size_t y) { return focal_elements[x]->cardinality() > focal_elements[y]->cardinality(); });
-
-
-    for (size_t i = 0; i < focal_elements.size(); ++i) {
-        const FocalElement &fe1 = *focal_elements[indices[i]];
-        if (fe1.cardinality() == 0.0)continue;
-        adj_list.insert(std::make_pair(i, std::vector<size_t>()));
-        for (size_t j = i + 1; j < focal_elements.size(); ++j) {
-            const FocalElement &fe2 = *focal_elements[indices[j]];
-            std::unique_ptr<FocalElement> interbuf = fe1.intersect(fe2);
-            if (interbuf->cardinality() > 0) {
-                if (fabs(interbuf->cardinality() - fe2.cardinality()) < 1e-4) {
-                    parents[j] = static_cast<int>(i);
-                    if (oldest_parents[j] < 0)oldest_parents[j] = static_cast<int>(i);
-                } else {
-                    adj_list[i].push_back(j);
-                }
-            }
-        }
-    }
-
-
-    for (int m = 0; m < focal_elements.size(); ++m) {
-        if (parents[m] >= 0) {
-            adj_list[parents[m]].insert(std::upper_bound(adj_list[parents[m]].begin(), adj_list[parents[m]].end(), m),
-                                        m);
-        }
-    }
-}
 
 template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
@@ -92,6 +51,22 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
     }
 }
 
+
+template<typename T>
+void Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
+                       std::unique_ptr<FocalElement> current_intersection,
+                       std::vector<std::unique_ptr<FocalElement>> &output_vec,
+                       std::vector<std::unordered_set<size_t>> &check, std::vector<size_t> &indices,
+                       std::vector<int> &parents, size_t cur_root) const {
+    extendPath(path, current_pos);
+    for (auto next_pos : adj_list[current_pos]) {
+        const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
+        if (parents[next_pos] >= 0 && parents[next_pos] < cur_root)continue; //early stopping
+        std::unique_ptr<FocalElement> next_inter = current_intersection->intersect(fe);
+        if (next_inter->cardinality() == 0)continue;
+        dfs(adj_list, next_pos, path, std::move(next_inter), output_vec, check, indices, parents, cur_root);
+    }
+}
 
 Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : discernment_frame(
         std::move(_discernment_frame)), ignorance(_ignorance) {
@@ -297,7 +272,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() const
     std::vector<int> oldest_parents(focal_elements.size());
     std::unordered_map<size_t, std::vector<size_t>> adj_list;
 
-    buildGraph(adj_list, indices, parents, oldest_parents);
+    GraphBuilder::buildGraph(focal_elements, adj_list, indices, parents, oldest_parents);
 
     std::vector<std::unique_ptr<FocalElement>> inters;
 
@@ -715,8 +690,8 @@ bool Evidence::isConsonant() const {
 }
 
 void Evidence::initCanonicalDecomposition() {
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     if (isConsonant()) {
-        const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
         const std::vector<double> &masses = fecontainer->getMassArray();
         std::vector<size_t> indices(focal_elements.size());
         for (size_t l = 0; l < focal_elements.size(); ++l) {
@@ -749,6 +724,8 @@ void Evidence::initCanonicalDecomposition() {
     //and here the magic
 
 
+
+
     is_decomposed = true;
 
 }
@@ -762,6 +739,7 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
     if (is_decomposed) return canonical_decomposition->getMassArray();
     return std::vector<double>();
 }
+
 
 
 

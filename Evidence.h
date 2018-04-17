@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include "containers/FocalElementContainerDispatcher.h"
 #include "containers/DefaultFocalElementContainerDispatcher.h"
+#include <unordered_set>
 
 /**
  * @class Evidence
@@ -35,13 +36,18 @@ protected:
 
     void extendPath(boost::dynamic_bitset<> &path, size_t pos) const;
 
-    void buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
-                    std::vector<int> &parents, std::vector<int> &oldest_parents) const;
 
     template<typename T>
     void dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
              std::unique_ptr<FocalElement> current_intersection, std::vector<std::unique_ptr<FocalElement>> &output_vec,
              std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) const;
+
+    template<typename T>
+    void dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
+                 std::unique_ptr<FocalElement> current_intersection,
+                 std::vector<std::unique_ptr<FocalElement>> &output_vec,
+                 std::vector<std::unordered_set<size_t>> &check, std::vector<size_t> &indices,
+                 std::vector<int> &parents, size_t cur_root) const;
 
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
