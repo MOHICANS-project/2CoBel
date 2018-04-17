@@ -46,6 +46,8 @@ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyp
 \begin{DoxyCompactList}\small\item\em Compute the intersection with another \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a533f16fbd5ae2b3d353d7c9a00bfb2c5}{unite} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
 \begin{DoxyCompactList}\small\item\em Compute the union with another \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a42ee1e0fff4a088439d823ad54f5e912}{difference} (const \hyperlink{classFocalElement}{Focal\+Element} \&other) const 
+\begin{DoxyCompactList}\small\item\em Compute the difference with another \hyperlink{classFocalElement}{Focal\+Element}. \end{DoxyCompactList}\item 
 virtual std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \hyperlink{classFocalElement_ac615e960ea64a4bdc0f442135f6069e2}{get\+Inner\+Singletons} (\hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} step\+\_\+size) const =0
 \begin{DoxyCompactList}\small\item\em Extract the singleton Focal\+Elements included in the current one. \end{DoxyCompactList}\item 
 virtual std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classFocalElement_a21697fbbbcb144c18fa7b4ecae5e6145}{clone} () const =0
@@ -91,7 +93,7 @@ Cardinality of the set.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classClipper2DFocalElement_a8eabcd9808b5b6bb7ec2f26eb89b5cd9}{Clipper2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a18a671ee1759b5df42770384ace275fd}{Composite\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{Unidimensional\+Focal\+Element}, and \hyperlink{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{Box\+Set2\+D\+Focal\+Element}.
+Implemented in \hyperlink{classClipper2DFocalElement_a8eabcd9808b5b6bb7ec2f26eb89b5cd9}{Clipper2\+D\+Focal\+Element}, \hyperlink{classEigenFE_1_1EigenMat2DFocalElement_ac19a1317772f2946bd8956cb084a3a1b}{Eigen\+F\+E\+::\+Eigen\+Mat2\+D\+Focal\+Element}, \hyperlink{classCompositeFocalElement_a18a671ee1759b5df42770384ace275fd}{Composite\+Focal\+Element}, \hyperlink{classUnidimensionalFocalElement_a22e013e2875cf07f23b3fe8ab2e2431f}{Unidimensional\+Focal\+Element}, and \hyperlink{classBoxSet2DFocalElement_a65dd4942ec406f9048432654f81df964}{Box\+Set2\+D\+Focal\+Element}.
 
 \index{Focal\+Element@{Focal\+Element}!clear@{clear}}
 \index{clear@{clear}!Focal\+Element@{Focal\+Element}}
@@ -144,6 +146,25 @@ Checks whether the \hyperlink{classFocalElement}{Focal\+Element} contains anothe
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the current \hyperlink{classFocalElement}{Focal\+Element} contains the other. 
+\end{DoxyReturn}
+\index{Focal\+Element@{Focal\+Element}!difference@{difference}}
+\index{difference@{difference}!Focal\+Element@{Focal\+Element}}
+\subsubsection[{\texorpdfstring{difference(const Focal\+Element \&other) const }{difference(const FocalElement &other) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::unique\+\_\+ptr$<${\bf Focal\+Element}$>$ Focal\+Element\+::difference (
+\begin{DoxyParamCaption}
+\item[{const {\bf Focal\+Element} \&}]{other}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classFocalElement_a42ee1e0fff4a088439d823ad54f5e912}{}\label{classFocalElement_a42ee1e0fff4a088439d823ad54f5e912}
+
+
+Compute the difference with another \hyperlink{classFocalElement}{Focal\+Element}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{classFocalElement}{Focal\+Element} to subtract. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting difference \hyperlink{classFocalElement}{Focal\+Element}. 
 \end{DoxyReturn}
 \index{Focal\+Element@{Focal\+Element}!get\+Inner\+Singletons@{get\+Inner\+Singletons}}
 \index{get\+Inner\+Singletons@{get\+Inner\+Singletons}!Focal\+Element@{Focal\+Element}}

@@ -1,8 +1,8 @@
 <map id="FocalElement" name="FocalElement">
-<area shape="rect" id="node2" href="$classBoxSet2DFocalElement.html" title="2D FocalElement expressed as a set of rectangles. " alt="" coords="5,292,196,531"/>
-<area shape="rect" id="node3" href="$classCompositeFocalElement.html" title="FocalElement in a cross product space. " alt="" coords="220,299,413,523"/>
-<area shape="rect" id="node4" href="$classEigenFE_1_1EigenMat2DFocalElement.html" title="2D FocalElement using a matrix of booleans. " alt="" coords="438,307,641,516"/>
-<area shape="rect" id="node5" href="$classHashableFocalElement.html" title="FocalElement for which an hash function for fast retrieval can be defined. " alt="" coords="665,373,822,450"/>
-<area shape="rect" id="node6" href="$classClipper2DFocalElement.html" title="2D FocalElement using the Clipper library " alt="" coords="535,579,723,803"/>
-<area shape="rect" id="node7" href="$classUnidimensionalFocalElement.html" title="1D FocalElement using an integer ID as source of information. " alt="" coords="747,579,966,803"/>
+<area shape="rect" id="node2" href="$classBoxSet2DFocalElement.html" title="2D FocalElement expressed as a set of rectangles. " alt="" coords="5,307,196,545"/>
+<area shape="rect" id="node3" href="$classCompositeFocalElement.html" title="FocalElement in a cross product space. " alt="" coords="220,314,413,538"/>
+<area shape="rect" id="node4" href="$classEigenFE_1_1EigenMat2DFocalElement.html" title="2D FocalElement using a matrix of booleans. " alt="" coords="438,321,641,531"/>
+<area shape="rect" id="node5" href="$classHashableFocalElement.html" title="FocalElement for which an hash function for fast retrieval can be defined. " alt="" coords="665,387,822,465"/>
+<area shape="rect" id="node6" href="$classClipper2DFocalElement.html" title="2D FocalElement using the Clipper library " alt="" coords="535,593,723,817"/>
+<area shape="rect" id="node7" href="$classUnidimensionalFocalElement.html" title="1D FocalElement using an integer ID as source of information. " alt="" coords="747,593,966,817"/>
 </map>

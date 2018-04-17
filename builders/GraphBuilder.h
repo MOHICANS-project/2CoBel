@@ -13,9 +13,9 @@
 
 namespace GraphBuilder {
 
-    static void buildGraph(const std::vector<std::unique_ptr<FocalElement>> &focal_elements,
-                           std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
-                           std::vector<int> &parents, std::vector<int> &oldest_parents);
+    void buildGraph(const std::vector<std::unique_ptr<FocalElement>> &focal_elements,
+                    std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
+                    std::vector<int> &parents, std::vector<int> &oldest_parents);
 };
 
 
