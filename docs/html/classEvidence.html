@@ -108,6 +108,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <div class="dyncontent">
         <div class="center"><img src="classEvidence__coll__graph.png" border="0" usemap="#Evidence_coll__map"
                                  alt="Collaboration graph"/></div>
+        <map name="Evidence_coll__map" id="Evidence_coll__map">
+        </map>
     </div>
     <table class="memberdecls">
         <tr class="heading">
@@ -715,49 +717,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
         <tr class="separator:a875150a8830c15d0cf3391d73889214e">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
-        <tr class="memitem:a0a89c7ef1bb5e9e9cc2c761c4a58e006">
-            <td class="memItemLeft" align="right" valign="top">void&#160;</td>
-            <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="classEvidence.html#a0a89c7ef1bb5e9e9cc2c761c4a58e006">initCanonicalDecomposition</a>
-                ()
-            </td>
-        </tr>
-        <tr class="separator:a0a89c7ef1bb5e9e9cc2c761c4a58e006">
-            <td class="memSeparator" colspan="2">&#160;</td>
-        </tr>
-        <tr class="memitem:ad939c330f37c0e1a7da3a5b0829c1686">
-            <td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::unique_ptr&lt; <a class="el"
-                                                                                                            href="classFocalElement.html">FocalElement</a>
-                &gt; &gt; &amp;&#160;
-            </td>
-            <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="classEvidence.html#ad939c330f37c0e1a7da3a5b0829c1686">getCanonicalDecomposition</a>
-                () const
-            </td>
-        </tr>
-        <tr class="memdesc:ad939c330f37c0e1a7da3a5b0829c1686">
-            <td class="mdescLeft">&#160;</td>
-            <td class="mdescRight">Get the focal elements of the canonical decomposition. <a
-                    href="#ad939c330f37c0e1a7da3a5b0829c1686">More...</a><br/></td>
-        </tr>
-        <tr class="separator:ad939c330f37c0e1a7da3a5b0829c1686">
-            <td class="memSeparator" colspan="2">&#160;</td>
-        </tr>
-        <tr class="memitem:a712ef648ec40baa3c959079b44f2d99c">
-            <td class="memItemLeft" align="right" valign="top">const std::vector&lt; double &gt; &amp;&#160;</td>
-            <td class="memItemRight" valign="bottom"><a class="el"
-                                                        href="classEvidence.html#a712ef648ec40baa3c959079b44f2d99c">getCanonicalDecompositionWeights</a>
-                () const
-            </td>
-        </tr>
-        <tr class="memdesc:a712ef648ec40baa3c959079b44f2d99c">
-            <td class="mdescLeft">&#160;</td>
-            <td class="mdescRight">Get the weights of the canonical decomposition. <a
-                    href="#a712ef648ec40baa3c959079b44f2d99c">More...</a><br/></td>
-        </tr>
-        <tr class="separator:a712ef648ec40baa3c959079b44f2d99c">
-            <td class="memSeparator" colspan="2">&#160;</td>
-        </tr>
     </table>
     <table class="memberdecls">
         <tr class="heading">
@@ -800,25 +759,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
             </td>
         </tr>
         <tr class="separator:aaf90200d5b72268052a4c3df429b1932">
-            <td class="memSeparator" colspan="2">&#160;</td>
-        </tr>
-        <tr class="memitem:af782e3c907c074e903fcda7456265454">
-            <td class="memTemplParams" colspan="2">template&lt;typename T &gt;</td>
-        </tr>
-        <tr class="memitem:af782e3c907c074e903fcda7456265454">
-            <td class="memTemplItemLeft" align="right" valign="top">void&#160;</td>
-            <td class="memTemplItemRight" valign="bottom"><a class="el"
-                                                             href="classEvidence.html#af782e3c907c074e903fcda7456265454">dfsDisj</a>
-                (std::unordered_map&lt; size_t, std::vector&lt; size_t &gt;&gt; &amp;adj_list, size_t current_pos, T
-                path, std::unique_ptr&lt; <a class="el" href="classFocalElement.html">FocalElement</a> &gt;
-                current_intersection, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classFocalElement.html">FocalElement</a>
-                &gt;&gt; &amp;output_vec, std::vector&lt; std::unordered_set&lt; size_t &gt;&gt; &amp;check, std::vector&lt;
-                size_t &gt; &amp;indices, std::vector&lt; <a class="el"
-                                                             href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>
-                &gt; &amp;parents, size_t cur_root) const
-            </td>
-        </tr>
-        <tr class="separator:af782e3c907c074e903fcda7456265454">
             <td class="memSeparator" colspan="2">&#160;</td>
         </tr>
         <tr class="memitem:aa2580207b322e297cdd0c3af07ddcd21">
@@ -1520,99 +1460,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
         </div>
     </div>
-    <a class="anchor" id="af782e3c907c074e903fcda7456265454"></a>
-    <div class="memitem">
-        <div class="memproto">
-            <div class="memtemplate">
-                template&lt;typename T &gt;
-            </div>
-            <table class="mlabels">
-                <tr>
-                    <td class="mlabels-left">
-                        <table class="memname">
-                            <tr>
-                                <td class="memname">void Evidence::dfsDisj</td>
-                                <td>(</td>
-                                <td class="paramtype">std::unordered_map&lt; size_t, std::vector&lt; size_t &gt;&gt;
-                                    &amp;&#160;
-                                </td>
-                                <td class="paramname"><em>adj_list</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">size_t&#160;</td>
-                                <td class="paramname"><em>current_pos</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">T&#160;</td>
-                                <td class="paramname"><em>path</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classFocalElement.html">FocalElement</a>
-                                    &gt;&#160;
-                                </td>
-                                <td class="paramname"><em>current_intersection</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">std::vector&lt; std::unique_ptr&lt; <a class="el"
-                                                                                             href="classFocalElement.html">FocalElement</a>
-                                    &gt;&gt; &amp;&#160;
-                                </td>
-                                <td class="paramname"><em>output_vec</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">std::vector&lt; std::unordered_set&lt; size_t &gt;&gt;
-                                    &amp;&#160;
-                                </td>
-                                <td class="paramname"><em>check</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">std::vector&lt; size_t &gt; &amp;&#160;</td>
-                                <td class="paramname"><em>indices</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">std::vector&lt; <a class="el"
-                                                                         href="CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09">int</a>
-                                    &gt; &amp;&#160;
-                                </td>
-                                <td class="paramname"><em>parents</em>,</td>
-                            </tr>
-                            <tr>
-                                <td class="paramkey"></td>
-                                <td></td>
-                                <td class="paramtype">size_t&#160;</td>
-                                <td class="paramname"><em>cur_root</em>&#160;</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>)</td>
-                                <td></td>
-                                <td> const</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td class="mlabels-right">
-                        <span class="mlabels"><span class="mlabel">protected</span></span></td>
-                </tr>
-            </table>
-        </div>
-        <div class="memdoc">
-
-        </div>
-    </div>
     <a class="anchor" id="afaa46e0ce034a05c4749c7021430d60a"></a>
     <div class="memitem">
         <div class="memproto">
@@ -1749,59 +1596,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
             </table>
         </div>
         <div class="memdoc">
-
-        </div>
-    </div>
-    <a class="anchor" id="ad939c330f37c0e1a7da3a5b0829c1686"></a>
-    <div class="memitem">
-        <div class="memproto">
-            <table class="memname">
-                <tr>
-                    <td class="memname">const std::vector&lt; std::unique_ptr&lt; <a class="el"
-                                                                                     href="classFocalElement.html">FocalElement</a>
-                        &gt; &gt; &amp; Evidence::getCanonicalDecomposition
-                    </td>
-                    <td>(</td>
-                    <td class="paramname"></td>
-                    <td>)</td>
-                    <td> const</td>
-                </tr>
-            </table>
-        </div>
-        <div class="memdoc">
-
-            <p>Get the focal elements of the canonical decomposition. </p>
-            <dl class="section return">
-                <dt>Returns</dt>
-                <dd>Array of <a class="el" href="classFocalElement.html" title="Interface for a focal element set. ">FocalElement</a>
-                    objects.
-                </dd>
-            </dl>
-
-        </div>
-    </div>
-    <a class="anchor" id="a712ef648ec40baa3c959079b44f2d99c"></a>
-    <div class="memitem">
-        <div class="memproto">
-            <table class="memname">
-                <tr>
-                    <td class="memname">const std::vector&lt; double &gt; &amp;
-                        Evidence::getCanonicalDecompositionWeights
-                    </td>
-                    <td>(</td>
-                    <td class="paramname"></td>
-                    <td>)</td>
-                    <td> const</td>
-                </tr>
-            </table>
-        </div>
-        <div class="memdoc">
-
-            <p>Get the weights of the canonical decomposition. </p>
-            <dl class="section return">
-                <dt>Returns</dt>
-                <dd>Array of weights.</dd>
-            </dl>
 
         </div>
     </div>
@@ -1974,23 +1768,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                 <dt>Returns</dt>
                 <dd>Array of masses.</dd>
             </dl>
-
-        </div>
-    </div>
-    <a class="anchor" id="a0a89c7ef1bb5e9e9cc2c761c4a58e006"></a>
-    <div class="memitem">
-        <div class="memproto">
-            <table class="memname">
-                <tr>
-                    <td class="memname">void Evidence::initCanonicalDecomposition</td>
-                    <td>(</td>
-                    <td class="paramname"></td>
-                    <td>)</td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-        <div class="memdoc">
 
         </div>
     </div>
@@ -2619,7 +2396,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
 <address class="footer">
     <small>
-        Generated on Tue Apr 17 2018 17:03:12 for Belief function theory library by &#160;<a
+        Generated on Wed Apr 18 2018 17:17:45 for Belief function theory library by &#160;<a
             href="http://www.doxygen.org/index.html">
         <img class="footer" src="doxygen.png" alt="doxygen"/>
     </a> 1.8.11

@@ -1,4 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCanonicalDecompositionStrategy.html" title="CanonicalDecompositionStrategy" alt="" coords="5,5,221,32"/>
-<area shape="rect" id="node2" href="$classUnidimensionalCanonicalDecomposition.html" title="UnidimensionalCanonicalDecomposition" alt="" coords="269,5,525,32"/>
+<area shape="rect" id="node2" href="$classConstructorArgumentsError.html" title="ConstructorArgumentsError" alt="" coords="152,5,333,32"/>
+<area shape="rect" id="node3" href="$classIllegalArgumentError.html" title="Error in the parameter of a method. " alt="" coords="173,56,313,83"/>
+<area shape="rect" id="node4" href="$classIncompatibleTypeError.html" title="Error in the type of an object. " alt="" coords="166,107,319,133"/>
+<area shape="rect" id="node5" href="$classInvalidBBAError.html" title="Error in the validity of the BBA of the Evidence object in use. " alt="" coords="185,157,300,184"/>
 </map>

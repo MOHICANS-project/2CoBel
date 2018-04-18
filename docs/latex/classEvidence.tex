@@ -11,7 +11,8 @@ Main class encapsulating the logic for the management of a belief assignment.
 
 
 
-Collaboration diagram for Evidence\+:\nopagebreak
+Collaboration diagram for Evidence\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -96,13 +97,7 @@ double \hyperlink{classEvidence_a2d6b2109c1347c004d00c2ef6bd515d8}{get\+Ignoranc
 void \hyperlink{classEvidence_a11377c6946b7727015936b35dcf86cc8}{set\+Ignorance} (double ignorance)
 \begin{DoxyCompactList}\small\item\em Set the ignorance (mass of discernment frame). \end{DoxyCompactList}\item 
 const std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \& \hyperlink{classEvidence_a875150a8830c15d0cf3391d73889214e}{get\+Discernment\+\_\+frame} () const 
-\begin{DoxyCompactList}\small\item\em Get the discernment frame. \end{DoxyCompactList}\item 
-void \hyperlink{classEvidence_a0a89c7ef1bb5e9e9cc2c761c4a58e006}{init\+Canonical\+Decomposition} ()
-\item 
-const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ $>$ \& \hyperlink{classEvidence_ad939c330f37c0e1a7da3a5b0829c1686}{get\+Canonical\+Decomposition} () const 
-\begin{DoxyCompactList}\small\item\em Get the focal elements of the canonical decomposition. \end{DoxyCompactList}\item 
-const std\+::vector$<$ double $>$ \& \hyperlink{classEvidence_a712ef648ec40baa3c959079b44f2d99c}{get\+Canonical\+Decomposition\+Weights} () const 
-\begin{DoxyCompactList}\small\item\em Get the weights of the canonical decomposition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the discernment frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,8 +106,6 @@ void \hyperlink{classEvidence_a3d0206e5bbb6e8e61ad766c43d6e9113}{extend\+Path} (
 void \hyperlink{classEvidence_ae732467027722ccd1a3bd690110e21a3}{extend\+Path} (boost\+::dynamic\+\_\+bitset$<$$>$ \&path, size\+\_\+t pos) const 
 \item 
 {\footnotesize template$<$typename T $>$ }\\void \hyperlink{classEvidence_aaf90200d5b72268052a4c3df429b1932}{dfs} (std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&output\+\_\+vec, std\+::vector$<$ T $>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ \hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} $>$ \&parents, size\+\_\+t cur\+\_\+root) const 
-\item 
-{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classEvidence_af782e3c907c074e903fcda7456265454}{dfs\+Disj} (std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&output\+\_\+vec, std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ \hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} $>$ \&parents, size\+\_\+t cur\+\_\+root) const 
 \item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_aa2580207b322e297cdd0c3af07ddcd21}{max\+BetP} (std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&elems, bool compute\+Inters) const 
 \item 
@@ -370,21 +363,6 @@ Delete the given \hyperlink{classFocalElement}{Focal\+Element}.
 \item[{size\+\_\+t}]{cur\+\_\+root}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classEvidence_aaf90200d5b72268052a4c3df429b1932}{}\label{classEvidence_aaf90200d5b72268052a4c3df429b1932}
-\index{Evidence@{Evidence}!dfs\+Disj@{dfs\+Disj}}
-\index{dfs\+Disj@{dfs\+Disj}!Evidence@{Evidence}}
-\subsubsection[{\texorpdfstring{dfs\+Disj(std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ Focal\+Element $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ Focal\+Element $>$$>$ \&output\+\_\+vec, std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ int $>$ \&parents, size\+\_\+t cur\+\_\+root) const }{dfsDisj(std::unordered_map< size_t, std::vector< size_t >> &adj_list, size_t current_pos, T path, std::unique_ptr< FocalElement > current_intersection, std::vector< std::unique_ptr< FocalElement >> &output_vec, std::vector< std::unordered_set< size_t >> &check, std::vector< size_t > &indices, std::vector< int > &parents, size_t cur_root) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void Evidence\+::dfs\+Disj (
-\begin{DoxyParamCaption}
-\item[{std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&}]{adj\+\_\+list, }
-\item[{size\+\_\+t}]{current\+\_\+pos, }
-\item[{T}]{path, }
-\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{current\+\_\+intersection, }
-\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$$>$ \&}]{output\+\_\+vec, }
-\item[{std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&}]{check, }
-\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{indices, }
-\item[{std\+::vector$<$ {\bf int} $>$ \&}]{parents, }
-\item[{size\+\_\+t}]{cur\+\_\+root}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classEvidence_af782e3c907c074e903fcda7456265454}{}\label{classEvidence_af782e3c907c074e903fcda7456265454}
 \index{Evidence@{Evidence}!discount@{discount}}
 \index{discount@{discount}!Evidence@{Evidence}}
 \subsubsection[{\texorpdfstring{discount(double alpha)}{discount(double alpha)}}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::discount (
@@ -436,34 +414,6 @@ The B\+BA result of the disjunctive combination.
 \item[{size\+\_\+t}]{pos}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classEvidence_ae732467027722ccd1a3bd690110e21a3}{}\label{classEvidence_ae732467027722ccd1a3bd690110e21a3}
-\index{Evidence@{Evidence}!get\+Canonical\+Decomposition@{get\+Canonical\+Decomposition}}
-\index{get\+Canonical\+Decomposition@{get\+Canonical\+Decomposition}!Evidence@{Evidence}}
-\subsubsection[{\texorpdfstring{get\+Canonical\+Decomposition() const }{getCanonicalDecomposition() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ $>$ \& Evidence\+::get\+Canonical\+Decomposition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hypertarget{classEvidence_ad939c330f37c0e1a7da3a5b0829c1686}{}\label{classEvidence_ad939c330f37c0e1a7da3a5b0829c1686}
-
-
-Get the focal elements of the canonical decomposition. 
-
-\begin{DoxyReturn}{Returns}
-Array of \hyperlink{classFocalElement}{Focal\+Element} objects. 
-\end{DoxyReturn}
-\index{Evidence@{Evidence}!get\+Canonical\+Decomposition\+Weights@{get\+Canonical\+Decomposition\+Weights}}
-\index{get\+Canonical\+Decomposition\+Weights@{get\+Canonical\+Decomposition\+Weights}!Evidence@{Evidence}}
-\subsubsection[{\texorpdfstring{get\+Canonical\+Decomposition\+Weights() const }{getCanonicalDecompositionWeights() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ double $>$ \& Evidence\+::get\+Canonical\+Decomposition\+Weights (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hypertarget{classEvidence_a712ef648ec40baa3c959079b44f2d99c}{}\label{classEvidence_a712ef648ec40baa3c959079b44f2d99c}
-
-
-Get the weights of the canonical decomposition. 
-
-\begin{DoxyReturn}{Returns}
-Array of weights. 
-\end{DoxyReturn}
 \index{Evidence@{Evidence}!get\+Discernment\+\_\+frame@{get\+Discernment\+\_\+frame}}
 \index{get\+Discernment\+\_\+frame@{get\+Discernment\+\_\+frame}!Evidence@{Evidence}}
 \subsubsection[{\texorpdfstring{get\+Discernment\+\_\+frame() const }{getDiscernment_frame() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$ \& Evidence\+::get\+Discernment\+\_\+frame (
@@ -558,13 +508,6 @@ Get the mass values.
 \begin{DoxyReturn}{Returns}
 Array of masses. 
 \end{DoxyReturn}
-\index{Evidence@{Evidence}!init\+Canonical\+Decomposition@{init\+Canonical\+Decomposition}}
-\index{init\+Canonical\+Decomposition@{init\+Canonical\+Decomposition}!Evidence@{Evidence}}
-\subsubsection[{\texorpdfstring{init\+Canonical\+Decomposition()}{initCanonicalDecomposition()}}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::init\+Canonical\+Decomposition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{classEvidence_a0a89c7ef1bb5e9e9cc2c761c4a58e006}{}\label{classEvidence_a0a89c7ef1bb5e9e9cc2c761c4a58e006}
 \index{Evidence@{Evidence}!is\+Consonant@{is\+Consonant}}
 \index{is\+Consonant@{is\+Consonant}!Evidence@{Evidence}}
 \subsubsection[{\texorpdfstring{is\+Consonant() const }{isConsonant() const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Evidence\+::is\+Consonant (

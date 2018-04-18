@@ -2,7 +2,6 @@ var searchData=
 [
   ['illegalargumenterror',['IllegalArgumentError',['../classIllegalArgumentError.html#aec2c76d99f790765a78e3d4fa109055a',1,'IllegalArgumentError']]],
   ['incompatibletypeerror',['IncompatibleTypeError',['../classIncompatibleTypeError.html#ab0d9dcc1463ee375b7c0d34d1e5e99d5',1,'IncompatibleTypeError']]],
-  ['initcanonicaldecomposition',['initCanonicalDecomposition',['../classEvidence.html#a0a89c7ef1bb5e9e9cc2c761c4a58e006',1,'Evidence']]],
   ['inside',['inside',['../classFocalElement.html#aa1487ed49e7d203636edc8237322ed8b',1,'FocalElement']]],
   ['intersect',['intersect',['../classFocalElement.html#a2bb276626cceeca8f8ca46eafc923a04',1,'FocalElement::intersect()'],['../classGeometry_1_1Rectangle.html#afd899e69807bf618719805dff42f574d',1,'Geometry::Rectangle::intersect()']]],
   ['invalidbbaerror',['InvalidBBAError',['../classInvalidBBAError.html#a9c15acd507289023bad4e4079a2c53c6',1,'InvalidBBAError']]],

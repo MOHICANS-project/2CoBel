@@ -12,7 +12,6 @@ var searchData=
   ['info_5fcompiler',['info_compiler',['../CMakeCCompilerId_8c.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'info_compiler():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'info_compiler():&#160;CMakeCXXCompilerId.cpp']]],
   ['info_5flanguage_5fdialect_5fdefault',['info_language_dialect_default',['../CMakeCCompilerId_8c.html#a1ce162bad2fe6966ac8b33cc19e120b8',1,'info_language_dialect_default():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a1ce162bad2fe6966ac8b33cc19e120b8',1,'info_language_dialect_default():&#160;CMakeCXXCompilerId.cpp']]],
   ['info_5fplatform',['info_platform',['../CMakeCCompilerId_8c.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'info_platform():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'info_platform():&#160;CMakeCXXCompilerId.cpp']]],
-  ['initcanonicaldecomposition',['initCanonicalDecomposition',['../classEvidence.html#a0a89c7ef1bb5e9e9cc2c761c4a58e006',1,'Evidence']]],
   ['inside',['inside',['../classFocalElement.html#aa1487ed49e7d203636edc8237322ed8b',1,'FocalElement']]],
   ['int',['int',['../CMakeCache_8txt.html#a79a3d8790b2588b09777910863574e09',1,'CMakeCache.txt']]],
   ['intersect',['intersect',['../classFocalElement.html#a2bb276626cceeca8f8ca46eafc923a04',1,'FocalElement::intersect()'],['../classGeometry_1_1Rectangle.html#afd899e69807bf618719805dff42f574d',1,'Geometry::Rectangle::intersect()']]],

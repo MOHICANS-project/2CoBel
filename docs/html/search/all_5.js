@@ -7,7 +7,6 @@ var searchData=
   ['defaultfocalelementcontainerdispatcher_2eh',['DefaultFocalElementContainerDispatcher.h',['../DefaultFocalElementContainerDispatcher_8h.html',1,'']]],
   ['deletefocalelement',['deleteFocalElement',['../classEvidence.html#a852aee625445547abfb4bb9a2031c10e',1,'Evidence::deleteFocalElement(int index)'],['../classEvidence.html#a1ebefa9999ec36cfd2fb782e6895e54c',1,'Evidence::deleteFocalElement(const FocalElement &amp;fe)']]],
   ['dfs',['dfs',['../classEvidence.html#aaf90200d5b72268052a4c3df429b1932',1,'Evidence']]],
-  ['dfsdisj',['dfsDisj',['../classEvidence.html#af782e3c907c074e903fcda7456265454',1,'Evidence']]],
   ['difference',['difference',['../classFocalElement.html#a42ee1e0fff4a088439d823ad54f5e912',1,'FocalElement::difference()'],['../classGeometry_1_1Rectangle.html#ac803730dcde1c4e059abd1dc962b6314',1,'Geometry::Rectangle::difference()']]],
   ['dilate',['dilate',['../classClipper2DFocalElement.html#a23fd6a49f14917ec9a539562c129d945',1,'Clipper2DFocalElement']]],
   ['direct',['DIRECT',['../LICENSE_8txt.html#ac731e7b3996548500f2e20dd14fe716e',1,'LICENSE.txt']]],

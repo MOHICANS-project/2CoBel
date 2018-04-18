@@ -12,7 +12,6 @@
 #include <unordered_map>
 #include "containers/FocalElementContainerDispatcher.h"
 #include "containers/DefaultFocalElementContainerDispatcher.h"
-#include <unordered_set>
 
 /**
  * @class Evidence
@@ -27,30 +26,17 @@ class Evidence {
 
     bool is_gssf;
 
-    std::unique_ptr<FocalElementContainer> canonical_decomposition;
-    bool is_decomposed;
-
 protected:
 
     void extendPath(unsigned long long &path, size_t pos) const;
 
     void extendPath(boost::dynamic_bitset<> &path, size_t pos) const;
 
-    void buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
-                    std::vector<int> &parents, std::vector<int> &oldest_parents) const;
 
     template<typename T>
     void dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
              std::unique_ptr<FocalElement> current_intersection, std::vector<std::unique_ptr<FocalElement>> &output_vec,
              std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) const;
-
-
-    bool
-    dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, std::vector<size_t> &path,
-            std::unique_ptr<FocalElement> current_intersection,
-            std::vector<std::unique_ptr<FocalElement>> &output_vec,
-            std::vector<unsigned long long> &check, std::vector<size_t> &indices,
-            std::vector<int> &parents, size_t cur_root) const;
 
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
@@ -301,20 +287,6 @@ public:
      */
     const std::unique_ptr<FocalElement> &getDiscernment_frame() const;
 
-
-    void initCanonicalDecomposition();
-
-    /**
-    * Get the focal elements of the canonical decomposition.
-    * @return Array of FocalElement objects.
-    */
-    const std::vector<std::unique_ptr<FocalElement>> &getCanonicalDecomposition() const;
-
-    /**
-     * Get the weights of the canonical decomposition.
-     * @return Array of weights.
-     */
-    const std::vector<double> &getCanonicalDecompositionWeights() const;
 
 };
 
