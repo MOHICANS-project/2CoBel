@@ -76,4 +76,9 @@ void HashableFocalElementContainer::erase(const FocalElement &fe) {
     }
 }
 
+bool HashableFocalElementContainer::contains(const FocalElement &fe) {
+    auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(&fe));//safe for comparison only
+    return mms.find(tmp) != mms.end();
+}
+
 

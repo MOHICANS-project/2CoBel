@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['canonicaldecompositiondispatcher_2eh',['CanonicalDecompositionDispatcher.h',['../CanonicalDecompositionDispatcher_8h.html',1,'']]],
+  ['canonicaldecompositionstrategy_2eh',['CanonicalDecompositionStrategy.h',['../CanonicalDecompositionStrategy_8h.html',1,'']]],
   ['clion_2denvironment_2etxt',['clion-environment.txt',['../clion-environment_8txt.html',1,'']]],
   ['clion_2dlog_2etxt',['clion-log.txt',['../clion-log_8txt.html',1,'']]],
   ['clipper2dfocalelement_2ecpp',['Clipper2DFocalElement.cpp',['../Clipper2DFocalElement_8cpp.html',1,'']]],
@@ -12,9 +14,9 @@ var searchData=
   ['cmakecache_2etxt',['CMakeCache.txt',['../CMakeCache_8txt.html',1,'']]],
   ['cmakeccompilerid_2ec',['CMakeCCompilerId.c',['../CMakeCCompilerId_8c.html',1,'']]],
   ['cmakecxxcompilerid_2ecpp',['CMakeCXXCompilerId.cpp',['../CMakeCXXCompilerId_8cpp.html',1,'']]],
+  ['cmakelists_2etxt',['CMakeLists.txt',['../demos_2CMakeLists_8txt.html',1,'']]],
   ['cmakelists_2etxt',['CMakeLists.txt',['../CMakeLists_8txt.html',1,'']]],
   ['cmakelists_2etxt',['CMakeLists.txt',['../plotters_2CMakeLists_8txt.html',1,'']]],
-  ['cmakelists_2etxt',['CMakeLists.txt',['../demos_2CMakeLists_8txt.html',1,'']]],
   ['cmakerulehashes_2etxt',['CMakeRuleHashes.txt',['../CMakeRuleHashes_8txt.html',1,'']]],
   ['compositefocalelement_2ecpp',['CompositeFocalElement.cpp',['../CompositeFocalElement_8cpp.html',1,'']]],
   ['compositefocalelement_2eh',['CompositeFocalElement.h',['../CompositeFocalElement_8h.html',1,'']]],

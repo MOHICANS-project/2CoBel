@@ -2,6 +2,7 @@
 // Created by nicola on 17/11/17.
 //
 
+#include <algorithm>
 #include "Clipper2DFocalElement.h"
 
 const float EPS = 1e-4;
@@ -38,7 +39,8 @@ bool Clipper2DFocalElement::is_inside(FocalElement const &rhs) const {
     return cardinality() <= rhs.cardinality() && *intersect(rhs) == *this;
 }
 
-std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElement const &rhs) const {
+std::unique_ptr<FocalElement>
+Clipper2DFocalElement::do_operator(ClipperLib::ClipType type, FocalElement const &rhs) const {
     auto rhsr = static_cast<const Clipper2DFocalElement &>(rhs);
     ClipperLib::Clipper c;
     for (const auto &polygon : polygons) {
@@ -48,64 +50,28 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElemen
         c.AddPath(polygon.getPolygon(), ClipperLib::ptClip, true);
     }
     ClipperLib::Paths solution;
-    c.Execute(ClipperLib::ctIntersection, solution);
-
-//    for(auto &path: solution){
-//        for (int i = 0; i < path.size(); ++i) {
-//
-//            if(!ClipperLib::PointInPolygon(path[i],polygons[0].getPolygon()) || !ClipperLib::PointInPolygon(path[i],rhsr.getPolygons()[0].getPolygon())){
-//
-//                    ClipperLib::IntPoint up(path[i].X,path[i].Y+1);
-//                    if(ClipperLib::PointInPolygon(up,polygons[0].getPolygon()) && ClipperLib::PointInPolygon(up,rhsr.getPolygons()[0].getPolygon()) && up!=path[(i+1)%path.size()] && up!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X,path[i].Y+1);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint right(path[i].X+1,path[i].Y);
-//                    if(ClipperLib::PointInPolygon(right,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(right,rhsr.getPolygons()[0].getPolygon())&& right!=path[(i+1)%path.size()] && right!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X+1,path[i].Y);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint down(path[i].X,path[i].Y-1);
-//                    if(ClipperLib::PointInPolygon(down,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(down,rhsr.getPolygons()[0].getPolygon())&& down!=path[(i+1)%path.size()] && down!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X,path[i].Y-1);
-//                        continue;
-//                    }
-//                    ClipperLib::IntPoint left(path[i].X-1,path[i].Y);
-//                    if(ClipperLib::PointInPolygon(left,polygons[0].getPolygon())&& ClipperLib::PointInPolygon(left,rhsr.getPolygons()[0].getPolygon())&& left!=path[(i+1)%path.size()] && left!=path[(i-1)>=0?(i-1):(path.size()-1)]) {
-//                        path[i]=ClipperLib::IntPoint(path[i].X-1,path[i].Y);
-//                        continue;
-//                    }
-//            }
-//
-//        }
-//    }
+    c.Execute(type, solution);
 
     std::vector<Geometry::ClipperPolygon> outvec;
     for (auto &path : solution) {
         outvec.emplace_back(path);
     }
 
-
     return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
+}
+
+std::unique_ptr<FocalElement> Clipper2DFocalElement::do_intersection(FocalElement const &rhs) const {
+    return do_operator(ClipperLib::ctIntersection, rhs);
 }
 
 std::unique_ptr<FocalElement> Clipper2DFocalElement::do_union(FocalElement const &rhs) const {
-    auto rhsr = static_cast<const Clipper2DFocalElement &>(rhs);
-    ClipperLib::Clipper c;
-    for (const auto &polygon : polygons) {
-        c.AddPath(polygon.getPolygon(), ClipperLib::ptSubject, true);
-    }
-    for (const auto &polygon : rhsr.getPolygons()) {
-        c.AddPath(polygon.getPolygon(), ClipperLib::ptClip, true);
-    }
-    ClipperLib::Paths solution;
-    c.Execute(ClipperLib::ctUnion, solution);
-    std::vector<Geometry::ClipperPolygon> outvec;
-    for (auto &path : solution) {
-        outvec.emplace_back(path);
-    }
-    return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
+    return do_operator(ClipperLib::ctUnion, rhs);
 }
+
+std::unique_ptr<FocalElement> Clipper2DFocalElement::do_difference(FocalElement const &rhs) const {
+    return do_operator(ClipperLib::ctDifference, rhs);
+}
+
 
 std::vector<std::unique_ptr<FocalElement>> Clipper2DFocalElement::getInnerSingletons(int step_size) const {
     std::vector<std::unique_ptr<FocalElement>> singletons;
@@ -155,8 +121,16 @@ size_t Clipper2DFocalElement::hash() const {
         return polygons[0].hash();
     }
     size_t seed = polygons.size();
+
+    std::vector<size_t> hashes(polygons.size());
+
     for (int i = 0; i < polygons.size(); ++i) {
-        seed ^= polygons[i].hash() + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        hashes[i] = polygons[i].hash();
+    }
+
+    std::sort(hashes.begin(), hashes.end());
+    for (auto hash : hashes) {
+        seed ^= hash + 0x9e3779b9 + (seed << 6) + (seed >> 2);
     }
 
     return seed;
@@ -176,6 +150,9 @@ std::unique_ptr<FocalElement> Clipper2DFocalElement::dilate(long delta) {
     }
     return std::unique_ptr<FocalElement>(new Clipper2DFocalElement(outvec));
 }
+
+
+
 
 
 

@@ -229,15 +229,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
             &amp;rhs) <span class="keyword">const override</span>;
         </div>
         <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-        <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; <span
-                class="keywordtype">void</span> print(std::ostream &amp;os) <span class="keyword">const override</span>;
+        <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; std::unique_ptr&lt;FocalElement&gt;
+            do_difference(<a class="code" href="classFocalElement.html">FocalElement</a> <span
+                    class="keyword">const</span> &amp;rhs) <span class="keyword">const override</span>;
         </div>
         <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-        <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-        <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+        <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; <span
+                class="keywordtype">void</span> print(std::ostream &amp;os) <span class="keyword">const override</span>;
+        </div>
+        <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
         <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-        <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-        <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif //FUSION_BOXSET2DFOCALELEMENT_H</span>
+        <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
+        <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+        <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+        <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif //FUSION_BOXSET2DFOCALELEMENT_H</span>
         </div>
         <div class="ttc" id="classFocalElement_html">
             <div class="ttname"><a href="classFocalElement.html">FocalElement</a></div>
@@ -261,35 +266,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
             </div>
             <div class="ttdeci">void simplify_contigous()</div>
             <div class="ttdoc">Simplify representation fusing contigous rectangles.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:138</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:175</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a0e325a4cad33db05c423f46eb1f346c9">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a0e325a4cad33db05c423f46eb1f346c9">BoxSet2DFocalElement::clone</a>
             </div>
             <div class="ttdeci">std::unique_ptr&lt; FocalElement &gt; clone() const override</div>
             <div class="ttdoc">Clone method.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:239</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:276</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a431361485288f14e2770aab9d12a1320">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a431361485288f14e2770aab9d12a1320">BoxSet2DFocalElement::getBounding_box</a>
             </div>
             <div class="ttdeci">const Geometry::Rectangle &amp; getBounding_box() const</div>
             <div class="ttdoc">Get the bounding box.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:231</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:268</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a21707f3b23e1d1b72db05ccfae023634">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a21707f3b23e1d1b72db05ccfae023634">BoxSet2DFocalElement::getBoxes</a>
             </div>
             <div class="ttdeci">const std::vector&lt; Geometry::Rectangle &gt; &amp; getBoxes() const</div>
             <div class="ttdoc">Get the boxes.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:227</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:264</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a9b09d64e1511def1a20898c7e3ac7390">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a9b09d64e1511def1a20898c7e3ac7390">BoxSet2DFocalElement::clear</a>
             </div>
             <div class="ttdeci">void clear() override</div>
             <div class="ttdoc">Clear the FocalElement, resulting into the empty set.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:268</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:305</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html">BoxSet2DFocalElement</a></div>
@@ -301,7 +306,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
             </div>
             <div class="ttdeci">size_t getNumBoxes()</div>
             <div class="ttdoc">Get the number of boxes.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:235</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:272</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_afdd0db628fc45a5865c72d9f1fb3fcce">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#afdd0db628fc45a5865c72d9f1fb3fcce">BoxSet2DFocalElement::getInnerSingletons</a>
@@ -310,21 +315,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                 step_size=1) const override
             </div>
             <div class="ttdoc">Extract the singleton FocalElements included in the current one.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:243</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:280</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a8e80a0fb79597dfa97e7d2d4ef49623d">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a8e80a0fb79597dfa97e7d2d4ef49623d">BoxSet2DFocalElement::simplify_included</a>
             </div>
             <div class="ttdeci">void simplify_included()</div>
             <div class="ttdoc">Simplify representation with inclusion test.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:177</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:214</div>
         </div>
         <div class="ttc" id="classBoxSet2DFocalElement_html_a7512305b698f37aa77f3acacd0626f77">
             <div class="ttname"><a href="classBoxSet2DFocalElement.html#a7512305b698f37aa77f3acacd0626f77">BoxSet2DFocalElement::isEmpty</a>
             </div>
             <div class="ttdeci">bool isEmpty() const override</div>
             <div class="ttdoc">Check whether the current FocalElement is the empty set.</div>
-            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:264</div>
+            <div class="ttdef"><b>Definition:</b> BoxSet2DFocalElement.cpp:301</div>
         </div>
         <div class="ttc" id="FocalElement_8h_html">
             <div class="ttname"><a href="FocalElement_8h.html">FocalElement.h</a></div>
@@ -346,7 +351,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <hr class="footer"/>
 <address class="footer">
     <small>
-        Generated on Thu Apr 12 2018 15:21:34 for Belief function theory library by &#160;<a
+        Generated on Tue Apr 17 2018 17:03:12 for Belief function theory library by &#160;<a
             href="http://www.doxygen.org/index.html">
         <img class="footer" src="doxygen.png" alt="doxygen"/>
     </a> 1.8.11

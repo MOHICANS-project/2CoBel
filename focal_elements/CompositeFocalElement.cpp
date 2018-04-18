@@ -83,6 +83,13 @@ void CompositeFocalElement::clear() {
     right->clear();
 }
 
+std::unique_ptr<FocalElement> CompositeFocalElement::do_difference(FocalElement const &rhs) const {
+    auto rhsr = static_cast<const CompositeFocalElement &>(rhs);
+    std::unique_ptr<FocalElement> leftdif = left->difference(*rhsr.getLeft());
+    std::unique_ptr<FocalElement> rightdif = right->difference(*rhsr.getRight());
+    return std::unique_ptr<FocalElement>(new CompositeFocalElement(std::move(leftdif), std::move(rightdif)));
+}
+
 
 
 

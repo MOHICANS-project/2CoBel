@@ -107,10 +107,15 @@ namespace Geometry {
     }
 
     std::vector<Rectangle> Rectangle::difference(const Rectangle &other) const {
-        Rectangle intersection = intersect(other);
-        if (intersection.computeArea() == 0)return std::vector<Rectangle>();
-
         std::vector<Rectangle> rectangles;
+
+        Rectangle intersection = intersect(other);
+        if (intersection.computeArea() == 0) {
+            rectangles.push_back(*this);
+            return rectangles;
+        }
+
+
         if (intersection.getXmin() > xmin) {
             rectangles.emplace_back(xmin, intersection.getXmin(), ymin, ymax);
         }

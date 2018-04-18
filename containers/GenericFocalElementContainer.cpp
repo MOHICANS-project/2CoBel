@@ -76,3 +76,13 @@ void GenericFocalElementContainer::erase(const FocalElement &fe) {
     if (index < 0)return;
     erase(index);
 }
+
+bool GenericFocalElementContainer::contains(const FocalElement &fe) {
+    for (int k = 0; k < fes.size(); ++k) {
+        const FocalElement &fek = *fes[k];
+        if (fek == fe) {
+            return true;
+        }
+    }
+    return false;
+}

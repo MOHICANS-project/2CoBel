@@ -6,5 +6,6 @@ var searchData=
   ['boxset2dfocalelement',['BoxSet2DFocalElement',['../classBoxSet2DFocalElement.html',1,'BoxSet2DFocalElement'],['../classBoxSet2DFocalElement.html#a8215ede5350376e541893ce73d8e5a05',1,'BoxSet2DFocalElement::BoxSet2DFocalElement()']]],
   ['boxset2dfocalelement_2ecpp',['BoxSet2DFocalElement.cpp',['../BoxSet2DFocalElement_8cpp.html',1,'']]],
   ['boxset2dfocalelement_2eh',['BoxSet2DFocalElement.h',['../BoxSet2DFocalElement_8h.html',1,'']]],
-  ['buildevidence',['buildEvidence',['../clipper__demo_8cpp.html#a4e15b37fd9e2dd5067632a6006ccff2d',1,'clipper_demo.cpp']]]
+  ['buildevidence',['buildEvidence',['../clipper__demo_8cpp.html#a4e15b37fd9e2dd5067632a6006ccff2d',1,'clipper_demo.cpp']]],
+  ['buildgraph',['buildGraph',['../namespaceGraphBuilder.html#a1032dce054f2a959e50080ac834b1c9d',1,'GraphBuilder']]]
 ];

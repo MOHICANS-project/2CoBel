@@ -95,5 +95,17 @@ void UnidimensionalFocalElement::clear() {
     ID = 0;
 }
 
+std::unique_ptr<FocalElement> UnidimensionalFocalElement::do_difference(FocalElement const &rhs) const {
+
+    auto rhsr = static_cast<const UnidimensionalFocalElement &>(rhs);
+
+    unsigned long long IDb = rhsr.getKey();
+
+    unsigned long long newID = (ID ^ IDb) & ID;
+
+
+    return std::unique_ptr<FocalElement>(new UnidimensionalFocalElement(newID));
+}
+
 
 

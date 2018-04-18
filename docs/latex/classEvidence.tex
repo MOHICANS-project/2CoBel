@@ -112,6 +112,8 @@ void \hyperlink{classEvidence_ae732467027722ccd1a3bd690110e21a3}{extend\+Path} (
 \item 
 {\footnotesize template$<$typename T $>$ }\\void \hyperlink{classEvidence_aaf90200d5b72268052a4c3df429b1932}{dfs} (std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&output\+\_\+vec, std\+::vector$<$ T $>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ \hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} $>$ \&parents, size\+\_\+t cur\+\_\+root) const 
 \item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{classEvidence_af782e3c907c074e903fcda7456265454}{dfs\+Disj} (std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&output\+\_\+vec, std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ \hyperlink{CMakeCache_8txt_a79a3d8790b2588b09777910863574e09}{int} $>$ \&parents, size\+\_\+t cur\+\_\+root) const 
+\item 
 std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ \hyperlink{classEvidence_aa2580207b322e297cdd0c3af07ddcd21}{max\+BetP} (std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$$>$ \&elems, bool compute\+Inters) const 
 \item 
 \hyperlink{classEvidence_a8136cd1d58c59e4b6a5088e9ac581797}{Evidence} (std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainerDispatcher}{Focal\+Element\+Container\+Dispatcher} $>$ dispatcher, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElementContainer}{Focal\+Element\+Container} $>$ \&\&fecontainer, std\+::unique\+\_\+ptr$<$ \hyperlink{classFocalElement}{Focal\+Element} $>$ discernment\+\_\+frame, double \+\_\+ignorance=0)
@@ -368,6 +370,21 @@ Delete the given \hyperlink{classFocalElement}{Focal\+Element}.
 \item[{size\+\_\+t}]{cur\+\_\+root}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classEvidence_aaf90200d5b72268052a4c3df429b1932}{}\label{classEvidence_aaf90200d5b72268052a4c3df429b1932}
+\index{Evidence@{Evidence}!dfs\+Disj@{dfs\+Disj}}
+\index{dfs\+Disj@{dfs\+Disj}!Evidence@{Evidence}}
+\subsubsection[{\texorpdfstring{dfs\+Disj(std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&adj\+\_\+list, size\+\_\+t current\+\_\+pos, T path, std\+::unique\+\_\+ptr$<$ Focal\+Element $>$ current\+\_\+intersection, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ Focal\+Element $>$$>$ \&output\+\_\+vec, std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&check, std\+::vector$<$ size\+\_\+t $>$ \&indices, std\+::vector$<$ int $>$ \&parents, size\+\_\+t cur\+\_\+root) const }{dfsDisj(std::unordered_map< size_t, std::vector< size_t >> &adj_list, size_t current_pos, T path, std::unique_ptr< FocalElement > current_intersection, std::vector< std::unique_ptr< FocalElement >> &output_vec, std::vector< std::unordered_set< size_t >> &check, std::vector< size_t > &indices, std::vector< int > &parents, size_t cur_root) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void Evidence\+::dfs\+Disj (
+\begin{DoxyParamCaption}
+\item[{std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::vector$<$ size\+\_\+t $>$$>$ \&}]{adj\+\_\+list, }
+\item[{size\+\_\+t}]{current\+\_\+pos, }
+\item[{T}]{path, }
+\item[{std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$}]{current\+\_\+intersection, }
+\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ {\bf Focal\+Element} $>$$>$ \&}]{output\+\_\+vec, }
+\item[{std\+::vector$<$ std\+::unordered\+\_\+set$<$ size\+\_\+t $>$$>$ \&}]{check, }
+\item[{std\+::vector$<$ size\+\_\+t $>$ \&}]{indices, }
+\item[{std\+::vector$<$ {\bf int} $>$ \&}]{parents, }
+\item[{size\+\_\+t}]{cur\+\_\+root}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classEvidence_af782e3c907c074e903fcda7456265454}{}\label{classEvidence_af782e3c907c074e903fcda7456265454}
 \index{Evidence@{Evidence}!discount@{discount}}
 \index{discount@{discount}!Evidence@{Evidence}}
 \subsubsection[{\texorpdfstring{discount(double alpha)}{discount(double alpha)}}]{\setlength{\rightskip}{0pt plus 5cm}void Evidence\+::discount (

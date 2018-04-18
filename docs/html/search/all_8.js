@@ -9,7 +9,8 @@ var searchData=
   ['getbarycenter',['getBarycenter',['../classGeometry_1_1ClipperPolygon.html#a62c9a314154ba6af98a142378134578e',1,'Geometry::ClipperPolygon']]],
   ['getbounding_5fbox',['getBounding_box',['../classBoxSet2DFocalElement.html#a431361485288f14e2770aab9d12a1320',1,'BoxSet2DFocalElement::getBounding_box()'],['../classEigenFE_1_1EigenMat2DFocalElement.html#a87b3b927b9b669c4120efb6c271a14d6',1,'EigenFE::EigenMat2DFocalElement::getBounding_box()']]],
   ['getboxes',['getBoxes',['../classBoxSet2DFocalElement.html#a21707f3b23e1d1b72db05ccfae023634',1,'BoxSet2DFocalElement']]],
-  ['getcanonicaldecomposition',['getCanonicalDecomposition',['../classEvidence.html#ad939c330f37c0e1a7da3a5b0829c1686',1,'Evidence']]],
+  ['getcanonicaldecomposition',['getCanonicalDecomposition',['../classCanonicalDecompositionStrategy.html#ade6fe939986d1312bff19b716e5588a3',1,'CanonicalDecompositionStrategy::getCanonicalDecomposition()'],['../classUnidimensionalCanonicalDecomposition.html#a8423df335ecbcb21ad6c81d1decbb84e',1,'UnidimensionalCanonicalDecomposition::getCanonicalDecomposition()'],['../classEvidence.html#ad939c330f37c0e1a7da3a5b0829c1686',1,'Evidence::getCanonicalDecomposition()']]],
+  ['getcanonicaldecompositionstrategy',['getCanonicalDecompositionStrategy',['../classCanonicalDecompositionDispatcher.html#a523e9d879ccddbd8dc0bd948335c652c',1,'CanonicalDecompositionDispatcher']]],
   ['getcanonicaldecompositionweights',['getCanonicalDecompositionWeights',['../classEvidence.html#a712ef648ec40baa3c959079b44f2d99c',1,'Evidence']]],
   ['getcontainer',['getContainer',['../classDefaultFocalElementContainerDispatcher.html#a3e2952b8397e02d4ca917e257471781e',1,'DefaultFocalElementContainerDispatcher::getContainer()'],['../classFocalElementContainerDispatcher.html#a8f48fb2a87d6ceaefbeaf4b754ea7f2e',1,'FocalElementContainerDispatcher::getContainer()']]],
   ['getdiscernment_5fframe',['getDiscernment_frame',['../classEvidence.html#a875150a8830c15d0cf3391d73889214e',1,'Evidence']]],
@@ -31,5 +32,8 @@ var searchData=
   ['getymax',['getYmax',['../classGeometry_1_1Rectangle.html#aebea5b9d1990639bac462fa00714d4a1',1,'Geometry::Rectangle']]],
   ['getymin',['getYmin',['../classGeometry_1_1Rectangle.html#a4fd564dbf894c57e3b04c5f1d9f139cd',1,'Geometry::Rectangle']]],
   ['gnu',['gnu',['../CMakeCache_8txt.html#acb61b5fec09bcc7d3b88bf1109612ea6',1,'CMakeCache.txt']]],
-  ['granted',['granted',['../LICENSE_8txt.html#a8760b125778f8a942fa567c12bd05f9e',1,'LICENSE.txt']]]
+  ['granted',['granted',['../LICENSE_8txt.html#a8760b125778f8a942fa567c12bd05f9e',1,'LICENSE.txt']]],
+  ['graphbuilder',['GraphBuilder',['../namespaceGraphBuilder.html',1,'']]],
+  ['graphbuilder_2ecpp',['GraphBuilder.cpp',['../GraphBuilder_8cpp.html',1,'']]],
+  ['graphbuilder_2eh',['GraphBuilder.h',['../GraphBuilder_8h.html',1,'']]]
 ];

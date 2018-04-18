@@ -68,6 +68,8 @@ private:
 
     std::unique_ptr<FocalElement> do_union(FocalElement const &rhs) const override;
 
+    std::unique_ptr<FocalElement> do_difference(FocalElement const &rhs) const override;
+
     void print(std::ostream &os) const override;
 
 

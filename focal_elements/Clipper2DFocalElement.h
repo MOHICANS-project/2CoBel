@@ -17,6 +17,7 @@ class Clipper2DFocalElement : public HashableFocalElement {
 
     std::vector<Geometry::ClipperPolygon> polygons;
 
+
 public:
     /**
      * Constructor.
@@ -58,6 +59,9 @@ public:
     std::unique_ptr<FocalElement> dilate(long delta);
 
 private:
+
+    std::unique_ptr<FocalElement> do_operator(ClipperLib::ClipType type, FocalElement const &rhs) const;
+
     bool equal_to(FocalElement const &rhs) const override;
 
     bool is_inside(FocalElement const &rhs) const override;
@@ -65,6 +69,8 @@ private:
     std::unique_ptr<FocalElement> do_intersection(FocalElement const &rhs) const override;
 
     std::unique_ptr<FocalElement> do_union(FocalElement const &rhs) const override;
+
+    std::unique_ptr<FocalElement> do_difference(FocalElement const &rhs) const override;
 
     void print(std::ostream &os) const override;
 };
