@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <cfloat>
-#include <builders/GraphBuilder.h>
+#include <focal_elements/UnidimensionalFocalElement.h>
 #include "focal_elements/CompositeFocalElement.h"
 #include "errors/InvalidBBAError.h"
 #include "Evidence.h"
@@ -15,7 +15,51 @@
 
 const double EPS = 1e-3;
 
+void Evidence::buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
+                          std::vector<int> &parents, std::vector<int> &oldest_parents) const {
 
+    const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+
+    //Sort by cardinality
+    for (size_t l = 0; l < focal_elements.size(); ++l) {
+        indices[l] = l;
+        parents[l] = -1;
+        oldest_parents[l] = -1;
+    }
+
+    std::sort(indices.begin(), indices.end(),
+              [&](size_t x, size_t y) {
+                  return focal_elements[x]->cardinality() > focal_elements[y]->cardinality();
+              });
+
+
+    for (size_t i = 0; i < focal_elements.size(); ++i) {
+        const FocalElement &fe1 = *focal_elements[indices[i]];
+        if (fe1.cardinality() == 0.0)continue;
+        adj_list.insert(std::make_pair(i, std::vector<size_t>()));
+        for (size_t j = i + 1; j < focal_elements.size(); ++j) {
+            const FocalElement &fe2 = *focal_elements[indices[j]];
+            std::unique_ptr<FocalElement> interbuf = fe1.intersect(fe2);
+            if (interbuf->cardinality() > 0) {
+                if (fabs(interbuf->cardinality() - fe2.cardinality()) < 1e-4) {
+                    parents[j] = static_cast<int>(i);
+                    if (oldest_parents[j] < 0)oldest_parents[j] = static_cast<int>(i);
+                } else {
+                    adj_list[i].push_back(j);
+                }
+            }
+        }
+    }
+
+
+    for (int m = 0; m < focal_elements.size(); ++m) {
+        if (parents[m] >= 0) {
+            adj_list[parents[m]].insert(
+                    std::upper_bound(adj_list[parents[m]].begin(), adj_list[parents[m]].end(), m),
+                    m);
+        }
+    }
+}
 
 template<typename T>
 void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
@@ -52,20 +96,44 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
 }
 
 
-template<typename T>
-void Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
+bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos,
+                       std::vector<size_t> &path,
                        std::unique_ptr<FocalElement> current_intersection,
                        std::vector<std::unique_ptr<FocalElement>> &output_vec,
-                       std::vector<std::unordered_set<size_t>> &check, std::vector<size_t> &indices,
+                       std::vector<unsigned long long> &check, std::vector<size_t> &indices,
                        std::vector<int> &parents, size_t cur_root) const {
-    extendPath(path, current_pos);
+    path.push_back(current_pos);
     for (auto next_pos : adj_list[current_pos]) {
         const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
         if (parents[next_pos] >= 0 && parents[next_pos] < cur_root)continue; //early stopping
         std::unique_ptr<FocalElement> next_inter = current_intersection->intersect(fe);
         if (next_inter->cardinality() == 0)continue;
-        dfs(adj_list, next_pos, path, std::move(next_inter), output_vec, check, indices, parents, cur_root);
+        if (!dfsDisj(adj_list, next_pos, path, std::move(next_inter), output_vec, check, indices, parents,
+                     cur_root))
+            return false;
     }
+
+    //Check current path
+    unsigned long common_disjunctions = path[0];
+    for (int i = 1; i < path.size(); ++i) {
+        common_disjunctions &= check[path[i]];
+    }
+    //remove included sets
+    for (int j = 0; j < 64; ++j) {
+        if (common_disjunctions & (1 << j) != 0) {
+            current_intersection = current_intersection->difference(*output_vec[j]);
+        }
+    }
+    //insert new disjunction
+    size_t id = output_vec.size();
+    if (id == 64)return false;
+    output_vec.push_back(std::move(current_intersection));
+    //update disjuntcion table
+    for (unsigned long i : path) {
+        check[i] |= (1 << id);
+    }
+    return true;
+
 }
 
 Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : discernment_frame(
@@ -272,7 +340,7 @@ std::unique_ptr<FocalElement> Evidence::maxBetP_withMaximalIntersections() const
     std::vector<int> oldest_parents(focal_elements.size());
     std::unordered_map<size_t, std::vector<size_t>> adj_list;
 
-    GraphBuilder::buildGraph(focal_elements, adj_list, indices, parents, oldest_parents);
+    buildGraph(adj_list, indices, parents, oldest_parents);
 
     std::vector<std::unique_ptr<FocalElement>> inters;
 
@@ -691,6 +759,7 @@ bool Evidence::isConsonant() const {
 
 void Evidence::initCanonicalDecomposition() {
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
+    const std::vector<double> &masses = fecontainer->getMassArray();
     if (isConsonant()) {
         const std::vector<double> &masses = fecontainer->getMassArray();
         std::vector<size_t> indices(focal_elements.size());
@@ -721,13 +790,52 @@ void Evidence::initCanonicalDecomposition() {
 
     }
 
-    //and here the magic
+    auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame);
 
+    Evidence *ev_to_use = this;
+
+    if (rhs == nullptr) {
+        //need to transform to 1D representation
+        std::vector<size_t> indices(focal_elements.size());
+        std::vector<int> parents(focal_elements.size());
+        std::vector<int> oldest_parents(focal_elements.size());
+        std::unordered_map<size_t, std::vector<size_t>> adj_list;
+
+        buildGraph(adj_list, indices, parents, oldest_parents);
+
+        std::vector<unsigned long long> checks(focal_elements.size());
+        std::vector<std::unique_ptr<FocalElement>> output_vec;
+        for (size_t k = 0; k < focal_elements.size(); ++k) {
+            if (focal_elements[indices[k]]->cardinality() > 0 && parents[k] < 0) {
+                std::vector<size_t> path;
+                if (!dfsDisj(adj_list, k, path, focal_elements[indices[k]]->clone(), output_vec, checks, indices,
+                             oldest_parents, k)) {
+                    std::cout << "WARNING: canonical decomposition fail. Max number of disjunctions (64) exceeded."
+                              << std::endl;
+                    return;
+                }
+            }
+        }
+
+        std::unique_ptr<UnidimensionalFocalElement> new_df = UnidimensionalFocalElement::createDiscernmentFrame(
+                static_cast<unsigned char>(output_vec.size()));
+        Evidence new_ev(std::move(new_df), ignorance);
+        for (int i = 0; i < checks.size(); ++i) {
+            std::unique_ptr<UnidimensionalFocalElement> el(new UnidimensionalFocalElement(checks[i]));
+            std::cout << *el << " " << masses[indices[i]] << std::endl;
+            new_ev.addFocalElement(std::move(el), masses[indices[i]]);
+
+        }
+
+        ev_to_use = &new_ev;
+    }
+
+    //do what you want with ev_to_use
 
 
 
     is_decomposed = true;
-
+    delete ev_to_use;
 }
 
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getCanonicalDecomposition() const {
