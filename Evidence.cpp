@@ -122,8 +122,10 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     for (int j = 0; j < 64; ++j) {
         if (common_disjunctions & (1 << j) != 0) {
             current_intersection = current_intersection->difference(*output_vec[j]);
+            if (current_intersection->cardinality() == 0)return true;
         }
     }
+
     //insert new disjunction
     size_t id = output_vec.size();
     if (id == 64)return false;
@@ -790,7 +792,7 @@ void Evidence::initCanonicalDecomposition() {
 
     }
 
-    auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame);
+    auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame.get());
 
     Evidence *ev_to_use = this;
 
