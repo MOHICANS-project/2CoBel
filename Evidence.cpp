@@ -789,7 +789,7 @@ void Evidence::initCanonicalDecomposition() {
             empty_set->clear();
             canonical_decomposition->push(std::move(empty_set), qs[qs.size() - 1]);
         }
-
+        is_decomposed = true;
         return;
 
     }
