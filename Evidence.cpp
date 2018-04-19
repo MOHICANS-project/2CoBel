@@ -819,6 +819,10 @@ void Evidence::initCanonicalDecomposition() {
             }
         }
 
+        for (int j = 0; j < output_vec.size(); ++j) {
+            std::cout << j << " " << *output_vec[j] << std::endl;
+        }
+
         std::unique_ptr<UnidimensionalFocalElement> new_df = UnidimensionalFocalElement::createDiscernmentFrame(
                 static_cast<unsigned char>(output_vec.size()));
         Evidence new_ev(std::move(new_df), ignorance);
