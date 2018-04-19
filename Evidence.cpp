@@ -790,6 +790,8 @@ void Evidence::initCanonicalDecomposition() {
             canonical_decomposition->push(std::move(empty_set), qs[qs.size() - 1]);
         }
 
+        return;
+
     }
 
     auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame.get());
