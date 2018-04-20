@@ -768,7 +768,9 @@ bool Evidence::isConsonant() const {
     return true;
 }
 
-void Evidence::buildCanonicalDecomposition(const Evidence &ev) {
+void
+buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<UnidimensionalFocalElement>> &out_elems,
+                            std::vector<double> &outweights) {
     auto maxnum = static_cast<unsigned long long int>(pow(2, ev.getDiscernment_frame()->cardinality()));
 
     std::vector<double> qs(maxnum);
@@ -791,7 +793,9 @@ void Evidence::buildCanonicalDecomposition(const Evidence &ev) {
         }
         double w = exp(-lnw);
         if (w != 1) {
-            canonical_decomposition->push(std::move(cur), w);
+            //canonical_decomposition->push(std::move(cur), w);
+            out_elems.push_back(std::move(cur));
+            outweights.push_back(w);
         }
     }
     if (ev.conflict() > 0) {
@@ -806,7 +810,9 @@ void Evidence::buildCanonicalDecomposition(const Evidence &ev) {
         double w = exp(-lnw);
         if (w != 1) {
             std::unique_ptr<UnidimensionalFocalElement> empty(new UnidimensionalFocalElement(0));
-            canonical_decomposition->push(std::move(empty), w);
+            //canonical_decomposition->push(std::move(empty), w);
+            out_elems.push_back(std::move(empty));
+            outweights.push_back(w);
         }
     }
 
@@ -849,7 +855,8 @@ void Evidence::initCanonicalDecomposition() {
 
     auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame.get());
 
-
+    std::vector<std::unique_ptr<UnidimensionalFocalElement>> out_elems;
+    std::vector<double> outweights;
     if (rhs == nullptr) {
         //need to transform to 1D representation
         std::vector<size_t> indices(focal_elements.size());
@@ -882,10 +889,22 @@ void Evidence::initCanonicalDecomposition() {
 
         }
 
-        buildCanonicalDecomposition(new_ev);
+        buildCanonicalDecomposition(new_ev, out_elems, outweights);
+        for (int j = 0; j < outweights.size(); ++j) {
+            auto ID = out_elems[j]->getKey();
+            std::unique_ptr<FocalElement> toput = discernment_frame->clone();
+            toput->clear();
+            for (int i = 0; i < output_vec.size(); ++i) {
+                if (ID & (1 << j) != 0) toput = toput->unite(*output_vec[j]);
+            }
+            canonical_decomposition->push(std::move(toput), outweights[j]);
+        }
 
     } else {
-        buildCanonicalDecomposition(*this);
+        buildCanonicalDecomposition(*this, out_elems, outweights);
+        for (int i = 0; i < outweights.size(); ++i) {
+            canonical_decomposition->push(std::move(out_elems[i]), outweights[i]);
+        }
     }
 
 

@@ -53,7 +53,6 @@ protected:
             std::vector<int> &parents, size_t cur_root) const;
 
 
-    void buildCanonicalDecomposition(const Evidence &ev);
 
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
