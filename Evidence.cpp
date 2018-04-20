@@ -96,12 +96,14 @@ void Evidence::dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, si
 }
 
 
+
 bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos,
                        std::vector<size_t> &path,
                        std::unique_ptr<FocalElement> current_intersection,
                        std::vector<std::unique_ptr<FocalElement>> &output_vec,
                        std::vector<unsigned long long> &check, std::vector<size_t> &indices,
                        std::vector<int> &parents, size_t cur_root) const {
+
     path.push_back(current_pos);
     for (auto next_pos : adj_list[current_pos]) {
         const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
@@ -118,11 +120,15 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     for (int i = 1; i < path.size(); ++i) {
         common_disjunctions &= check[path[i]];
     }
+
     //remove included sets
-    for (int j = 0; j < 64; ++j) {
-        if (common_disjunctions & (1 << j) != 0) {
-            current_intersection = current_intersection->difference(*output_vec[j]);
-            if (current_intersection->cardinality() == 0)return true;
+    if (common_disjunctions > 0) {
+        for (int j = 0; j < 64; ++j) {
+            std::cout << j << std::endl;
+            if (common_disjunctions & (1 << j) != 0) {
+                current_intersection = current_intersection->difference(*output_vec[j]);
+                if (current_intersection->cardinality() == 0)return true;
+            }
         }
     }
 
@@ -134,9 +140,12 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     for (unsigned long i : path) {
         check[i] |= (1 << id);
     }
+
+    path.erase(path.end() - 1);
     return true;
 
 }
+
 
 Evidence::Evidence(std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : discernment_frame(
         std::move(_discernment_frame)), ignorance(_ignorance) {
@@ -865,16 +874,11 @@ void Evidence::initCanonicalDecomposition() {
             }
         }
 
-        for (int j = 0; j < output_vec.size(); ++j) {
-            std::cout << j << " " << *output_vec[j] << std::endl;
-        }
-
         std::unique_ptr<UnidimensionalFocalElement> new_df = UnidimensionalFocalElement::createDiscernmentFrame(
                 static_cast<unsigned char>(output_vec.size()));
         Evidence new_ev(std::move(new_df), ignorance);
         for (int i = 0; i < checks.size(); ++i) {
             std::unique_ptr<UnidimensionalFocalElement> el(new UnidimensionalFocalElement(checks[i]));
-            std::cout << *el << " " << masses[indices[i]] << std::endl;
             new_ev.addFocalElement(std::move(el), masses[indices[i]]);
 
         }
