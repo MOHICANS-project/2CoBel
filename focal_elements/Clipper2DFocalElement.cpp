@@ -113,7 +113,7 @@ bool Clipper2DFocalElement::isEmpty() const {
 }
 
 void Clipper2DFocalElement::clear() {
-    polygons.clear();
+    std::vector<Geometry::ClipperPolygon>().swap(polygons);
 }
 
 size_t Clipper2DFocalElement::hash() const {
