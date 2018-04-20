@@ -125,7 +125,6 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     //remove included sets
     if (common_disjunctions > 0) {
         for (int j = 0; j < output_vec.size(); ++j) {
-            std::cout << j << std::endl;
             if (common_disjunctions & (1 << j) != 0) {
                 current_intersection = current_intersection->difference(*output_vec[j]);
                 if (current_intersection->cardinality() == 0)return true;
@@ -863,7 +862,6 @@ void Evidence::initCanonicalDecomposition() {
         std::vector<unsigned long long> checks(focal_elements.size());
         std::vector<std::unique_ptr<FocalElement>> output_vec;
         for (size_t k = 0; k < focal_elements.size(); ++k) {
-            std::cout << "E fino a qui ok" << std::endl;
             if (focal_elements[indices[k]]->cardinality() > 0 && parents[k] < 0) {
                 std::vector<size_t> path;
                 if (!dfsDisj(adj_list, k, path, focal_elements[indices[k]]->clone(), output_vec, checks, indices,
