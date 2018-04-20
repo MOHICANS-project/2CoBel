@@ -759,11 +759,55 @@ bool Evidence::isConsonant() const {
     return true;
 }
 
+void Evidence::buildCanonicalDecomposition(const Evidence &ev) {
+    auto maxnum = static_cast<unsigned long long int>(pow(2, ev.getDiscernment_frame()->cardinality()));
+
+    std::vector<double> qs(maxnum);
+    for (int k = 0; k < maxnum; ++k) {
+        UnidimensionalFocalElement cur(k);
+        qs[k] = log(ev.q_(cur));
+    }
+
+    for (int i = 0; i < maxnum; ++i) {
+        double lnw = 0;
+        std::unique_ptr<UnidimensionalFocalElement> cur(new UnidimensionalFocalElement(i));
+        for (int j = 0; j < maxnum; ++j) {
+            UnidimensionalFocalElement comp(j);
+            if (cur->inside(comp)) {
+                double toadd = qs[j];
+                int diff_c = static_cast<int>(cur->cardinality() - comp.cardinality());
+                if (std::abs(diff_c) % 2 != 0)toadd *= -1;
+                lnw += toadd;
+            }
+        }
+        double w = exp(-lnw);
+        if (w != 1) {
+            canonical_decomposition->push(std::move(cur), w);
+        }
+    }
+    if (ev.conflict() > 0) {
+        double lnw = 0;
+        for (int j = 0; j < maxnum; ++j) {
+            UnidimensionalFocalElement comp(j);
+            double toadd = qs[j];
+            int diff_c = static_cast<int>(-comp.cardinality());
+            if (std::abs(diff_c) % 2 != 0)toadd *= -1;
+            lnw += toadd;
+        }
+        double w = exp(-lnw);
+        if (w != 1) {
+            std::unique_ptr<UnidimensionalFocalElement> empty(new UnidimensionalFocalElement(0));
+            canonical_decomposition->push(std::move(empty), w);
+        }
+    }
+
+}
+
+
 void Evidence::initCanonicalDecomposition() {
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &masses = fecontainer->getMassArray();
     if (isConsonant()) {
-        const std::vector<double> &masses = fecontainer->getMassArray();
         std::vector<size_t> indices(focal_elements.size());
         for (size_t l = 0; l < focal_elements.size(); ++l) {
             indices[l] = l;
@@ -796,7 +840,6 @@ void Evidence::initCanonicalDecomposition() {
 
     auto *rhs = dynamic_cast<const UnidimensionalFocalElement *>(discernment_frame.get());
 
-    Evidence *ev_to_use = this;
 
     if (rhs == nullptr) {
         //need to transform to 1D representation
@@ -810,6 +853,7 @@ void Evidence::initCanonicalDecomposition() {
         std::vector<unsigned long long> checks(focal_elements.size());
         std::vector<std::unique_ptr<FocalElement>> output_vec;
         for (size_t k = 0; k < focal_elements.size(); ++k) {
+            std::cout << "E fino a qui ok" << std::endl;
             if (focal_elements[indices[k]]->cardinality() > 0 && parents[k] < 0) {
                 std::vector<size_t> path;
                 if (!dfsDisj(adj_list, k, path, focal_elements[indices[k]]->clone(), output_vec, checks, indices,
@@ -835,15 +879,14 @@ void Evidence::initCanonicalDecomposition() {
 
         }
 
-        ev_to_use = &new_ev;
+        buildCanonicalDecomposition(new_ev);
+
+    } else {
+        buildCanonicalDecomposition(*this);
     }
-
-    //do what you want with ev_to_use
-
 
 
     is_decomposed = true;
-    delete ev_to_use;
 }
 
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getCanonicalDecomposition() const {
