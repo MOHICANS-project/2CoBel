@@ -779,7 +779,7 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
         qs[k] = log(ev.q_(cur));
     }
 
-    for (int i = 1; i < maxnum; ++i) {
+    for (int i = 0; i < maxnum; ++i) {
         double lnw = 0;
         std::unique_ptr<UnidimensionalFocalElement> cur(new UnidimensionalFocalElement(i));
         for (int j = 0; j < maxnum; ++j) {
@@ -798,23 +798,23 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
             outweights.push_back(w);
         }
     }
-    if (ev.conflict() > 0) {
-        double lnw = 0;
-        for (int j = 0; j < maxnum; ++j) {
-            UnidimensionalFocalElement comp(j);
-            double toadd = qs[j];
-            int diff_c = static_cast<int>(-comp.cardinality());
-            if (std::abs(diff_c) % 2 != 0)toadd *= -1;
-            lnw += toadd;
-        }
-        double w = exp(-lnw);
-        if (w != 1) {
-            std::unique_ptr<UnidimensionalFocalElement> empty(new UnidimensionalFocalElement(0));
-            //canonical_decomposition->push(std::move(empty), w);
-            out_elems.push_back(std::move(empty));
-            outweights.push_back(w);
-        }
-    }
+//    if (ev.conflict() > 0) {
+//        double lnw = 0;
+//        for (int j = 0; j < maxnum; ++j) {
+//            UnidimensionalFocalElement comp(j);
+//            double toadd = qs[j];
+//            int diff_c = static_cast<int>(-comp.cardinality());
+//            if (std::abs(diff_c) % 2 != 0)toadd *= -1;
+//            lnw += toadd;
+//        }
+//        double w = exp(-lnw);
+//        if (w != 1) {
+//            std::unique_ptr<UnidimensionalFocalElement> empty(new UnidimensionalFocalElement(0));
+//            //canonical_decomposition->push(std::move(empty), w);
+//            out_elems.push_back(std::move(empty));
+//            outweights.push_back(w);
+//        }
+//    }
 
 }
 
