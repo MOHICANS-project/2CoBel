@@ -890,12 +890,15 @@ void Evidence::initCanonicalDecomposition() {
         }
 
         buildCanonicalDecomposition(new_ev, out_elems, outweights);
+
         for (int j = 0; j < outweights.size(); ++j) {
             auto ID = out_elems[j]->getKey();
             std::unique_ptr<FocalElement> toput = discernment_frame->clone();
             toput->clear();
-            for (int i = 0; i < output_vec.size(); ++i) {
-                if (ID & (1 << j) != 0) toput = toput->unite(*output_vec[j]);
+            if (ID > 0) {
+                for (int i = 0; i < output_vec.size(); ++i) {
+                    if (ID & (1 << i) != 0) toput = toput->unite(*output_vec[i]);
+                }
             }
             canonical_decomposition->push(std::move(toput), outweights[j]);
         }
