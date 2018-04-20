@@ -880,6 +880,16 @@ void Evidence::initCanonicalDecomposition() {
             }
         }
 
+
+        //add rest of the world disjunction
+        std::unique_ptr<FocalElement> rwd = discernment_frame->clone();
+        for (int l = 0; l < focal_elements.size(); ++l) {
+            rwd = rwd->difference(*focal_elements[l]);
+        }
+        if (rwd->cardinality() > 0) {
+            output_vec.push_back(std::move(rwd));
+        }
+
         std::unique_ptr<UnidimensionalFocalElement> new_df = UnidimensionalFocalElement::createDiscernmentFrame(
                 static_cast<unsigned char>(output_vec.size()));
         Evidence new_ev(std::move(new_df), ignorance);
