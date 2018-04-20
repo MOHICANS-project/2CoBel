@@ -105,6 +105,7 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
                        std::vector<int> &parents, size_t cur_root) const {
 
     path.push_back(current_pos);
+
     for (auto next_pos : adj_list[current_pos]) {
         const FocalElement &fe = *fecontainer->getFocalElementsArray()[indices[next_pos]];
         if (parents[next_pos] >= 0 && parents[next_pos] < cur_root)continue; //early stopping
@@ -116,14 +117,14 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     }
 
     //Check current path
-    unsigned long common_disjunctions = path[0];
+    unsigned long common_disjunctions = check[path[0]];
     for (int i = 1; i < path.size(); ++i) {
         common_disjunctions &= check[path[i]];
     }
 
     //remove included sets
     if (common_disjunctions > 0) {
-        for (int j = 0; j < 64; ++j) {
+        for (int j = 0; j < output_vec.size(); ++j) {
             std::cout << j << std::endl;
             if (common_disjunctions & (1 << j) != 0) {
                 current_intersection = current_intersection->difference(*output_vec[j]);
