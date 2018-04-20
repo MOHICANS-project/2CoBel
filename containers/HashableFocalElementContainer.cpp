@@ -61,7 +61,7 @@ void HashableFocalElementContainer::erase(int index) {
     auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[index].get()));//safe for comparison only
     mms.erase(tmp);
     for (int i = index + 1; i < fes.size(); ++i) {
-        auto *x = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[i].get()));//safe for comparison only
+        auto *x = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[i].get()));
         mms.at(x) -= 1;
     }
     fes[index].reset();
@@ -75,7 +75,7 @@ void HashableFocalElementContainer::erase(const FocalElement &fe) {
         size_t index = mms.at(tmp);
         mms.erase(tmp);
         for (size_t i = index + 1; i < fes.size(); ++i) {
-            auto *x = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[i].get()));//safe for comparison only
+            auto *x = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(fes[i].get()));
             mms.at(x) -= 1;
         }
         fes[index].reset();
