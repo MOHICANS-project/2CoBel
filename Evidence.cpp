@@ -862,6 +862,8 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
 
 void Evidence::initCanonicalDecomposition() {
 
+    canonical_decomposition->clear();
+
     if (ignorance == 0) {
         discount(1e-6);
     }
