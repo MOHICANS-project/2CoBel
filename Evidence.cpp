@@ -863,7 +863,7 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
 void Evidence::initCanonicalDecomposition() {
 
     if (ignorance == 0) {
-        discount(1e-10);
+        discount(1e-6);
     }
 
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
