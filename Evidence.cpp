@@ -752,6 +752,11 @@ void Evidence::normalize() {
         fecontainer->set(i, mass_array[i] / (1 - conf));
     }
     ignorance /= (1 - conf);
+    if (is_decomposed) {
+        std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
+        empty_set->clear();
+        canonical_decomposition->erase(*empty_set);
+    }
 }
 
 Evidence Evidence::conditioning(const FocalElement &C) const {
