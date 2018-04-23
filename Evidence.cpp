@@ -123,12 +123,14 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     }
 
     //remove included sets
-    std::unique_ptr<FocalElement> todadd = current_intersection->clone();
     if (common_disjunctions > 0) {
         for (int j = 0; j < output_vec.size(); ++j) {
             if ((common_disjunctions & (1 << j)) != 0) {
-                todadd = todadd->difference(*output_vec[j]);
-                if (todadd->cardinality() == 0)return true;
+                current_intersection = current_intersection->difference(*output_vec[j]);
+                if (current_intersection->cardinality() == 0) {
+                    path.erase(path.end() - 1);
+                    return true;
+                }
             }
         }
     }
@@ -136,7 +138,7 @@ bool Evidence::dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list
     //insert new disjunction
     size_t id = output_vec.size();
     if (id == 64)return false;
-    output_vec.push_back(std::move(todadd));
+    output_vec.push_back(std::move(current_intersection));
     //update disjuntcion table
     for (unsigned long i : path) {
         check[i] |= (1 << id);
