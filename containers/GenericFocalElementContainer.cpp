@@ -19,6 +19,7 @@ void GenericFocalElementContainer::push(std::unique_ptr<FocalElement> elem, doub
     mms.push_back(mass);
 }
 
+
 const std::vector<std::unique_ptr<FocalElement>> &GenericFocalElementContainer::getFocalElementsArray() {
     return fes;
 }
@@ -85,4 +86,23 @@ bool GenericFocalElementContainer::contains(const FocalElement &fe) {
         }
     }
     return false;
+}
+
+size_t GenericFocalElementContainer::size() const {
+    return fes.size();
+}
+
+
+void GenericFocalElementContainer::push(std::unique_ptr<FocalElement> elem, double mass,
+                                        const std::function<double(double, double)> &acc) {
+    //alternative push: code duplication is not avoided for performance reasons.
+    for (int k = 0; k < fes.size(); ++k) {
+        const FocalElement &fek = *fes[k];
+        if (*elem == fek) {
+            mms[k] = acc(mms[k], mass);
+            return;
+        }
+    }
+    fes.push_back(std::move(elem));
+    mms.push_back(mass);
 }

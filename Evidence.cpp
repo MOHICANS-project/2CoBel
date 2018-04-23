@@ -179,6 +179,18 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
 }
 
 
+Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
+                   std::unique_ptr<FocalElementContainer> &&_fecontainer,
+                   std::unique_ptr<FocalElementContainer> &&_canonical_decomposition,
+                   std::unique_ptr<FocalElement> _discernment_frame, double _ignorance) : dispatcher(
+        std::move(_dispatcher)), fecontainer(std::move(_fecontainer)), canonical_decomposition(
+        std::move(_canonical_decomposition)), discernment_frame(std::move(_discernment_frame)),
+                                                                                          ignorance(_ignorance),
+                                                                                          is_gssf(false),
+                                                                                          is_decomposed(true) {
+}
+
+
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() const {
     return fecontainer->getFocalElementsArray();
 }
@@ -195,6 +207,7 @@ void Evidence::addFocalElement(std::unique_ptr<FocalElement> elem, double mass) 
     if (elem->isEmpty())
         throw IncompatibleTypeError("Cannot add the empty set.");
     fecontainer->push(std::move(elem), mass);
+    is_decomposed = false;
 }
 
 const std::vector<double> &Evidence::getMassArray() const {
@@ -448,7 +461,32 @@ Evidence Evidence::conjunctive_rule(const Evidence &other, bool normalizeDempste
         }
     }
 
+    if (is_decomposed && other.is_decomposed) {
+        //compute decomposition
+        std::unique_ptr<FocalElementContainer> new_decomposition = dispatcher->getContainer(*discernment_frame);
 
+        const std::vector<std::unique_ptr<FocalElement>> &cels = canonical_decomposition->getFocalElementsArray();
+        const std::vector<double> &wes = canonical_decomposition->getMassArray();
+        for (int i = 0; i < wes.size(); ++i) {
+            new_decomposition->push(cels[i]->clone(), wes[i]);
+        }
+
+        const std::vector<std::unique_ptr<FocalElement>> &cels2 = other.getCanonicalDecomposition();
+        const std::vector<double> &wes2 = other.getCanonicalDecompositionWeights();
+        auto lambda = [](double x, double y) { return x * y; };
+        for (int i = 0; i < wes2.size(); ++i) {
+            new_decomposition->push(cels2[i]->clone(), wes2[i], lambda);
+        }
+
+        Evidence outev(dispatcher->clone(), std::move(new_fecontainer), std::move(new_decomposition),
+                       discernment_frame->clone(),
+                       ignorance * other.getIgnorance());
+
+        if (normalizeDempster)outev.normalize();
+
+        return outev;
+
+    }
     Evidence outev(dispatcher->clone(), std::move(new_fecontainer), discernment_frame->clone(),
                    ignorance * other.getIgnorance());
     if (normalizeDempster)outev.normalize();
@@ -941,6 +979,7 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
     if (is_decomposed) return canonical_decomposition->getMassArray();
     return std::vector<double>();
 }
+
 
 
 

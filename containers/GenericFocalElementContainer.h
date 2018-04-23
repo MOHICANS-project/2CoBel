@@ -35,6 +35,10 @@ public:
 
     void push(std::unique_ptr<FocalElement> elem, double mass) override;
 
+
+    void
+    push(std::unique_ptr<FocalElement> elem, double mass, const std::function<double(double, double)> &acc) override;
+
     const std::vector<std::unique_ptr<FocalElement>> &getFocalElementsArray() override;
 
     const std::vector<double> &getMassArray() override;
@@ -50,6 +54,8 @@ public:
     void erase(const FocalElement &fe) override;
 
     bool contains(const FocalElement &fe) override;
+
+    size_t size() const override;
 };
 
 

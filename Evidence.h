@@ -61,6 +61,11 @@ protected:
                       std::unique_ptr<FocalElementContainer> &&fecontainer,
                       std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
 
+    Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
+             std::unique_ptr<FocalElementContainer> &&fecontainer,
+             std::unique_ptr<FocalElementContainer> &&canonical_decomposition,
+             std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
+
 public:
     /**
      * Constructor.
