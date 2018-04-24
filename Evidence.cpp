@@ -608,6 +608,8 @@ Evidence Evidence::cautious_rule(const Evidence &other, bool normalize) const {
 
     final.setCanonical_decomposition(std::move(new_decomposition));
 
+    if (normalize)final.normalize();
+
     return final;
 }
 
