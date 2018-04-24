@@ -755,7 +755,12 @@ void Evidence::normalize() {
     if (is_decomposed) {
         std::unique_ptr<FocalElement> empty_set = discernment_frame->clone();
         empty_set->clear();
-        canonical_decomposition->erase(*empty_set);
+        if (canonical_decomposition->contains(*empty_set)) {
+            double wempty = canonical_decomposition->get(*empty_set);
+            canonical_decomposition->set(*empty_set, wempty / (1 - conf));
+        } else {
+            canonical_decomposition->push(empty_set->clone(), 1.0 / (1 - conf));
+        }
     }
 }
 
