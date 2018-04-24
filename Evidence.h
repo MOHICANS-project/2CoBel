@@ -66,6 +66,8 @@ protected:
              std::unique_ptr<FocalElementContainer> &&canonical_decomposition,
              std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
 
+    void setCanonical_decomposition(std::unique_ptr<FocalElementContainer> canonical_decomposition);
+
 public:
     /**
      * Constructor.
@@ -250,6 +252,14 @@ public:
     Evidence disjunctive_rule(const Evidence &other) const;
 
     /**
+     * Cautious combination rule on two sources.
+     * @param other The other BBA to combine with.
+     * @param normalize True if the resulting BBA has to be in normalized form.
+     * @return The BBA result of the cautious combination.
+     */
+    Evidence cautious_rule(const Evidence &other, bool normalize = true) const;
+
+    /**
      * Perform vacuous extension of the current BBA from discernment frame \f$\Omega_{1}\f$ to \f$\Omega_{1} \times \Omega_{2}\f$
      * @param discernment_frame_2 \f$\Omega_{2}\f$
      * @param extend_right If true, extend to\f$\Omega_{1} \times \Omega_{2}\f$, otherwise to \f$\Omega_{2} \times \Omega_{1}\f$
@@ -322,6 +332,7 @@ public:
      * @return Array of weights.
      */
     const std::vector<double> &getCanonicalDecompositionWeights() const;
+
 
 };
 

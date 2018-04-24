@@ -190,6 +190,11 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
                                                                                           is_decomposed(true) {
 }
 
+void Evidence::setCanonical_decomposition(std::unique_ptr<FocalElementContainer> _canonical_decomposition) {
+    canonical_decomposition = std::move(_canonical_decomposition);
+}
+
+
 
 const std::vector<std::unique_ptr<FocalElement>> &Evidence::getFocal_elements() const {
     return fecontainer->getFocalElementsArray();
@@ -539,6 +544,73 @@ Evidence Evidence::disjunctive_rule(const Evidence &other) const {
 
     return outev;
 }
+
+Evidence Evidence::cautious_rule(const Evidence &other, bool normalize) const {
+    if (!isValidBBA() || !other.isValidBBA()) {
+        throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+    }
+    if ((*other.getDiscernment_frame()) != (*discernment_frame))
+        throw IncompatibleTypeError("Disjunctive rule can be applied only on the same discernment frame");
+    if (!is_decomposed || !other.is_decomposed)
+        throw IllegalArgumentError(
+                "Canonical decomposition of each source is necessary. Call initCanonicalDecomposition() before.");
+
+
+    std::unique_ptr<FocalElementContainer> new_decomposition = dispatcher->getContainer(*discernment_frame);
+
+    const std::vector<std::unique_ptr<FocalElement>> &cels = canonical_decomposition->getFocalElementsArray();
+    const std::vector<double> &wes = canonical_decomposition->getMassArray();
+    for (int i = 0; i < wes.size(); ++i) {
+        if (wes[i] < 1) new_decomposition->push(cels[i]->clone(), wes[i]);
+    }
+
+    const std::vector<std::unique_ptr<FocalElement>> &cels2 = other.getCanonicalDecomposition();
+    const std::vector<double> &wes2 = other.getCanonicalDecompositionWeights();
+    auto lambda = [](double x, double y) { return std::min(x, y); };
+    for (int i = 0; i < wes2.size(); ++i) {
+        if (wes2[i] < 1) new_decomposition->push(cels2[i]->clone(), wes2[i], lambda);
+    }
+
+
+
+    //Reconstruct
+    const std::vector<std::unique_ptr<FocalElement>> &elems = new_decomposition->getFocalElementsArray();
+    const std::vector<double> &weights = new_decomposition->getMassArray();
+    std::vector<Evidence> evs;
+
+    for (int i = 0; i < elems.size(); ++i) {
+        Evidence ev(dispatcher->clone(), discernment_frame->clone(), weights[i]);
+        if (!elems[i]->isEmpty())ev.addFocalElement(elems[i]->clone(), 1.0 - weights[i]);
+        ev.setGSSF();
+        evs.push_back(ev);
+    }
+
+    Evidence final = evs[0];
+    for (int k = 1; k < evs.size(); ++k) {
+        final = final.conjunctive_rule(evs[k], false);
+        final.setGSSF();
+    }
+
+    std::vector<int> todel;
+    for (int l = 0; l < final.numFocalElements(); ++l) {
+        if (fabs(final.getMass(l)) < 1e-3) {
+            todel.push_back(l);
+        }
+        if (*final.getFocal_elements()[l] == *discernment_frame) {
+            final.setIgnorance(final.getIgnorance() + final.getMass(l));
+            todel.push_back(l);
+        }
+    }
+    for (int m = 0; m < todel.size(); ++m) {
+        final.deleteFocalElement(todel[m] - m);
+    }
+    final.is_gssf = false;
+
+    final.setCanonical_decomposition(std::move(new_decomposition));
+
+    return final;
+}
+
 
 void Evidence::discount(double alpha) {
     if (!isValidBBA()) {
@@ -991,6 +1063,8 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
     if (is_decomposed) return canonical_decomposition->getMassArray();
     return std::vector<double>();
 }
+
+
 
 
 
