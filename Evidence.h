@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include "containers/FocalElementContainerDispatcher.h"
 #include "containers/DefaultFocalElementContainerDispatcher.h"
+#include <unordered_set>
 
 /**
  * @class Evidence
@@ -26,17 +27,32 @@ class Evidence {
 
     bool is_gssf;
 
+    std::unique_ptr<FocalElementContainer> canonical_decomposition;
+    bool is_decomposed;
+
 protected:
 
     void extendPath(unsigned long long &path, size_t pos) const;
 
     void extendPath(boost::dynamic_bitset<> &path, size_t pos) const;
 
+    void buildGraph(std::unordered_map<size_t, std::vector<size_t>> &adj_list, std::vector<size_t> &indices,
+                    std::vector<int> &parents, std::vector<int> &oldest_parents) const;
 
     template<typename T>
     void dfs(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, T path,
              std::unique_ptr<FocalElement> current_intersection, std::vector<std::unique_ptr<FocalElement>> &output_vec,
              std::vector<T> &check, std::vector<size_t> &indices, std::vector<int> &parents, size_t cur_root) const;
+
+
+    bool
+    dfsDisj(std::unordered_map<size_t, std::vector<size_t>> &adj_list, size_t current_pos, std::vector<size_t> &path,
+            std::unique_ptr<FocalElement> current_intersection,
+            std::vector<std::unique_ptr<FocalElement>> &output_vec,
+            std::vector<unsigned long long> &check, std::vector<size_t> &indices,
+            std::vector<int> &parents, size_t cur_root) const;
+
+
 
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
@@ -44,6 +60,13 @@ protected:
     explicit Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
                       std::unique_ptr<FocalElementContainer> &&fecontainer,
                       std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
+
+    Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
+             std::unique_ptr<FocalElementContainer> &&fecontainer,
+             std::unique_ptr<FocalElementContainer> &&canonical_decomposition,
+             std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
+
+    void setCanonical_decomposition(std::unique_ptr<FocalElementContainer> canonical_decomposition);
 
 public:
     /**
@@ -229,6 +252,14 @@ public:
     Evidence disjunctive_rule(const Evidence &other) const;
 
     /**
+     * Cautious combination rule on two sources.
+     * @param other The other BBA to combine with.
+     * @param normalize True if the resulting BBA has to be in normalized form.
+     * @return The BBA result of the cautious combination.
+     */
+    Evidence cautious_rule(const Evidence &other, bool normalize = true) const;
+
+    /**
      * Perform vacuous extension of the current BBA from discernment frame \f$\Omega_{1}\f$ to \f$\Omega_{1} \times \Omega_{2}\f$
      * @param discernment_frame_2 \f$\Omega_{2}\f$
      * @param extend_right If true, extend to\f$\Omega_{1} \times \Omega_{2}\f$, otherwise to \f$\Omega_{2} \times \Omega_{1}\f$
@@ -286,6 +317,21 @@ public:
      * @return Discernment frame.
      */
     const std::unique_ptr<FocalElement> &getDiscernment_frame() const;
+
+
+    void initCanonicalDecomposition();
+
+    /**
+    * Get the focal elements of the canonical decomposition.
+    * @return Array of FocalElement objects.
+    */
+    const std::vector<std::unique_ptr<FocalElement>> &getCanonicalDecomposition() const;
+
+    /**
+     * Get the weights of the canonical decomposition.
+     * @return Array of weights.
+     */
+    const std::vector<double> &getCanonicalDecompositionWeights() const;
 
 
 };

@@ -26,10 +26,21 @@ public:
 
     /**
      * Add a new FocalElement to the container.
+     * Standard sum accumulation is used.
      * @param elem The FocalElement to be added.
      * @param mass The mass value.
      */
     virtual void push(std::unique_ptr<FocalElement> elem, double mass)=0;
+
+
+    /**
+     * Add a new FocalElement to the container, using the specified accumulation technique.
+     * @param elem The FocalElement to be added.
+     * @param mass The mass value.
+     * @param acc Accumulation method.
+     */
+    virtual void
+    push(std::unique_ptr<FocalElement> elem, double mass, const std::function<double(double, double)> &acc)=0;
 
     /**
      * Set the mass value at a given position.
@@ -83,6 +94,12 @@ public:
      * @return Array of masses.
      */
     virtual const std::vector<double> &getMassArray()=0;
+
+    /**
+     * Get the container size.
+     * @return Size of the container.
+     */
+    virtual size_t size() const =0;
 };
 
 #endif //FUSION_FOCALELEMENTARRAYBUILDER_H

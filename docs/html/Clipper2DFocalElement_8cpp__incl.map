@@ -1,9 +1,0 @@
-<map id="focal_elements/Clipper2DFocalElement.cpp" name="focal_elements/Clipper2DFocalElement.cpp">
-<area shape="rect" id="node3" href="$Clipper2DFocalElement_8h.html" title="Clipper2DFocalElement.h" alt="" coords="335,95,505,121"/>
-<area shape="rect" id="node4" href="$ClipperPolygon_8h.html" title="../geometry/ClipperPolygon.h" alt="" coords="214,169,405,196"/>
-<area shape="rect" id="node14" href="$HashableFocalElement_8h.html" title="HashableFocalElement.h" alt="" coords="445,169,613,196"/>
-<area shape="rect" id="node6" href="$Shape_8h.html" title="Shape.h" alt="" coords="185,251,255,278"/>
-<area shape="rect" id="node10" href="$Point2D_8h.html" title="Point2D.h" alt="" coords="5,341,85,367"/>
-<area shape="rect" id="node16" href="$FocalElement_8h.html" title="FocalElement.h" alt="" coords="590,251,703,278"/>
-<area shape="rect" id="node17" href="$IncompatibleTypeError_8h.html" title="../errors/IncompatibleType\lError.h" alt="" coords="465,333,639,375"/>
-</map>

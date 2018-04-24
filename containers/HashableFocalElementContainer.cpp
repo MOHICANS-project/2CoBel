@@ -89,4 +89,23 @@ bool HashableFocalElementContainer::contains(const FocalElement &fe) {
     return mms.find(tmp) != mms.end();
 }
 
+size_t HashableFocalElementContainer::size() const {
+    return fes.size();
+}
+
+
+void HashableFocalElementContainer::push(std::unique_ptr<FocalElement> elem, double mass,
+                                         const std::function<double(double, double)> &acc) {
+    //alternative push: code duplication is not avoided for performance reasons.
+    auto *tmp = static_cast<HashableFocalElement *>(elem.get());
+    if (mms.find(tmp) != mms.end()) {
+        size_t idx = mms.at(tmp);
+        masses[idx] = acc(masses[idx], mass);
+        return;
+    }
+
+    fes.push_back(std::move(elem));
+    masses.push_back(mass);
+    mms.insert(std::make_pair(tmp, fes.size() - 1));
+}
 
