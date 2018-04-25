@@ -113,6 +113,8 @@ public:
     void setGSSF();
 
 
+    const FocalElementContainerDispatcher &getDispatcher() const;
+
     /**
      * Get the number of focal elements.
      * @return Size of the FocalElement array.

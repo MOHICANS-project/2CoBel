@@ -11,7 +11,7 @@
 const int DefaultFocalElementContainerDispatcher::MIN_DIM = 20;
 
 std::unique_ptr<FocalElementContainer>
-DefaultFocalElementContainerDispatcher::getContainer(const FocalElement &el) {
+DefaultFocalElementContainerDispatcher::getContainer(const FocalElement &el) const {
 
     auto *rhs = dynamic_cast<const HashableFocalElement *>(&el);
     if (rhs != nullptr && el.cardinality() > MIN_DIM)
