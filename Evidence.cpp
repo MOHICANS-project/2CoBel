@@ -1066,6 +1066,10 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
     return std::vector<double>();
 }
 
+const FocalElementContainerDispatcher &Evidence::getDispatcher() const {
+    return *dispatcher;
+}
+
 
 
 

@@ -22,13 +22,13 @@ public:
      * @param df Target discernment frame
      * @return The related FocalElementContainer
      */
-    virtual std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &df)=0;
+    virtual std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &df) const =0;
 
     /**
      * Clone method.
      * @return A copy of the FocalElementContainerDispatcher object.
      */
-    virtual std::unique_ptr<FocalElementContainerDispatcher> clone()=0;
+    virtual std::unique_ptr<FocalElementContainerDispatcher> clone() const =0;
 };
 
 

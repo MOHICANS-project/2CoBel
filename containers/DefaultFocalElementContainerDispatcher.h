@@ -18,9 +18,9 @@ class DefaultFocalElementContainerDispatcher : public FocalElementContainerDispa
     static const int MIN_DIM;
 
 public:
-    std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &el) override;
+    std::unique_ptr<FocalElementContainer> getContainer(const FocalElement &el) const override;
 
-    std::unique_ptr<FocalElementContainerDispatcher> clone() override;
+    std::unique_ptr<FocalElementContainerDispatcher> clone() const override;
 };
 
 
