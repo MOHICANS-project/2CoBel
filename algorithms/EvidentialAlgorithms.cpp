@@ -53,6 +53,15 @@ namespace EvidentialAlgorithms {
     Evidence qrelaxation(const std::vector<Evidence> &evs, int q) {
         if (evs.empty())throw IllegalArgumentError("At least one source needed for q-relaxation.");
         if (evs.size() == q)throw IllegalArgumentError("Cannot relax all the sources.");
+
+        if (q == 0) {
+            Evidence outev = evs[0];
+            for (int i = 1; i < evs.size(); ++i) {
+                outev = outev.conjunctive_rule(evs[i], false);
+            }
+            return outev;
+        }
+
         std::unique_ptr<FocalElementContainer> output_elements = evs[0].getDispatcher().getContainer(
                 *evs[0].getDiscernment_frame());
 
