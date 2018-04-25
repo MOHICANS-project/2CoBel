@@ -62,6 +62,14 @@ namespace EvidentialAlgorithms {
             return outev;
         }
 
+        if (q == evs.size() - 1) {
+            Evidence outev = evs[0];
+            for (int i = 1; i < evs.size(); ++i) {
+                outev = outev.disjunctive_rule(evs[i]);
+            }
+            return outev;
+        }
+
         std::unique_ptr<FocalElementContainer> output_elements = evs[0].getDispatcher().getContainer(
                 *evs[0].getDiscernment_frame());
 
