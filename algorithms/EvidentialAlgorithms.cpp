@@ -14,13 +14,13 @@ dfs(int depth, size_t cur_node, double cur_mass, const std::vector<Evidence> &ev
         else cur_mass *= evs[depth].conflict();
         path.push_back(cur_node);
     }
-    if (depth < (evs.size() - 1)) {
+    if (depth < static_cast<int>(evs.size() - 1)) {
         for (size_t i = 0; i < evs[depth + 1].numFocalElements(); ++i)
-            dfs(depth, i, cur_mass, evs, q, path, output_elements, ignorance);
+            dfs(depth + 1, i, cur_mass, evs, q, path, output_elements, ignorance);
         if (evs[depth + 1].getIgnorance() > 0)
-            dfs(depth, evs[depth + 1].numFocalElements(), cur_mass, evs, q, path, output_elements, ignorance);
+            dfs(depth + 1, evs[depth + 1].numFocalElements(), cur_mass, evs, q, path, output_elements, ignorance);
         if (evs[depth + 1].conflict() > 0)
-            dfs(depth, evs[depth + 1].numFocalElements() + 1, cur_mass, evs, q, path, output_elements, ignorance);
+            dfs(depth + 1, evs[depth + 1].numFocalElements() + 1, cur_mass, evs, q, path, output_elements, ignorance);
 
     } else {
         std::vector<bool> v(path.size());
