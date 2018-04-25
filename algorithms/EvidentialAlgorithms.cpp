@@ -9,13 +9,19 @@ void
 dfs(int depth, size_t cur_node, double cur_mass, const std::vector<Evidence> &evs, int q, std::vector<size_t> &path,
     std::unique_ptr<FocalElementContainer> &output_elements) {
     if (depth >= 0) {
-        cur_mass *= evs[depth].getMass(cur_node);
+        if (cur_node < evs[depth].numFocalElements())cur_mass *= evs[depth].getMass(cur_node);
+        else if (cur_node == evs[depth].numFocalElements())cur_mass *= evs[depth].getIgnorance();
+        else cur_mass *= evs[depth].conflict();
         path.push_back(cur_node);
     }
     if (depth < (evs.size() - 1)) {
-        for (size_t i = 0; i < evs[depth + 1].numFocalElements(); ++i) {
+        for (size_t i = 0; i < evs[depth + 1].numFocalElements(); ++i)
             dfs(depth, i, cur_mass, evs, q, path, output_elements);
-        }
+        if (evs[depth + 1].getIgnorance() > 0)
+            dfs(depth, evs[depth + 1].numFocalElements(), cur_mass, evs, q, path, output_elements);
+        if (evs[depth + 1].conflict() > 0)
+            dfs(depth, evs[depth + 1].numFocalElements() + 1, cur_mass, evs, q, path, output_elements);
+
     } else {
         std::vector<bool> v(path.size());
         std::fill(v.end() - (path.size() - q), v.end(), true);
@@ -24,12 +30,17 @@ dfs(int depth, size_t cur_node, double cur_mass, const std::vector<Evidence> &ev
         final_uni->clear();
         do {
             std::unique_ptr<FocalElement> inters = evs[0].getDiscernment_frame()->clone();
+            bool danni = false;
             for (int i = 0; i < path.size(); ++i) {
-                if (v[i]) {
+                if (v[i] && path[i] != evs[i].numFocalElements()) {
+                    if (path[i] == evs[i].numFocalElements() + 1) {
+                        danni = true;
+                        break;
+                    }
                     inters = inters->intersect(*evs[i].getFocal_elements()[path[i]]);
                 }
             }
-            final_uni = final_uni->unite(*inters);
+            if (!danni)final_uni = final_uni->unite(*inters);
         } while (std::next_permutation(v.begin(), v.end()));
         output_elements->push(std::move(final_uni), cur_mass);
     }
