@@ -6,7 +6,7 @@
 #define PROJECT_EVIDENTIALALGORITHMS_H
 
 
-#include <Evidence.h>
+#include "../Evidence.h"
 
 namespace EvidentialAlgorithms {
 

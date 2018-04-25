@@ -21,7 +21,7 @@ DefaultFocalElementContainerDispatcher::getContainer(const FocalElement &el) con
 
 }
 
-std::unique_ptr<FocalElementContainerDispatcher> DefaultFocalElementContainerDispatcher::clone() {
+std::unique_ptr<FocalElementContainerDispatcher> DefaultFocalElementContainerDispatcher::clone() const {
     return std::unique_ptr<FocalElementContainerDispatcher>(new DefaultFocalElementContainerDispatcher());
 }
 

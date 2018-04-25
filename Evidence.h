@@ -57,9 +57,6 @@ protected:
     std::unique_ptr<FocalElement> maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool computeInters) const;
 
 
-    explicit Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
-                      std::unique_ptr<FocalElementContainer> &&fecontainer,
-                      std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
 
     Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
              std::unique_ptr<FocalElementContainer> &&fecontainer,
@@ -83,6 +80,17 @@ public:
      * @param _ignorance The ignorance value.
      */
     explicit Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
+                      std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
+
+    /**
+     * Constructor.
+     * @param dispatcher The container dispatcher.
+     * @param fecontainer The container of focal elements
+     * @param discernment_frame The discernment frame.
+     * @param _ignorance The ignorance value.
+     */
+    explicit Evidence(std::unique_ptr<FocalElementContainerDispatcher> dispatcher,
+                      std::unique_ptr<FocalElementContainer> &&fecontainer,
                       std::unique_ptr<FocalElement> discernment_frame, double _ignorance = 0);
 
 

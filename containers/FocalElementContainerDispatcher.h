@@ -28,7 +28,7 @@ public:
      * Clone method.
      * @return A copy of the FocalElementContainerDispatcher object.
      */
-    virtual std::unique_ptr<FocalElementContainerDispatcher> clone()=0;
+    virtual std::unique_ptr<FocalElementContainerDispatcher> clone() const =0;
 };
 
 
