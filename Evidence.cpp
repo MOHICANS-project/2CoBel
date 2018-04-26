@@ -893,6 +893,39 @@ bool Evidence::isConsonant() const {
     return true;
 }
 
+
+void q2m(std::vector<double> &tab) {
+    //size must be a power of 2
+    //assert(size > 0 && ( (size & (size - 1)) == 0) );
+    size_t size = tab.size();
+    int n = int(log2(size));
+    for (int step = 1; step <= n; step++) {
+        int i124 = 1 << (step - 1);
+        int i421 = 1 << (n - step);
+
+        for (int j = 0; j < i421; j++)
+            for (int i = 0; i < i124; i++)
+                tab[(j << 1) * i124 + i] = tab[(j << 1) * i124 + i] - tab[((j << 1) + 1) * i124 + i];
+
+    }
+}
+
+void q2w(std::vector<double> &q, std::vector<double> &w) {
+    //size must be a power of 2*
+
+    size_t size = q.size();
+
+    for (int i = 0; i < size; i++)
+        w[i] = log(q[i]);
+
+
+    q2m(w);
+    for (int i = 0; i < size - 1; i++)
+        w[i] = exp(-w[i]);
+    w[size - 1] = 1;
+}
+
+
 void
 buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<UnidimensionalFocalElement>> &out_elems,
                             std::vector<double> &outweights) {
@@ -901,47 +934,56 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
     std::vector<double> qs(maxnum);
     for (int k = 0; k < maxnum; ++k) {
         UnidimensionalFocalElement cur(k);
-        qs[k] = log(ev.q_(cur));
+        qs[k] = ev.q_(cur);
     }
 
-    for (int i = 0; i < maxnum; ++i) {
-        double lnw = 0;
-        std::unique_ptr<UnidimensionalFocalElement> cur(new UnidimensionalFocalElement(i));
-        for (int j = 0; j < maxnum; ++j) {
-            UnidimensionalFocalElement comp(j);
-            if (cur->inside(comp)) {
-                double toadd = qs[j];
-                int diff_c = static_cast<int>(cur->cardinality() - comp.cardinality());
-                if (std::abs(diff_c) % 2 != 0)toadd *= -1;
-                lnw += toadd;
-            }
-        }
-        double w = exp(-lnw);
-        if (w != 1) {
-            //canonical_decomposition->push(std::move(cur), w);
+    std::vector<double> w(maxnum);
+
+    q2w(qs, w);
+
+    for (int l = 0; l < w.size(); ++l) {
+        if (w[l] != 1) {
+            std::unique_ptr<UnidimensionalFocalElement> cur(new UnidimensionalFocalElement(l));
             out_elems.push_back(std::move(cur));
-            outweights.push_back(w);
+            outweights.push_back(w[l]);
         }
     }
-//    if (ev.conflict() > 0) {
+
+}
+
+
+
+//void
+//buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<UnidimensionalFocalElement>> &out_elems,
+//                            std::vector<double> &outweights) {
+//    auto maxnum = static_cast<unsigned long long int>(pow(2, ev.getDiscernment_frame()->cardinality()));
+//
+//    std::vector<double> qs(maxnum);
+//    for (int k = 0; k < maxnum; ++k) {
+//        UnidimensionalFocalElement cur(k);
+//        qs[k] = log(ev.q_(cur));
+//    }
+//
+//    for (int i = 0; i < maxnum; ++i) {
 //        double lnw = 0;
+//        std::unique_ptr<UnidimensionalFocalElement> cur(new UnidimensionalFocalElement(i));
 //        for (int j = 0; j < maxnum; ++j) {
 //            UnidimensionalFocalElement comp(j);
-//            double toadd = qs[j];
-//            int diff_c = static_cast<int>(-comp.cardinality());
-//            if (std::abs(diff_c) % 2 != 0)toadd *= -1;
-//            lnw += toadd;
+//            if (cur->inside(comp)) {
+//                double toadd = qs[j];
+//                int diff_c = static_cast<int>(cur->cardinality() - comp.cardinality());
+//                if (std::abs(diff_c) % 2 != 0)toadd *= -1;
+//                lnw += toadd;
+//            }
 //        }
 //        double w = exp(-lnw);
 //        if (w != 1) {
-//            std::unique_ptr<UnidimensionalFocalElement> empty(new UnidimensionalFocalElement(0));
-//            //canonical_decomposition->push(std::move(empty), w);
-//            out_elems.push_back(std::move(empty));
+//            //canonical_decomposition->push(std::move(cur), w);
+//            out_elems.push_back(std::move(cur));
 //            outweights.push_back(w);
 //        }
 //    }
-
-}
+//}
 
 
 void Evidence::initCanonicalDecomposition() {
