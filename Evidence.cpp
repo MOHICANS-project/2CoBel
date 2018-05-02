@@ -288,6 +288,7 @@ double Evidence::BetP(const FocalElement &w) const {
 void Evidence::setIgnorance(double ignorance) {
     if (ignorance < 0)throw IncompatibleTypeError("Ignorance value has to be >= 0.");
     Evidence::ignorance = ignorance;
+    is_decomposed = false;
 }
 
 std::unique_ptr<FocalElement>
@@ -626,6 +627,7 @@ void Evidence::discount(double alpha) {
     }
     ignorance *= (1 - alpha);
     ignorance += alpha;
+    is_decomposed = false;
 }
 
 Evidence Evidence::vacuous_extension(std::unique_ptr<FocalElement> discernment_frame_2, bool extend_right) const {
@@ -744,6 +746,7 @@ void Evidence::setMass(double mass, int index) {
                 "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");*/
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
     fecontainer->set(index, mass);
+    is_decomposed = false;
 }
 
 void Evidence::setMass(double mass, const FocalElement &fe) {
@@ -752,14 +755,17 @@ void Evidence::setMass(double mass, const FocalElement &fe) {
                 "Mass value has to be > 0. Delete the corresponding focal element to have the same behavior.");*/
     if (mass < 0)throw IncompatibleTypeError("Mass value has to be > 0.");
     fecontainer->set(fe, mass);
+    is_decomposed = false;
 }
 
 void Evidence::deleteFocalElement(int index) {
     fecontainer->erase(index);
+    is_decomposed = false;
 }
 
 void Evidence::deleteFocalElement(const FocalElement &fe) {
     fecontainer->erase(fe);
+    is_decomposed = false;
 }
 
 
