@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classFocalElementContainer.html" title="Container of FocalElement objects. " alt="" coords="5,31,164,57"/>
-<area shape="rect" id="node2" href="$classGenericFocalElementContainer.html" title="A container for any type of FocalElement object. " alt="" coords="217,5,420,32"/>
-<area shape="rect" id="node3" href="$classHashableFocalElementContainer.html" title="A container for HashableFocalElement type objects. " alt="" coords="212,56,425,83"/>
-</map>

@@ -192,6 +192,7 @@ Evidence::Evidence(std::unique_ptr<FocalElementContainerDispatcher> _dispatcher,
 
 void Evidence::setCanonical_decomposition(std::unique_ptr<FocalElementContainer> _canonical_decomposition) {
     canonical_decomposition = std::move(_canonical_decomposition);
+    is_decomposed = true;
 }
 
 
@@ -932,11 +933,14 @@ void q2w(std::vector<double> &q, std::vector<double> &w) {
 }
 
 
-void
+bool
 buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<UnidimensionalFocalElement>> &out_elems,
                             std::vector<double> &outweights) {
     auto maxnum = static_cast<unsigned long long int>(pow(2, ev.getDiscernment_frame()->cardinality()));
-
+    std::vector<double> buf;
+    if (maxnum > buf.max_size()) {
+        return false;
+    }
     std::vector<double> qs(maxnum);
     for (int k = 0; k < maxnum; ++k) {
         UnidimensionalFocalElement cur(k);
@@ -954,6 +958,7 @@ buildCanonicalDecomposition(const Evidence &ev, std::vector<std::unique_ptr<Unid
             outweights.push_back(w[l]);
         }
     }
+    return true;
 
 }
 
@@ -1079,7 +1084,11 @@ void Evidence::initCanonicalDecomposition() {
 
         }
 
-        buildCanonicalDecomposition(new_ev, out_elems, outweights);
+        if (!buildCanonicalDecomposition(new_ev, out_elems, outweights)) {
+            std::cout << "WARNING: canonical decomposition fail. Capacity hardware limits exceeded."
+                      << std::endl;
+            return;
+        }
 
         for (int j = 0; j < outweights.size(); ++j) {
             auto ID = out_elems[j]->getKey();
