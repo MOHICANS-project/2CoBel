@@ -339,25 +339,18 @@ Evidence::maxBetP(std::vector<std::unique_ptr<FocalElement>> &elems, bool comput
 std::unique_ptr<FocalElement> Evidence::maxBetP_withSingletons(int approx_step_size) const {
     if (!isValidBBA()) {
         throw InvalidBBAError("Cannot apply method to an invalid BBA.");
+
     }
-    std::vector<std::unique_ptr<FocalElement>> all_singletons;
+
+
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
-    for (int k = 0; k < focal_elements.size(); ++k) {
-        const FocalElement &fe = *focal_elements[k];
-        if (all_singletons.size() >= discernment_frame->cardinality())break;
-        std::vector<std::unique_ptr<FocalElement>> singletons = fe.getInnerSingletons(approx_step_size);
-        for (int i = 0; i < singletons.size(); ++i) {
-            const FocalElement &singleton = *singletons[i];
-            auto results = std::find_if(
-                    all_singletons.begin(),
-                    all_singletons.end(),
-                    [&](std::unique_ptr<FocalElement> const &object) {
-                        return *object == singleton;
-                    });
-            if (results == all_singletons.end())all_singletons.push_back(std::move(singletons[i]));
-        }
+
+    std::unique_ptr<FocalElement> globalunion = focal_elements[0]->clone();
+    for (int j = 1; j < focal_elements.size(); ++j) {
+        globalunion = globalunion->unite(*focal_elements[j]);
     }
-    //std::cout << all_singletons.size() << std::endl;
+    std::vector<std::unique_ptr<FocalElement>> all_singletons = globalunion->getInnerSingletons(approx_step_size);
+
     return maxBetP(all_singletons, true);
 }
 
