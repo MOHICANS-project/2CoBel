@@ -586,26 +586,31 @@ Evidence Evidence::cautious_rule(const Evidence &other, bool normalize) const {
         final.setGSSF();
     }
 
-    std::vector<int> todel;
+    std::vector<int> todel(final.numFocalElements(), false);
     for (int l = 0; l < final.numFocalElements(); ++l) {
         if (fabs(final.getMass(l)) < 1e-3) {
-            todel.push_back(l);
+            todel[l] = true;
         }
         if (*final.getFocal_elements()[l] == *discernment_frame) {
             final.setIgnorance(final.getIgnorance() + final.getMass(l));
-            todel.push_back(l);
+            todel[l] = true;
         }
     }
-    for (int m = 0; m < todel.size(); ++m) {
-        final.deleteFocalElement(todel[m] - m);
+
+    const std::vector<std::unique_ptr<FocalElement>> &elemsf = final.getFocal_elements();
+    Evidence realfinal(dispatcher->clone(), discernment_frame->clone(), final.getIgnorance());
+
+    for (int j = 0; j < todel.size(); ++j) {
+        if (!todel[j]) {
+            realfinal.addFocalElement(elemsf[j]->clone(), final.getMass(j));
+        }
     }
-    final.is_gssf = false;
 
-    final.setCanonical_decomposition(std::move(new_decomposition));
+    realfinal.setCanonical_decomposition(std::move(new_decomposition));
 
-    if (normalize)final.normalize();
+    if (normalize)realfinal.normalize();
 
-    return final;
+    return realfinal;
 }
 
 
