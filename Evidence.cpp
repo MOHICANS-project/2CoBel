@@ -622,10 +622,10 @@ void Evidence::discount(double alpha) {
     //const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
     const std::vector<double> &mass_array = fecontainer->getMassArray();
     for (int i = 0; i < mass_array.size(); ++i) {
-        fecontainer->set(i, mass_array[i] * (1 - alpha));
+        fecontainer->set(i, mass_array[i] * alpha);
     }
-    ignorance *= (1 - alpha);
-    ignorance += alpha;
+    ignorance *= alpha;
+    ignorance += (1 - alpha);
     is_decomposed = false;
 }
 
@@ -1000,7 +1000,7 @@ void Evidence::initCanonicalDecomposition() {
     canonical_decomposition->clear();
 
     if (ignorance == 0) {
-        discount(1e-6);
+        discount(1 - 1e-6);
     }
 
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
