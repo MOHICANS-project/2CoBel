@@ -119,3 +119,11 @@ void HashableFocalElementContainer::push(std::unique_ptr<FocalElement> elem, dou
     mms.insert(std::make_pair(tmp, fes.size() - 1));
 }
 
+int HashableFocalElementContainer::indexOf(const FocalElement &fe) {
+    auto *tmp = const_cast<HashableFocalElement *>(static_cast<const HashableFocalElement *>(&fe));//safe for comparison only
+    if (mms.find(tmp) != mms.end()) {
+        return static_cast<int>(mms.at(tmp));
+    }
+    return -1;
+}
+

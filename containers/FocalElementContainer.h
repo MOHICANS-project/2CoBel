@@ -95,6 +95,9 @@ public:
      */
     virtual const std::vector<double> &getMassArray()=0;
 
+
+    virtual int indexOf(const FocalElement &fe)=0;
+
     /**
      * Get the container size.
      * @return Size of the container.

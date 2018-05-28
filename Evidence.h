@@ -157,6 +157,14 @@ public:
      */
     double getMass(const FocalElement &fe) const;
 
+
+    /**
+     * Get position of the given FocalElement.
+     * @param fe The target FocalElement
+     * @return The position
+     */
+    int indexOf(const FocalElement &fe) const;
+
     /**
      * Delete the FocalElement at the given position
      * @param index The target position

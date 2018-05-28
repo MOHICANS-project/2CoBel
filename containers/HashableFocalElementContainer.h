@@ -57,6 +57,8 @@ public:
 
     bool contains(const FocalElement &fe) override;
 
+    int indexOf(const FocalElement &fe) override;
+
     size_t size() const override;
 };
 

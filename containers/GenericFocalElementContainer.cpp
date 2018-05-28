@@ -106,3 +106,12 @@ void GenericFocalElementContainer::push(std::unique_ptr<FocalElement> elem, doub
     fes.push_back(std::move(elem));
     mms.push_back(mass);
 }
+
+int GenericFocalElementContainer::indexOf(const FocalElement &fe) {
+    for (int i = 0; i < fes.size(); ++i) {
+        if (*fes[i] == fe) {
+            return i;
+        }
+    }
+    return -1;
+}

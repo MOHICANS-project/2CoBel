@@ -1000,7 +1000,7 @@ void Evidence::initCanonicalDecomposition() {
     canonical_decomposition->clear();
 
     if (ignorance == 0) {
-        discount(1 - 1e-6);
+        discount(1.0 - 1e-6);
     }
 
     const std::vector<std::unique_ptr<FocalElement>> &focal_elements = fecontainer->getFocalElementsArray();
@@ -1123,6 +1123,10 @@ const std::vector<double> &Evidence::getCanonicalDecompositionWeights() const {
 
 const FocalElementContainerDispatcher &Evidence::getDispatcher() const {
     return *dispatcher;
+}
+
+int Evidence::indexOf(const FocalElement &fe) const {
+    return fecontainer->indexOf(fe);
 }
 
 
