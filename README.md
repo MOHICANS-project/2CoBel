@@ -1,10 +1,13 @@
 # 2CoBel
 2CoBel is a library for Belief Function Theory (BFT) in 2D (and 1D) continuos spaces. Please cite the referring paper if you use the library in your project:
 
-*@ARTICLE{2018arXiv180308857P,
-   author = {{Pellican{\`o}}, N. and {Le H{\'e}garat-Mascle}, S. and {Aldea}, E.},
-    title = "{2CoBel : An Efficient Belief Function Extension for Two-dimensional Continuous Spaces}",
-     year = 2018
+*@inproceedings{pellicano18ijar,
+ author = {Pellican{\`o}, Nicola and Le H{\'e}garat-Mascle, Sylvie  and Aldea, Emanuel },
+ title = "2CoBel: A scalable belief function representation for 2D discernment frames",
+ journal = "International Journal of Approximate Reasoning",
+ volume = "103",
+ pages = "320 - 342",
+ year = "2018"
 }*
 
 ## Dependencies
