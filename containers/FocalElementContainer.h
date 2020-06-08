@@ -6,6 +6,7 @@
 #define FUSION_FOCALELEMENTARRAYBUILDER_H
 
 #include <vector>
+#include <functional>
 #include "../focal_elements/FocalElement.h"
 
 /**
